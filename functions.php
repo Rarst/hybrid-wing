@@ -6,6 +6,7 @@ class Hybrid_Wing extends Hybrid {
 
 	public $main_template;
 	public $base;
+	public $grid;
 
 	function __construct() {
 
@@ -45,21 +46,17 @@ class Hybrid_Wing extends Hybrid {
 
 //		add_action_with_args( 'hw_after_container', 'get_sidebar', 10, 'secondary' );
 
-		$grid = array(
-			'body_class'      => 'container',
-			'container_class' => 'row',
-			'content_class'   => 'span10 offset1',
+		$this->grid = array(
+			'body_container_class'      => 'container',
+			'container_class'           => 'row',
+			'content_class'             => 'span6',
 //			'entry_class' => 'span10',
-			'sidebar_class'   => 'span4',
+			'sidebar_class'             => 'span3',
 		);
-
-		foreach ( $grid as $hook => $classes ) {
-			add_filter_append( "hw_{$hook}", 10, ' ' . $classes );
-		}
 	}
 
 	/**
-	 * Tweak context.
+	 * Ready for conditionals, before template choice.
 	 */
 	function template_redirect() {
 
@@ -68,6 +65,12 @@ class Hybrid_Wing extends Hybrid {
 		if ( is_page() ) {
 			hybrid_get_context();
 			$hybrid->context[] = 'singular-page-' . get_query_var( 'pagename' );
+		}
+
+		$this->grid = apply_atomic( 'grid', $this->grid );
+
+		foreach ( $this->grid as $hook => $classes ) {
+			add_filter_append( "hw_{$hook}", 10, ' ' . $classes );
 		}
 	}
 

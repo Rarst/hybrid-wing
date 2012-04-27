@@ -15,7 +15,7 @@
 
 <?php do_atomic( 'before_html' ); ?>
 
-<div id="body-container">
+<div id="body-container" class="<?php echo apply_atomic( 'body_container_class', '' ); ?>">
 
 	<?php do_atomic( 'before_header' ); ?>
 

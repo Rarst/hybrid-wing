@@ -16,6 +16,6 @@
 
 		<?php do_atomic( 'after_content' ); ?>
 
-	</div>
+	</div><!-- #content -->
 
 <?php get_footer(); ?>

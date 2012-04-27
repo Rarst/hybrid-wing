@@ -16,7 +16,8 @@
 
 	</div>
 
-</div>
+</div><!-- #body-container -->
+
 
 <?php do_atomic( 'after_html' ); ?>
 <?php wp_footer(); ?>
