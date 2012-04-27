@@ -117,7 +117,7 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function wp_enqueue_scripts() {
 
-		wp_register_style( 'style', THEME_URI . '/style.less' );
+		wp_register_style( 'style', trailingslashit( CHILD_THEME_URI ) . 'style.less' );
 		wp_enqueue_style( 'style' );
 
 		$version = $this->get_package_info( LESSJS_DIR, 'version' );
