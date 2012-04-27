@@ -6,7 +6,7 @@
 
 			<?php if ( have_posts() ) : ?>
 
-			<?php include $hybrid_wing->main_template; ?>
+			<?php global $hybrid_wing; include $hybrid_wing->main_template; ?>
 
 		<?php else: ?>
 
