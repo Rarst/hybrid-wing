@@ -167,7 +167,12 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function hw_entry_title() {
 
-		echo hybrid_entry_title_shortcode( array() );
+		$title = hybrid_entry_title_shortcode( array() );
+
+		if( is_singular() )
+			$title = '<div class="page-header">' . $title . '</div>';
+
+		echo $title;
 	}
 }
 
