@@ -2,7 +2,7 @@
 
 	</div><!-- #container -->
 
-	<div id="footer-container">
+	<div id="footer-container" class="<?php echo apply_atomic( 'footer_container_class', '' ); ?>">
 
 		<?php do_atomic( 'before_footer' ); ?>
 

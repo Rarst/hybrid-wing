@@ -170,7 +170,7 @@ class Hybrid_Wing extends Hybrid {
 		$title = hybrid_entry_title_shortcode( array() );
 
 		if( is_singular() )
-			$title = '<div class="page-header">' . $title . '</div>';
+			$title = '<div class="page-header">' . $title . '</div><!-- .page-header -->';
 
 		echo $title;
 	}
