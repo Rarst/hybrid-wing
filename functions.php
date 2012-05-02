@@ -2,12 +2,18 @@
 
 require_once trailingslashit( TEMPLATEPATH ) . 'hybrid-core/hybrid.php';
 
+/**
+ * Main theme class, extends Hybrid Core.
+ */
 class Hybrid_Wing extends Hybrid {
 
 	public $main_template;
 	public $base;
 	public $grid;
 
+	/**
+	 * Initial hooks on creation.
+	 */
 	function __construct() {
 
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
@@ -33,6 +39,7 @@ class Hybrid_Wing extends Hybrid {
 		add_theme_support( 'hybrid-core-menus', array( 'primary' ) );
 		add_theme_support( 'hybrid-core-shortcodes' );
 		add_theme_support( 'hybrid-core-sidebars', array( 'primary', 'secondary' ) );
+		add_theme_support( 'loop-pagination' );
 		register_nav_menu( 'navbar', 'Navbar' );
 
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
@@ -43,6 +50,11 @@ class Hybrid_Wing extends Hybrid {
 		add_action_with_args( 'hw_after_header', 'get_template_part', 10, 'menu', 'primary' );
 		add_action_with_args( 'hw_after_container', 'get_sidebar', 10, 'primary' );
 		add_action( 'hw_before_entry', array( $this, 'hw_entry_title' ) );
+
+		add_action( 'hw_archive_after_container', 'loop_pagination' );
+		add_action( 'hw_search_after_container', 'loop_pagination' );
+		add_action( 'loop_pagination_args', array( $this, 'loop_pagination_args' ) );
+		add_action( 'loop_pagination', array( $this, 'loop_pagination' ) );
 
 //		add_action_with_args( 'hw_after_container', 'get_sidebar', 10, 'secondary' );
 
@@ -173,6 +185,37 @@ class Hybrid_Wing extends Hybrid {
 			$title = '<div class="page-header">' . $title . '</div><!-- .page-header -->';
 
 		echo $title;
+	}
+
+	/**
+	 * Adjust arguments of loop pagination function.
+	 *
+	 * @param array $args
+	 *
+	 * @return array
+	 */
+	function loop_pagination_args( $args ) {
+
+		$args['before'] = '<div class="row"><div class="span12"><div class="pagination pagination-centered">';
+		$args['after']  = '</div></div></div>';
+		$args['type']   = 'list';
+
+		return $args;
+	}
+
+	/**
+	 * Rewrite pagination output.
+	 *
+	 * @param string $html
+	 *
+	 * @return string
+	 */
+	function loop_pagination( $html ) {
+
+		$html = str_replace( "<a class='page-numbers'", "<a class='page-numbers hidden-phone'", $html );
+		$html = str_replace( '<span class="page-numbers dots"', '<span class="page-numbers dots hidden-phone"', $html );
+
+		return $html;
 	}
 }
 

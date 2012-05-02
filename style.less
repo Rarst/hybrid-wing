@@ -41,3 +41,26 @@
 		clear: both;
 	}
 }
+
+.pagination {
+
+	span.current, span.dots {
+		float: left;
+		padding: 0 14px;
+		line-height: (@baseLineHeight * 2) - 2;
+		text-decoration: none;
+		border: 1px solid #ddd;
+		border-left-width: 0;
+		color: @grayLight;
+		background-color: transparent;
+	}
+
+	span.current {
+		background-color: #f5f5f5;
+	}
+
+	li:first-child span {
+	  border-left-width: 1px;
+	  .border-radius(3px 0 0 3px);
+	}
+}
