@@ -196,9 +196,20 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function loop_pagination_args( $args ) {
 
+		global $wp_rewrite;
+
 		$args['before'] = '<div class="row"><div class="span12"><div class="pagination pagination-centered">';
 		$args['after']  = '</div></div></div>';
 		$args['type']   = 'list';
+
+
+		if (  $wp_rewrite->using_permalinks() ) {
+			$link  = get_pagenum_link();
+			$parse = parse_url( $link );
+
+			if( ! empty( $parse['query'] )  )
+				$args['base'] = str_replace( '?' . $parse['query'], 'page/%#%/?' . $parse['query'], $link );
+		}
 
 		return $args;
 	}
