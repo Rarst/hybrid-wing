@@ -2,9 +2,11 @@
 
 	</div><!-- #container -->
 
+	<?php do_atomic( 'before_footer' ); ?>
+
 	<div id="footer-container" class="<?php echo apply_atomic( 'footer_container_class', '' ); ?>">
 
-		<?php do_atomic( 'before_footer' ); ?>
+		<?php do_atomic( 'open_footer' ); ?>
 
 		<div id="footer">
 
@@ -12,9 +14,11 @@
 
 		</div>
 
-		<?php do_atomic( 'after_footer' ); ?>
+		<?php do_atomic( 'close_footer' ); ?>
 
 	</div>
+
+	<?php do_atomic( 'after_footer' ); ?>
 
 </div><!-- #body-container -->
 
