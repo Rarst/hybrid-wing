@@ -152,6 +152,9 @@ class Hybrid_Wing extends Hybrid {
 			wp_register_script( basename( $script, '.js' ), BOOTSTRAP_URI . '/js/' . basename( $script ), array( 'jquery' ), $version, true );
 		}
 
+		wp_register_script( 'prettify', BOOTSTRAP_URI . '/docs/assets/js/google-code-prettify/prettify.js', array(), null, true );
+		wp_register_style( 'prettify', BOOTSTRAP_URI . '/docs/assets/js/google-code-prettify/prettify.css', array(), null );
+
 		if ( wp_style_is( 'style', 'queue' ) )
 			wp_enqueue_script( 'less' );
 	}
