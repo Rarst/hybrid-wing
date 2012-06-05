@@ -1,3 +1,3 @@
-hybrid-core = [svn]http://svn.locallylost.com/themes/hybrid-core/tags/1.3/
+hybrid-core = [git]https://github.com/justintadlock/hybrid-core.git
 bootstrap = [git]https://github.com/twitter/bootstrap.git
 less.js = [git]https://github.com/cloudhead/less.js.git
