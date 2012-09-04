@@ -61,12 +61,14 @@ class Hybrid_Wing extends Hybrid {
 
 //		add_action_with_args( 'hw_after_container', 'get_sidebar', 10, 'secondary' );
 
+		$prefix = hybrid_get_prefix() . '_';
+
 		$this->grid = array(
-			'body_container_class'      => 'container',
-			'container_class'           => 'row',
-			'content_class'             => 'span6',
-//			'entry_class' => 'span10',
-			'sidebar_class'             => 'span3',
+			$prefix . 'body_container_class'      => 'container',
+			$prefix . 'container_class'           => 'row',
+			$prefix . 'content_class'             => 'span6',
+//			$prefix . 'entry_class' => 'span10',
+			$prefix . 'sidebar_class'             => 'span3',
 		);
 	}
 
@@ -85,7 +87,7 @@ class Hybrid_Wing extends Hybrid {
 		$this->grid = apply_atomic( 'grid', $this->grid );
 
 		foreach ( $this->grid as $hook => $classes ) {
-			add_filter( "hw_{$hook}", array( $this, 'append_grid_class' ) );
+			add_filter( $hook, array( $this, 'append_grid_class' ) );
 		}
 	}
 
@@ -96,7 +98,7 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function append_grid_class( $classes ) {
 
-		$current_filter = substr( current_filter(), 3 );
+		$current_filter = current_filter();
 
 		if( ! empty( $this->grid[$current_filter] ) )
 			$classes .= ' ' .  $this->grid[$current_filter];
