@@ -158,21 +158,21 @@ class Hybrid_Wing extends Hybrid {
 		wp_register_style( 'style', trailingslashit( CHILD_THEME_URI ) . 'style.less' );
 		wp_enqueue_style( 'style' );
 
-		$version = $this->get_package_info( LESSJS_DIR, 'version' );
+		$less_version = $this->get_package_info( LESSJS_DIR, 'version' );
 
 		if( ! SCRIPT_DEBUG )
-			$version .= '.min';
+			$less_version .= '.min';
 
-		wp_register_script( 'less', LESSJS_URI . "/dist/less-{$version}.js", array(), $version, true );
+		wp_register_script( 'less', LESSJS_URI . "/dist/less-{$less_version}.js", array(), $less_version, true );
 
 		if( SCRIPT_DEBUG )
 			wp_localize_script( 'less', 'less', array( 'env' => 'development' ) );
 
-		$version = $this->get_package_info( BOOTSTRAP_DIR, 'version' );
+		$bootstrap_version = $this->get_package_info( BOOTSTRAP_DIR, 'version' );
 		$scripts = glob( BOOTSTRAP_DIR . '/js/*.js' );
 
 		foreach ( $scripts as $script ) {
-			wp_register_script( basename( $script, '.js' ), BOOTSTRAP_URI . '/js/' . basename( $script ), array( 'jquery' ), $version, true );
+			wp_register_script( basename( $script, '.js' ), BOOTSTRAP_URI . '/js/' . basename( $script ), array( 'jquery' ), $bootstrap_version, true );
 		}
 
 		wp_register_script( 'prettify', BOOTSTRAP_URI . '/docs/assets/js/google-code-prettify/prettify.js', array(), null, true );
