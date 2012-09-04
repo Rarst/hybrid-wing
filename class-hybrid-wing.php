@@ -14,7 +14,6 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function __construct() {
 
-		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 		add_filter( 'hybrid_prefix', array( $this, 'hybrid_prefix' ) );
 		parent::__construct();
 	}
@@ -37,14 +36,9 @@ class Hybrid_Wing extends Hybrid {
 			define( 'SCRIPT_DEBUG', false );
 	}
 
-	function after_setup_theme() {
+	function default_filters() {
 
-		add_theme_support( 'hybrid-core-menus', array( 'primary' ) );
-		add_theme_support( 'hybrid-core-shortcodes' );
-		add_theme_support( 'hybrid-core-sidebars', array( 'primary', 'secondary' ) );
-		add_theme_support( 'loop-pagination' );
-		register_nav_menu( 'navbar', 'Navbar' );
-
+		parent::default_filters();
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 		add_action( 'template_include', array( $this, 'template_include' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
@@ -58,18 +52,16 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_search_after_container', 'loop_pagination' );
 		add_action( 'loop_pagination_args', array( $this, 'loop_pagination_args' ) );
 		add_action( 'loop_pagination', array( $this, 'loop_pagination' ) );
+	}
 
-//		add_action_with_args( 'hw_after_container', 'get_sidebar', 10, 'secondary' );
+	function theme_support() {
 
-		$prefix = hybrid_get_prefix() . '_';
-
-		$this->grid = array(
-			$prefix . 'body_container_class'      => 'container',
-			$prefix . 'container_class'           => 'row',
-			$prefix . 'content_class'             => 'span6',
-//			$prefix . 'entry_class' => 'span10',
-			$prefix . 'sidebar_class'             => 'span3',
-		);
+		parent::theme_support();
+		add_theme_support( 'hybrid-core-menus', array( 'primary' ) );
+		add_theme_support( 'hybrid-core-shortcodes' );
+		add_theme_support( 'hybrid-core-sidebars', array( 'primary', 'secondary' ) );
+		add_theme_support( 'loop-pagination' );
+		register_nav_menu( 'navbar', 'Navbar' );
 	}
 
 	/**
@@ -84,7 +76,17 @@ class Hybrid_Wing extends Hybrid {
 			$hybrid->context[] = 'singular-page-' . get_query_var( 'pagename' );
 		}
 
-		$this->grid = apply_atomic( 'grid', $this->grid );
+		$prefix = hybrid_get_prefix() . '_';
+
+		$default_grid = array(
+			$prefix . 'body_container_class'      => 'container',
+			$prefix . 'container_class'           => 'row',
+			$prefix . 'content_class'             => 'span6',
+//			$prefix . 'entry_class' => 'span10',
+			$prefix . 'sidebar_class'             => 'span3',
+		);
+
+		$this->grid = apply_atomic( 'grid', $default_grid );
 
 		foreach ( $this->grid as $hook => $classes ) {
 			add_filter( $hook, array( $this, 'append_grid_class' ) );
