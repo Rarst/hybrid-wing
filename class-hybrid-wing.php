@@ -15,9 +15,14 @@ class Hybrid_Wing extends Hybrid {
 	function __construct() {
 
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
-		add_filter_return( 'hybrid_prefix', 10, 'hw' );
+		add_filter( 'hybrid_prefix', array( $this, 'hybrid_prefix' ) );
 		parent::__construct();
 	}
+
+	/**
+	 * @return string 'hw'
+	 */
+	function hybrid_prefix() { return 'hw'; }
 
 	function constants() {
 
@@ -44,9 +49,9 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'template_include', array( $this, 'template_include' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 		add_action( 'style_loader_tag', array( $this, 'style_loader_tag' ), 10, 2 );
-		add_action_with_args( 'hw_before_html', 'get_template_part', 10, 'menu', 'navbar' );
-		add_action_with_args( 'hw_after_header', 'get_template_part', 10, 'menu', 'primary' );
-		add_action_with_args( 'hw_after_container', 'get_sidebar', 10, 'primary' );
+		add_action( 'hw_before_html', array( $this, 'hw_before_html' ) );
+		add_action( 'hw_after_header', array( $this, 'hw_after_header' ) );
+		add_action( 'hw_after_container', array( $this, 'hw_after_container' ) );
 		add_action( 'hw_before_entry', array( $this, 'hw_entry_title' ) );
 
 		add_action( 'hw_archive_after_container', 'loop_pagination' );
@@ -80,8 +85,23 @@ class Hybrid_Wing extends Hybrid {
 		$this->grid = apply_atomic( 'grid', $this->grid );
 
 		foreach ( $this->grid as $hook => $classes ) {
-			add_filter_append( "hw_{$hook}", 10, ' ' . $classes );
+			add_filter( "hw_{$hook}", array( $this, 'append_grid_class' ) );
 		}
+	}
+
+	/**
+	 * @param string $classes
+	 *
+	 * @return string
+	 */
+	function append_grid_class( $classes ) {
+
+		$current_filter = substr( current_filter(), 3 );
+
+		if( ! empty( $this->grid[$current_filter] ) )
+			$classes .= ' ' .  $this->grid[$current_filter];
+
+		return $classes;
 	}
 
 	/**
@@ -174,6 +194,12 @@ class Hybrid_Wing extends Hybrid {
 
 		return $data;
 	}
+
+	function hw_before_html() { get_template_part( 'menu', 'navbar' ); }
+
+	function hw_after_header() { get_template_part( 'menu', 'primary' ); }
+
+	function hw_after_container() { get_sidebar( 'primary' ); }
 
 	/**
 	 * Entry title.
