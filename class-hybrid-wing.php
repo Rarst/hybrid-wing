@@ -108,6 +108,7 @@ class Hybrid_Wing extends Hybrid {
 
 	/**
 	 * Handle wrapper.
+	 * @link http://scribu.net/wordpress/theme-wrappers.html
 	 *
 	 * @param string $template
 	 *
