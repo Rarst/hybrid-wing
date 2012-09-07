@@ -47,7 +47,7 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_after_header', array( $this, 'hw_after_header' ) );
 		add_action( 'hw_after_container', array( $this, 'hw_after_container' ) );
 		add_action( 'hw_before_entry', array( $this, 'hw_entry_title' ) );
-
+		add_action( 'hw_home_after_container', 'loop_pagination' );
 		add_action( 'hw_archive_after_container', 'loop_pagination' );
 		add_action( 'hw_search_after_container', 'loop_pagination' );
 		add_action( 'loop_pagination_args', array( $this, 'loop_pagination_args' ) );
