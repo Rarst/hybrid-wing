@@ -43,10 +43,11 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'template_include', array( $this, 'template_include' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 		add_action( 'style_loader_tag', array( $this, 'style_loader_tag' ), 10, 2 );
-		add_action( 'hw_before_html', array( $this, 'hw_before_html' ) );
-		add_action( 'hw_after_header', array( $this, 'hw_after_header' ) );
-		add_action( 'hw_after_container', array( $this, 'hw_after_container' ) );
-		add_action( 'hw_before_entry', array( $this, 'hw_entry_title' ) );
+		add_action( 'hw_header', array( $this, 'navbar_menu' ) );
+		add_action( 'hw_before_navbar_menu', array( $this, 'navbar_brand' ) );
+		add_action( 'hw_after_navbar_menu', array( $this, 'navbar_search' ) );
+		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
+		add_action( 'hw_before_entry', array( $this, 'entry_title' ) );
 		add_action( 'hw_home_after_content', 'loop_pagination' );
 		add_action( 'hw_archive_after_content', 'loop_pagination' );
 		add_action( 'hw_search_after_content', 'loop_pagination' );
@@ -57,7 +58,6 @@ class Hybrid_Wing extends Hybrid {
 	function theme_support() {
 
 		parent::theme_support();
-		add_theme_support( 'hybrid-core-menus', array( 'primary' ) );
 		add_theme_support( 'hybrid-core-shortcodes' );
 		add_theme_support( 'hybrid-core-sidebars', array( 'primary' ) );
 		add_theme_support( 'loop-pagination' );
@@ -200,16 +200,40 @@ class Hybrid_Wing extends Hybrid {
 		return $data;
 	}
 
-	function hw_before_html() { get_template_part( 'menu', 'navbar' ); }
+	function navbar_menu() {
 
-	function hw_after_header() { get_template_part( 'menu', 'primary' ); }
+		get_template_part( 'menu', 'navbar' );
+	}
 
-	function hw_after_container() { get_sidebar( 'primary' ); }
+	function navbar_brand() {
+
+		$name = esc_html( get_bloginfo( 'name' ) );
+
+		if ( is_home() )
+			$brand = '<span class="brand">' . $name . '</span>';
+		else
+			$brand = '<a href="' . get_home_url() . '" class="brand">' . $name . '</a>';
+
+		echo apply_atomic( 'navbar_brand', $brand );
+	}
+
+	function navbar_search() {
+		?>
+	<form role="search" method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ) ?>" class="navbar-search pull-right">
+		<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="<?php esc_attr_e( 'Search' ) ?>" class="search-query" />
+	</form>
+	<?php
+	}
+
+	function sidebar_primary() {
+
+		get_sidebar( 'primary' );
+	}
 
 	/**
 	 * Entry title.
 	 */
-	function hw_entry_title() {
+	function entry_title() {
 
 		$title = hybrid_entry_title_shortcode( array() );
 

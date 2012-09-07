@@ -26,9 +26,9 @@
 
 			<?php do_atomic( 'header' ); ?>
 
-		</div>
+		</div><!-- #header -->
 
-	</div>
+	</div><!-- #header-container -->
 
 	<?php do_atomic( 'after_header' ); ?>
 
