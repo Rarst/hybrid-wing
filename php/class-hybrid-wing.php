@@ -59,7 +59,7 @@ class Hybrid_Wing extends Hybrid {
 		parent::theme_support();
 		add_theme_support( 'hybrid-core-menus', array( 'primary' ) );
 		add_theme_support( 'hybrid-core-shortcodes' );
-		add_theme_support( 'hybrid-core-sidebars', array( 'primary', 'secondary' ) );
+		add_theme_support( 'hybrid-core-sidebars', array( 'primary' ) );
 		add_theme_support( 'loop-pagination' );
 		register_nav_menu( 'navbar', 'Navbar' );
 	}
@@ -81,7 +81,7 @@ class Hybrid_Wing extends Hybrid {
 		$default_grid = array(
 			$prefix . 'body_container_class'      => 'container',
 			$prefix . 'container_class'           => 'row',
-			$prefix . 'content_class'             => 'span6',
+			$prefix . 'content_class'             => 'span9',
 //			$prefix . 'entry_class' => 'span10',
 			$prefix . 'sidebar_class'             => 'span3',
 		);
