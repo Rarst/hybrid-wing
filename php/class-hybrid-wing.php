@@ -219,8 +219,8 @@ class Hybrid_Wing extends Hybrid {
 
 	function navbar_search() {
 		?>
-	<form role="search" method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ) ?>" class="navbar-search pull-right">
-		<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="<?php esc_attr_e( 'Search' ) ?>" class="search-query" />
+	<form role="search" method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="navbar-search pull-right">
+		<input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="<?php esc_attr_e( 'Search' ); ?>" class="search-query" />
 	</form>
 	<?php
 	}
