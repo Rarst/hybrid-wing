@@ -21,9 +21,10 @@ class Nav_List_Menu_Widget extends WP_Nav_Menu_Widget {
 
 	function wp_nav_menu_args( $args ) {
 
-		$args['menu_class'] = 'menu nav nav-list';
+		$args['container_class'] = 'well';
+		$args['menu_class']      = 'menu nav nav-list';
 
-		return $args;
+		return apply_filters( 'nav_list_menu_args', $args );;
 	}
 
 	function wp_nav_menu( $nav_menu ) {
