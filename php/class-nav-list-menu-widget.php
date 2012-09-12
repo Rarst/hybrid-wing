@@ -5,6 +5,8 @@
  */
 class Nav_List_Menu_Widget extends WP_Nav_Menu_Widget {
 
+	private $instance;
+
 	function __construct() {
 
 		WP_Widget::__construct( 'nav_list_menu', 'Nav List Custom Menu' );
@@ -12,6 +14,7 @@ class Nav_List_Menu_Widget extends WP_Nav_Menu_Widget {
 
 	function widget( $args, $instance ) {
 
+		$this->instance = $instance;
 		add_filter( 'wp_nav_menu_args', array( $this, 'wp_nav_menu_args' ) );
 		add_filter( 'wp_nav_menu', array( $this, 'wp_nav_menu' ) );
 		parent::widget( $args, $instance );
@@ -21,7 +24,7 @@ class Nav_List_Menu_Widget extends WP_Nav_Menu_Widget {
 
 	function wp_nav_menu_args( $args ) {
 
-		$args['container_class'] = 'well';
+		$args['container_class'] = empty( $this->instance['well'] ) ? '' : 'well';
 		$args['menu_class']      = 'menu nav nav-list';
 
 		return apply_filters( 'nav_list_menu_args', $args );;
@@ -33,5 +36,26 @@ class Nav_List_Menu_Widget extends WP_Nav_Menu_Widget {
 		$nav_menu = str_replace( 'current-menu-item', 'current-menu-item active', $nav_menu );
 
 		return $nav_menu;
+	}
+
+	function update( $new_instance, $old_instance ) {
+
+		$instance         = parent::update( $new_instance, $old_instance );
+		$instance['well'] = (boolean) $new_instance['well'];
+
+		return $instance;
+	}
+
+	function form( $instance ) {
+
+		parent::form( $instance );
+		$well = isset( $instance['well'] ) ? $instance['well'] : false;
+
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'well' ); ?>">"well" Container</label>
+			<input type="checkbox" id="<?php echo $this->get_field_id( 'well' ); ?>" name="<?php echo $this->get_field_name( 'well' ); ?>" <?php checked( $well )  ?> />
+		</p>
+		<?php
 	}
 }
