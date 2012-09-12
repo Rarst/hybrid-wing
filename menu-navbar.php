@@ -10,8 +10,6 @@
 
 					if ( has_nav_menu( 'navbar' ) ) {
 
-						require_once THEME_DIR . '/php/class-walker-navbar-menu.php';
-
 						wp_nav_menu( array( 'theme_location'  => 'navbar',
 																'container'       => false,
 																'menu_class'      => 'nav',

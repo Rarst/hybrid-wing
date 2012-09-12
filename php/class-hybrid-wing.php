@@ -15,7 +15,19 @@ class Hybrid_Wing extends Hybrid {
 	function __construct() {
 
 		add_filter( 'hybrid_prefix', array( $this, 'hybrid_prefix' ) );
+		spl_autoload_register( array( $this, 'spl_autoload_register' ) );
 		parent::__construct();
+	}
+
+	/**
+	 * @param string $class_name
+	 */
+	function spl_autoload_register( $class_name ) {
+
+		$class_path = THEME_DIR . '/php/class-' . strtolower( str_replace( '_', '-', $class_name ) ) . '.php';
+
+		if ( file_exists( $class_path ) )
+			include $class_path;
 	}
 
 	/**
