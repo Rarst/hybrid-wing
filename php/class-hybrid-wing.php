@@ -51,6 +51,7 @@ class Hybrid_Wing extends Hybrid {
 	function default_filters() {
 
 		parent::default_filters();
+		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 		add_action( 'template_include', array( $this, 'template_include' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
@@ -74,6 +75,10 @@ class Hybrid_Wing extends Hybrid {
 		add_theme_support( 'hybrid-core-sidebars', array( 'primary' ) );
 		add_theme_support( 'loop-pagination' );
 		register_nav_menu( 'navbar', 'Navbar' );
+	}
+
+	function widgets_init() {
+		register_widget( 'Nav_List_Menu_Widget' );
 	}
 
 	/**
