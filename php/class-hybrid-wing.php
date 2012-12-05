@@ -301,6 +301,7 @@ class Hybrid_Wing extends Hybrid {
 
 		$html = str_replace( "<a class='page-numbers'", "<a class='page-numbers hidden-phone'", $html );
 		$html = str_replace( '<span class="page-numbers dots"', '<span class="page-numbers dots hidden-phone"', $html );
+		$html = str_replace( "<li><span class='page-numbers current'>", "<li class='active'><span class='page-numbers current'>", $html );
 
 		return $html;
 	}
