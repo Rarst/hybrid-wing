@@ -269,6 +269,9 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function loop_pagination_args( $args ) {
 
+		/**
+		 * @var WP_Rewrite $wp_rewrite
+		 */
 		global $wp_rewrite;
 
 		$args['before'] = '<div class="pagination pagination-centered">';
