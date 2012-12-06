@@ -14,7 +14,7 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function __construct() {
 
-		require_once TEMPLATEPATH . '/php/template-tags.php';
+		require_once get_template_directory() . '/php/template-tags.php';
 
 		add_filter( 'hybrid_prefix', array( $this, 'hybrid_prefix' ) );
 		spl_autoload_register( array( $this, 'spl_autoload_register' ) );
