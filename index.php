@@ -6,7 +6,7 @@
 
 				<div class="entry-content">
 					<?php the_content( sprintf( __( 'Continue reading %1$s', hybrid_get_parent_textdomain() ), the_title( ' "', '"', false ) ) ); ?>
-					<?php hw_link_pages( array( 'before' => __( 'Pages:', hybrid_get_parent_textdomain() ) ) ); ?>
+					<?php hw_link_pages(); ?>
 				</div><!-- .entry-content -->
 
 				<?php do_atomic( 'after_entry' ); ?>
