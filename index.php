@@ -6,7 +6,7 @@
 
 				<div class="entry-content">
 					<?php the_content( sprintf( __( 'Continue reading %1$s', hybrid_get_parent_textdomain() ), the_title( ' "', '"', false ) ) ); ?>
-					<?php wp_link_pages( array( 'before' => '<p class="page-links pages">' . __( 'Pages:', hybrid_get_parent_textdomain() ), 'after' => '</p>' ) ); ?>
+					<?php hw_link_pages( array( 'before' => __( 'Pages:', hybrid_get_parent_textdomain() ) ) ); ?>
 				</div><!-- .entry-content -->
 
 				<?php do_atomic( 'after_entry' ); ?>
