@@ -48,6 +48,8 @@ class Hybrid_Wing extends Hybrid {
 
 		if ( ! defined( 'SCRIPT_DEBUG' ) )
 			define( 'SCRIPT_DEBUG', false );
+
+		add_image_size( 'bootstrap-3-columns', 210, 130, true );
 	}
 
 	function default_filters() {
@@ -68,6 +70,7 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_search_after_content', 'loop_pagination' );
 		add_action( 'loop_pagination_args', array( $this, 'loop_pagination_args' ) );
 		add_action( 'loop_pagination', array( $this, 'loop_pagination' ) );
+		add_filter( 'post_gallery', array( $this, 'post_gallery' ), 10, 2 );
 	}
 
 	function theme_support() {
@@ -306,5 +309,114 @@ class Hybrid_Wing extends Hybrid {
 		$html = str_replace( "<li><span class='page-numbers current'>", "<li class='active'><span class='page-numbers current'>", $html );
 
 		return $html;
+	}
+
+	/**
+	 * Override gallery markup with Bootstrap thumbnail list.
+	 *
+	 * @param string $empty
+	 * @param array  $attr
+	 *
+	 * @return string
+	 */
+	function post_gallery( $empty, $attr ) {
+
+		if ( is_feed() )
+			return $empty;
+
+		global $post;
+
+		static $instance = 0;
+		$instance++;
+
+		if ( isset( $attr['orderby'] ) ) {
+
+			$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
+
+			if ( ! $attr['orderby'] )
+				unset( $attr['orderby'] );
+		}
+
+		$r = shortcode_atts( array(
+			'order'      => 'ASC',
+			'orderby'    => 'menu_order ID',
+			'id'         => $post->ID,
+			'captiontag' => 'div',
+			'columns'    => 3,
+			'size'       => 'bootstrap-3-columns',
+			'include'    => '',
+			'exclude'    => '',
+			'link'       => false,
+		), $attr );
+
+		$id = intval( $r['id'] );
+
+		if ( 'RAND' == $r['order'] )
+			$r['orderby'] = 'none';
+
+		$get_args = array(
+			'post_status'    => 'inherit',
+			'post_type'      => 'attachment',
+			'post_mime_type' => 'image',
+			'order'          => $r['order'],
+			'orderby'        => $r['orderby'],
+		);
+
+		if ( ! empty( $r['include'] ) ) {
+
+			$r['include'] = preg_replace( '/[^0-9,]+/', '', $r['include'] );
+			$_attachments = get_posts( array_merge( $get_args, array( 'include' => $r['include'] ) ) );
+
+			$attachments = array();
+
+			foreach ( $_attachments as $key => $val ) {
+
+				$attachments[$val->ID] = $_attachments[$key];
+			}
+		}
+		elseif ( ! empty( $r['exclude'] ) ) {
+
+			$r['exclude'] = preg_replace( '/[^0-9,]+/', '', $r['exclude'] );
+			$attachments  = get_children( array_merge( $get_args, array( 'post_parent' => $id, 'exclude' => $r['exclude'] ) ) );
+		}
+		else {
+
+			$attachments = get_children( array_merge( $get_args, array( 'post_parent' => $id ) ) );
+		}
+
+		if ( empty( $attachments ) )
+			return ' '; // space so native gallery doesn't run
+
+		$captiontag   = tag_escape( $r['captiontag'] );
+		$columns      = intval( $r['columns'] );
+		$selector     = "gallery-{$instance}";
+		$size_class   = sanitize_html_class( $r['size'] );
+		$output       = "<ul id='{$selector}' class='thumbnails gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>\n";
+		$link_to_file = 'file' !== $r['link'];
+		$i            = 0;
+
+		foreach ( $attachments as $id => $attachment ) {
+
+			$link = wp_get_attachment_link( $id, $r['size'], $link_to_file );
+
+			$item_class = 'span3';
+
+			if ( $columns > 0 && (++$i - 1) % $columns == 0 )
+				$item_class .= ' thumbnail-clear';
+
+			$output .= "<li class='{$item_class}'><div class='thumbnail'>\n\t{$link}\n";
+
+			if ( $captiontag && trim( $attachment->post_excerpt ) ) {
+				$output .= "\t<{$captiontag} class='caption gallery-caption'>"
+						. wptexturize( $attachment->post_excerpt )
+						. "</{$captiontag}>\n";
+			}
+
+			$output .= "</div></li>\n";
+		}
+
+		$output .= "</ul><!-- thumbnails -->\n";
+
+		return $output;
 	}
 }
