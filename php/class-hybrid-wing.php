@@ -49,7 +49,12 @@ class Hybrid_Wing extends Hybrid {
 		if ( ! defined( 'SCRIPT_DEBUG' ) )
 			define( 'SCRIPT_DEBUG', false );
 
-		add_image_size( 'bootstrap-3-columns', 210, 130, true );
+		// TODO refactor into theme supports feature
+		foreach ( array( 9, 4, 3, 2 ) as $columns ) {
+
+			list( $width, $height ) = $this->get_bootstrap_image_size( $columns, 'golden' );
+			add_image_size( "bootstrap-{$columns}-columns", $width, $height, true );
+		}
 	}
 
 	function default_filters() {
@@ -314,6 +319,8 @@ class Hybrid_Wing extends Hybrid {
 	/**
 	 * Override gallery markup with Bootstrap thumbnail list.
 	 *
+	 * @see gallery_shortcode()
+	 *
 	 * @param string $empty
 	 * @param array  $attr
 	 *
@@ -338,15 +345,16 @@ class Hybrid_Wing extends Hybrid {
 		}
 
 		$r = shortcode_atts( array(
-			'order'      => 'ASC',
-			'orderby'    => 'menu_order ID',
-			'id'         => $post->ID,
-			'captiontag' => 'div',
-			'columns'    => 3,
-			'size'       => 'bootstrap-3-columns',
-			'include'    => '',
-			'exclude'    => '',
-			'link'       => false,
+			'order'           => 'ASC',
+			'orderby'         => 'menu_order ID',
+			'id'              => $post->ID,
+			'captiontag'      => 'div',
+			'content_columns' => 9,
+			'columns'         => 3,
+			'size'            => false,
+			'include'         => '',
+			'exclude'         => '',
+			'link'            => false,
 		), $attr );
 
 		$id = intval( $r['id'] );
@@ -364,10 +372,9 @@ class Hybrid_Wing extends Hybrid {
 
 		if ( ! empty( $r['include'] ) ) {
 
-			$r['include'] = preg_replace( '/[^0-9,]+/', '', $r['include'] );
-			$_attachments = get_posts( array_merge( $get_args, array( 'include' => $r['include'] ) ) );
-
-			$attachments = array();
+			$include      = preg_replace( '/[^0-9,]+/', '', $r['include'] );
+			$_attachments = get_posts( array_merge( $get_args, array( 'include' => $include ) ) );
+			$attachments  = array();
 
 			foreach ( $_attachments as $key => $val ) {
 
@@ -376,8 +383,8 @@ class Hybrid_Wing extends Hybrid {
 		}
 		elseif ( ! empty( $r['exclude'] ) ) {
 
-			$r['exclude'] = preg_replace( '/[^0-9,]+/', '', $r['exclude'] );
-			$attachments  = get_children( array_merge( $get_args, array( 'post_parent' => $id, 'exclude' => $r['exclude'] ) ) );
+			$exclude     = preg_replace( '/[^0-9,]+/', '', $r['exclude'] );
+			$attachments = get_children( array_merge( $get_args, array( 'post_parent' => $id, 'exclude' => $exclude ) ) );
 		}
 		else {
 
@@ -387,21 +394,49 @@ class Hybrid_Wing extends Hybrid {
 		if ( empty( $attachments ) )
 			return ' '; // space so native gallery doesn't run
 
-		$captiontag   = tag_escape( $r['captiontag'] );
-		$columns      = intval( $r['columns'] );
-		$selector     = "gallery-{$instance}";
-		$size_class   = sanitize_html_class( $r['size'] );
-		$output       = "<ul id='{$selector}' class='thumbnails gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>\n";
-		$link_to_file = 'file' !== $r['link'];
-		$i            = 0;
+		$captiontag      = tag_escape( $r['captiontag'] );
+		$columns         = intval( $r['columns'] );
+		$content_columns = intval( $r['content_columns'] );
+		$columns_wide    = floor( intval( $content_columns ) / $columns );
+		$selector        = "gallery-{$instance}";
+
+
+		$link_to_file    = 'file' !== $r['link'];
+		$i               = 0;
+
+		if ( 2 > $columns_wide ) {
+
+			$columns_wide = 1;
+			$captiontag   = false;
+		}
+
+		if ( $columns_wide > $content_columns )
+			$columns_wide = $content_columns;
+
+		if( $columns > $content_columns )
+			$clear_every = $content_columns;
+		else
+			$clear_every = $columns;
+
+		if ( ! empty( $r['size'] ) ) {
+
+			$size       = $r['size'];
+			$size_class = 'gallery-size-' . sanitize_html_class( $r['size'] );
+		}
+		else {
+
+			$size       = $this->get_bootstrap_image_size( $columns_wide );
+			$size_class = '';
+		}
+
+		$output = "<ul id='{$selector}' class='thumbnails gallery galleryid-{$id} gallery-columns-{$columns} {$size_class}'>\n";
 
 		foreach ( $attachments as $id => $attachment ) {
 
-			$link = wp_get_attachment_link( $id, $r['size'], $link_to_file );
+			$link       = wp_get_attachment_link( $id, $size, $link_to_file );
+			$item_class = 'span' . $columns_wide;
 
-			$item_class = 'span3';
-
-			if ( $columns > 0 && (++$i - 1) % $columns == 0 )
+			if ( (++$i - 1) % $clear_every == 0 )
 				$item_class .= ' thumbnail-clear';
 
 			$output .= "<li class='{$item_class}'><div class='thumbnail'>\n\t{$link}\n";
@@ -418,5 +453,38 @@ class Hybrid_Wing extends Hybrid {
 		$output .= "</ul><!-- thumbnails -->\n";
 
 		return $output;
+	}
+
+	/**
+	 * Calculate image dimensions to fit number of Bootstrap grid columns in width.
+	 *
+	 * @param int    $columns
+	 * @param string $ratio proportion for height
+	 * @param string $media responsive view
+	 *
+	 * @return array width, height
+	 */
+	function get_bootstrap_image_size( $columns, $ratio = 'square', $media = 'default' ) {
+
+		switch ( $media ) {
+
+			default:
+				$column_width  = 60;
+				$column_gutter = 20;
+		}
+
+		$width = $columns * $column_width + ( $columns - 1 ) * $column_gutter - 10;
+
+		switch ( $ratio ) {
+
+			case 'golden':
+				$height = round( $width / 1.6 );
+			break;
+
+			default:
+				$height = $width;
+		}
+
+		return array( $width, $height );
 	}
 }
