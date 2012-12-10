@@ -53,8 +53,8 @@ class Nav_List_Menu_Widget extends WP_Nav_Menu_Widget {
 
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'well' ); ?>">"well" Container</label>
 			<input type="checkbox" id="<?php echo $this->get_field_id( 'well' ); ?>" name="<?php echo $this->get_field_name( 'well' ); ?>" <?php checked( $well )  ?> />
+			<label for="<?php echo $this->get_field_id( 'well' ); ?>">inset style</label>
 		</p>
 		<?php
 	}
