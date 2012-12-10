@@ -75,6 +75,7 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_search_after_content', 'loop_pagination' );
 		add_action( 'loop_pagination_args', array( $this, 'loop_pagination_args' ) );
 		add_action( 'loop_pagination', array( $this, 'loop_pagination' ) );
+		add_action( 'hw_paginate_comments_links', array( $this, 'loop_pagination' ) );
 		add_filter( 'post_gallery', array( $this, 'post_gallery' ), 10, 2 );
 	}
 
