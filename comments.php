@@ -11,40 +11,48 @@ if ( post_password_required() || ( ! have_comments() && ! comments_open() && ! p
 
 <div id="comments-template">
 
-	<?php if ( have_comments() ) : ?>
+	<div class="comments-wrap">
 
-	<h3 id="comments-number" class="comments-header"><?php comments_number( __( 'No Responses', hybrid_get_parent_textdomain() ), __( 'One Response', hybrid_get_parent_textdomain() ), __( '% Responses', hybrid_get_parent_textdomain() ) ); ?></h3>
+		<div id="comments">
 
-	<?php do_atomic( 'before_comment_list' ); ?>
+			<?php if ( have_comments() ) : ?>
 
-	<ul class="comment-list media-list">
-		<?php wp_list_comments( hybrid_list_comments_args() ); ?>
-	</ul>
+			<h3 id="comments-number" class="comments-header"><?php comments_number( __( 'No Responses', hybrid_get_parent_textdomain() ), __( 'One Response', hybrid_get_parent_textdomain() ), __( '% Responses', hybrid_get_parent_textdomain() ) ); ?></h3>
 
-	<?php do_atomic( 'after_comment_list' ); ?>
+			<?php do_atomic( 'before_comment_list' ); ?>
 
-	<?php if ( get_option( 'page_comments' ) ) : ?>
-		<div class="comment-navigation comment-pagination">
-			<?php hw_paginate_comments_links(); ?>
-		</div><!-- .comment-navigation -->
-		<?php endif; ?>
+			<ul class="comment-list media-list">
+				<?php wp_list_comments( hybrid_list_comments_args() ); ?>
+			</ul>
 
-	<?php endif; ?>
+			<?php do_atomic( 'after_comment_list' ); ?>
 
-	<?php if ( pings_open() && ! comments_open() ) : ?>
+			<?php if ( get_option( 'page_comments' ) ) : ?>
+				<div class="comment-navigation comment-pagination">
+					<?php hw_paginate_comments_links(); ?>
+				</div><!-- .comment-navigation -->
+				<?php endif; ?>
 
-	<p class="comments-closed pings-open">
-		<?php printf( __( 'Comments are closed, but <a href="%1$s" title="Trackback URL for this post">trackbacks</a> and pingbacks are open.', hybrid_get_parent_textdomain() ), get_trackback_url() ); ?>
-	</p><!-- .comments-closed .pings-open -->
+			<?php endif; ?>
 
-	<?php elseif ( ! comments_open() ) : ?>
+			<?php if ( pings_open() && ! comments_open() ) : ?>
 
-	<p class="comments-closed">
-		<?php _e( 'Comments are closed.', hybrid_get_parent_textdomain() ); ?>
-	</p><!-- .comments-closed -->
+			<p class="comments-closed pings-open">
+				<?php printf( __( 'Comments are closed, but <a href="%1$s" title="Trackback URL for this post">trackbacks</a> and pingbacks are open.', hybrid_get_parent_textdomain() ), get_trackback_url() ); ?>
+			</p><!-- .comments-closed .pings-open -->
 
-	<?php endif; ?>
+			<?php elseif ( ! comments_open() ) : ?>
 
-	<?php comment_form(); ?>
+			<p class="comments-closed">
+				<?php _e( 'Comments are closed.', hybrid_get_parent_textdomain() ); ?>
+			</p><!-- .comments-closed -->
+
+			<?php endif; ?>
+
+		</div><!-- #comments -->
+
+		<?php comment_form(); ?>
+
+	</div><!-- .comments-wrap -->
 
 </div><!-- #comments-template -->
