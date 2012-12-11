@@ -1,0 +1,24 @@
+<?php global $post, $comment, $comment_depth; ?>
+
+
+<?php $tag = $comment_depth > 1 ? 'div' : 'li'; ?>
+
+<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" class="<?php hybrid_comment_class(); ?> media">
+
+	<?php do_atomic( 'before_comment' ); ?>
+
+	<div class="media-object pull-left">
+		<?php hybrid_avatar(); ?>
+	</div>
+
+	<div class="comment-content comment-text media-body">
+
+		<?php do_atomic( 'open_comment' ); ?>
+
+		<?php if ( '0' == $comment->comment_approved ) echo apply_atomic_shortcode( 'comment_moderation', '<p class="alert moderation">' . __( 'Your comment is awaiting moderation.', hybrid_get_parent_textdomain() ) . '</p>' ); ?>
+
+		<?php echo apply_atomic_shortcode( 'comment_meta', '<div class="comment-meta media-heading">[comment-author] [comment-published] [comment-permalink before="| "] [comment-edit-link before="| "] [comment-reply-link before="| "]</div>' ); ?>
+
+		<?php comment_text( $comment->comment_ID ); ?>
+
+		<?php do_atomic( 'close_comment' ); ?>

@@ -77,6 +77,7 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'loop_pagination', array( $this, 'loop_pagination' ) );
 		add_action( 'hw_paginate_comments_links', array( $this, 'loop_pagination' ) );
 		add_filter( 'post_gallery', array( $this, 'post_gallery' ), 10, 2 );
+		add_filter( 'hw_list_comments_args', array( $this, 'list_comments_args' ) );
 	}
 
 	function theme_support() {
@@ -485,5 +486,34 @@ class Hybrid_Wing extends Hybrid {
 		}
 
 		return array( $width, $height );
+	}
+
+	/**
+	 * Adjust arguments for comments presentation.
+	 *
+	 * @param array $args
+	 *
+	 * @return array
+	 */
+	function list_comments_args( $args  ) {
+
+		$args['style']        = 'div';
+		$args['avatar_size']  = 60;
+		$args['end-callback'] = array( $this, 'comment_end_callback' );
+
+		return $args;
+	}
+
+	/**
+	 * Load closing template for comment.
+	 */
+	function comment_end_callback() {
+
+		static $template;
+
+		if ( empty( $template ) )
+			$template = locate_template( 'comment-end.php' );
+
+		require $template;
 	}
 }
