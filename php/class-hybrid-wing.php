@@ -295,7 +295,7 @@ class Hybrid_Wing extends Hybrid {
 			$parse = parse_url( $link );
 
 			if( ! empty( $parse['query'] )  )
-				$args['base'] = str_replace( '?' . $parse['query'], 'page/%#%/?' . $parse['query'], $link );
+				$args['base'] = str_replace( '?' . $parse['query'], $wp_rewrite->pagination_base . '/%#%/?' . $parse['query'], $link );
 		}
 
 		return $args;
