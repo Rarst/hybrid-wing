@@ -393,15 +393,13 @@ class Hybrid_Wing extends Hybrid {
 		}
 
 		if ( empty( $attachments ) )
-			return ' '; // space so native gallery doesn't run
+			return '<!-- empty gallery -->';
 
 		$captiontag      = tag_escape( $r['captiontag'] );
 		$columns         = intval( $r['columns'] );
 		$content_columns = intval( $r['content_columns'] );
 		$columns_wide    = floor( intval( $content_columns ) / $columns );
 		$selector        = "gallery-{$instance}";
-
-
 		$link_to_file    = 'file' !== $r['link'];
 		$i               = 0;
 
