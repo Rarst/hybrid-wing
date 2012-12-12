@@ -69,8 +69,9 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_before_navbar_menu', array( $this, 'navbar_brand' ) );
 		add_action( 'hw_after_navbar_menu', array( $this, 'navbar_search' ) );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
-		add_action( 'hw_before_entry', array( $this, 'entry_title' ) );
-		add_action( 'hw_singular_before_container', array( $this, 'entry_title' ) );
+		add_action( 'hw_archive_before_entry', array( $this, 'title_before_entry' ) );
+		add_action( 'hw_blog_before_entry', array( $this, 'title_before_entry' ) );
+		add_action( 'hw_singular_before_container', array( $this, 'title_before_container' ) );
 		add_action( 'hw_home_after_content', 'loop_pagination' );
 		add_action( 'hw_archive_after_content', 'loop_pagination' );
 		add_action( 'hw_search_after_content', 'loop_pagination' );
@@ -269,19 +270,14 @@ class Hybrid_Wing extends Hybrid {
 		get_sidebar( 'primary' );
 	}
 
-	/**
-	 * Entry title.
-	 */
-	function entry_title() {
+	function title_before_entry() {
 
-		$title = hybrid_entry_title_shortcode( array() );
+		echo hybrid_entry_title_shortcode( array() );
+	}
 
-		if ( is_singular() ) {
-			$title = '<div class="span12"><div class="page-header">' . $title . '</div><!-- .page-header --></div>';
-			remove_action( 'hw_before_entry', array( $this, __FUNCTION__ ) );
-		}
+	function title_before_container() {
 
-		echo $title;
+		echo '<div class="span12"><div class="page-header">' . hybrid_entry_title_shortcode( array() ) . '</div><!-- .page-header --></div>';
 	}
 
 	/**
