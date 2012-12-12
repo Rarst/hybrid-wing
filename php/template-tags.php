@@ -19,7 +19,7 @@ function hw_paginate_comments_links( $args = array() ) {
 	$args   = wp_parse_args( $args, $defaults );
 	$args   = apply_filters( 'hw_paginate_comments_links_args', $args );
 	$output = paginate_comments_links( array_merge( $args, array( 'echo' => false ) ) );
-	$output = '<div class="pagination">' . $output . '</div>';
+	$output = '<div class="pagination pagination-centered">' . $output . '</div>';
 	$output = apply_filters( 'hw_paginate_comments_links', $output );
 
 	if ( ! empty( $args['echo'] ) )
@@ -40,7 +40,7 @@ function hw_paginate_comments_links( $args = array() ) {
 function hw_link_pages( $args = '' ) {
 
 	$defaults = array(
-		'before'           => __( 'Pages:', 'hybrid-wing' ),
+		'before'           => '',
 		'after'            => '',
 		'link_before'      => '',
 		'link_after'       => '',
@@ -62,7 +62,7 @@ function hw_link_pages( $args = '' ) {
 
 		if ( 'number' == $r['next_or_number'] ) {
 
-			$output .= '<div class="pagination"><ul>';
+			$output .= '<div class="pagination pagination-centered"><ul>';
 
 			if ( ! empty( $r['before'] ) )
 				$output .= '<li><span>'. $r['before'] . '</span></li>';
