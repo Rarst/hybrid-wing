@@ -68,4 +68,48 @@
 	.avatar {
 		.img-rounded;
 	}
+
+	#reply-title {
+		font-size: @baseFontSize;
+		line-height: @baseLineHeight;
+	}
+
+	.form-horizontal {
+
+		.control-group {
+			margin-bottom: 10px;
+		}
+
+		.controls {
+			margin-left: 0;
+		}
+
+		.control-label {
+			text-align: left;
+		}
+
+		.comment-notes, .form-allowed-tags {
+			display: none;
+		}
+
+		.form-submit {
+			padding-left: 0;
+		}
+	}
+}
+
+.control-group p {
+	margin: 0;
+}
+
+.form-submit {
+	padding-left: @horizontalComponentOffset;
+
+	input {
+		.btn;
+	}
+}
+
+.required {
+	color: @errorText;
 }
