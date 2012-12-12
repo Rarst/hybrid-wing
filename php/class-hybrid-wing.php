@@ -70,6 +70,7 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_after_navbar_menu', array( $this, 'navbar_search' ) );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
 		add_action( 'hw_before_entry', array( $this, 'entry_title' ) );
+		add_action( 'hw_singular_before_container', array( $this, 'entry_title' ) );
 		add_action( 'hw_home_after_content', 'loop_pagination' );
 		add_action( 'hw_archive_after_content', 'loop_pagination' );
 		add_action( 'hw_search_after_content', 'loop_pagination' );
@@ -275,8 +276,10 @@ class Hybrid_Wing extends Hybrid {
 
 		$title = hybrid_entry_title_shortcode( array() );
 
-		if( is_singular() )
-			$title = '<div class="page-header">' . $title . '</div><!-- .page-header -->';
+		if ( is_singular() ) {
+			$title = '<div class="span12"><div class="page-header">' . $title . '</div><!-- .page-header --></div>';
+			remove_action( 'hw_before_entry', array( $this, __FUNCTION__ ) );
+		}
 
 		echo $title;
 	}
