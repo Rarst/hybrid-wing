@@ -40,13 +40,13 @@ function hw_paginate_comments_links( $args = array() ) {
 function hw_link_pages( $args = '' ) {
 
 	$defaults = array(
-		'before'           => __( 'Pages:', hybrid_get_parent_textdomain() ),
+		'before'           => __( 'Pages:', 'hybrid-wing' ),
 		'after'            => '',
 		'link_before'      => '',
 		'link_after'       => '',
 		'next_or_number'   => 'number',
-		'nextpagelink'     => __( 'Next page', hybrid_get_parent_textdomain() ),
-		'previouspagelink' => __( 'Previous page', hybrid_get_parent_textdomain() ),
+		'nextpagelink'     => __( 'Next page', 'hybrid-wing' ),
+		'previouspagelink' => __( 'Previous page', 'hybrid-wing' ),
 		'pagelink'         => '%',
 		'echo'             => true,
 	);

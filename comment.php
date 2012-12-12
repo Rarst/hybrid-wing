@@ -15,7 +15,7 @@
 
 		<?php do_atomic( 'open_comment' ); ?>
 
-		<?php if ( '0' == $comment->comment_approved ) echo apply_atomic_shortcode( 'comment_moderation', '<p class="alert moderation">' . __( 'Your comment is awaiting moderation.', hybrid_get_parent_textdomain() ) . '</p>' ); ?>
+		<?php if ( '0' == $comment->comment_approved ) echo apply_atomic_shortcode( 'comment_moderation', '<p class="alert moderation">' . __( 'Your comment is awaiting moderation.', 'hybrid-wing' ) . '</p>' ); ?>
 
 		<?php echo apply_atomic_shortcode( 'comment_meta', '<div class="comment-meta media-heading">[comment-author] [comment-published] [comment-permalink before="| "] [comment-edit-link before="| "] [comment-reply-link before="| "]</div>' ); ?>
 
