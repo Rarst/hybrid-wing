@@ -68,10 +68,11 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_header', array( $this, 'navbar_menu' ) );
 		add_action( 'hw_before_navbar_menu', array( $this, 'navbar_brand' ) );
 		add_action( 'hw_after_navbar_menu', array( $this, 'navbar_search' ) );
+		add_action( 'hw_before_entry', array( $this, 'breadcrumb_trail' ) );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
-		add_action( 'hw_archive_before_entry', array( $this, 'title_before_entry' ) );
-		add_action( 'hw_blog_before_entry', array( $this, 'title_before_entry' ) );
-		add_action( 'hw_singular_before_container', array( $this, 'title_before_container' ) );
+		add_action( 'hw_archive_before_entry', array( $this, 'entry_title' ) );
+		add_action( 'hw_blog_before_entry', array( $this, 'entry_title' ) );
+		add_action( 'hw_singular_before_entry', array( $this, 'singular_entry_title' ) );
 		add_action( 'hw_home_after_content', 'loop_pagination' );
 		add_action( 'hw_archive_after_content', 'loop_pagination' );
 		add_action( 'hw_search_after_content', 'loop_pagination' );
@@ -90,6 +91,7 @@ class Hybrid_Wing extends Hybrid {
 		parent::theme_support();
 		add_theme_support( 'hybrid-core-shortcodes' );
 		add_theme_support( 'hybrid-core-sidebars', array( 'primary' ) );
+		add_theme_support( 'breadcrumb-trail' );
 		add_theme_support( 'loop-pagination' );
 		register_nav_menu( 'navbar', 'Navbar' );
 	}
@@ -265,19 +267,50 @@ class Hybrid_Wing extends Hybrid {
 	<?php
 	}
 
+	function breadcrumb_trail() {
+
+		if ( ! current_theme_supports( 'breadcrumb-trail' ) )
+			return;
+
+		$args = array(
+			'front_page'             => false,
+			'show_home'              => __( 'Home', 'hybrid-wing' ),
+			'singular_post_taxonomy' => false,
+		);
+
+		$args  = apply_filters( 'hw_breadcrumb_trail_args', $args );
+		$items = breadcrumb_trail_get_items( $args );
+
+		if ( empty( $items ) )
+			return;
+
+		$output = '<ul class="breadcrumb">';
+		$last   = array_pop( $items );
+
+		foreach ( $items as $item ) {
+
+			$output .= "<li>{$item} <span class='divider'>/</span></li>";
+		}
+
+		$output .= "<li class='active'>{$last}</li>";
+		$output .= '</ul>';
+
+		echo $output;
+	}
+
 	function sidebar_primary() {
 
 		get_sidebar( 'primary' );
 	}
 
-	function title_before_entry() {
+	function entry_title() {
 
 		echo hybrid_entry_title_shortcode( array() );
 	}
 
-	function title_before_container() {
+	function singular_entry_title() {
 
-		echo '<div class="span12"><div class="page-header">' . hybrid_entry_title_shortcode( array() ) . '</div><!-- .page-header --></div>';
+		echo '<div class="page-header">' . hybrid_entry_title_shortcode( array() ) . '</div><!-- .page-header -->';
 	}
 
 	/**
