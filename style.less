@@ -36,6 +36,19 @@
 	margin-right: auto;
 }
 
+.img-margins {
+
+	margin: @gridGutterWidth auto;
+
+	&.alignleft {
+		margin-right: @gridGutterWidth;
+	}
+
+	&.alignright {
+		margin-left: @gridGutterWidth;
+	}
+}
+
 .breadcrumb {
 	.well;
 	.well-small;
@@ -60,6 +73,38 @@
 	h1, h2, h3, h4, h5, h6 {
 		clear: both;
 	}
+
+	.wp-caption {
+		.thumbnail;
+		padding-top: 10px;
+		.img-margins;
+
+		img {
+			display: block;
+			max-width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+
+		}
+
+		.wp-caption-text {
+			margin: 0;
+			padding: 9px;
+			color: @gray;
+			text-align: center;
+		}
+	}
+
+	& > img, p > img {
+		.thumbnail;
+		.img-margins;
+		max-width: 95%;
+	}
+}
+
+.pagination {
+	.clearfix;
+	clear: both;
 }
 
 .widget_nav_list_menu .well {
