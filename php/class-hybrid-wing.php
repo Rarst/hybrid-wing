@@ -73,6 +73,7 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_archive_before_entry', array( $this, 'entry_title' ) );
 		add_action( 'hw_blog_before_entry', array( $this, 'entry_title' ) );
 		add_action( 'hw_singular_before_entry', array( $this, 'singular_entry_title' ) );
+		add_filter( 'img_caption_shortcode', array( $this, 'img_caption_shortcode' ), 10, 3 );
 		add_action( 'hw_home_after_content', 'loop_pagination' );
 		add_action( 'hw_archive_after_content', 'loop_pagination' );
 		add_action( 'hw_search_after_content', 'loop_pagination' );
@@ -311,6 +312,34 @@ class Hybrid_Wing extends Hybrid {
 	function singular_entry_title() {
 
 		echo '<div class="page-header">' . hybrid_entry_title_shortcode( array() ) . '</div><!-- .page-header -->';
+	}
+
+	/**
+	 * Override caption output to adjust inline style.
+	 *
+	 * @param string $empty
+	 * @param array  $attr
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	function img_caption_shortcode( $empty, $attr, $content ) {
+
+		$attr = shortcode_atts( array(
+			'id'      => '',
+			'align'   => 'alignnone',
+			'width'   => '',
+			'caption' => '',
+		), $attr );
+
+		if ( 1 > (int) $attr['width'] || empty( $attr['caption'] ) )
+			return $content;
+
+		if ( ! empty( $attr['id'] ) )
+			$attr['id'] = 'id="' . esc_attr( $attr['id'] ) . '" ';
+
+		return '<div ' . $attr['id'] . 'class="wp-caption thumbnail ' . esc_attr( $attr['align'] ) . '" style="max-width: ' . (int) $attr['width'] . 'px">'
+				. do_shortcode( $content ) . '<p class="wp-caption-text caption">' . $attr['caption'] . '</p></div>';
 	}
 
 	/**
