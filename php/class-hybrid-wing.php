@@ -68,7 +68,7 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_header', array( $this, 'navbar_menu' ) );
 		add_action( 'hw_before_navbar_menu', array( $this, 'navbar_brand' ) );
 		add_action( 'hw_after_navbar_menu', array( $this, 'navbar_search' ) );
-		add_action( 'hw_before_entry', array( $this, 'breadcrumb_trail' ) );
+		add_action( 'hw_before_content', array( $this, 'breadcrumb_trail' ) );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
 		add_action( 'hw_archive_before_entry', array( $this, 'entry_title' ) );
 		add_action( 'hw_blog_before_entry', array( $this, 'entry_title' ) );
