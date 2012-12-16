@@ -625,16 +625,16 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function make_comment_field_horizontal( $field ) {
 
-		$field = preg_replace( '|<p.*?>|', '', $field );
+		$field = preg_replace( '|<p class="(.*?)">|', '<div class="$1 control-group">', $field );
 
 		$field = strtr( $field, array(
 			'<label'    => '<label class="control-label"',
 			'<input'    => '<div class="controls"><input class="span5"',
 			'<textarea' => '<div class="controls"><textarea class="span5"',
-			'</p>'      => '',
+			'</p>'      => '</div>',
 		) );
 
-		$field = '<div class="control-group">' . $field . '</div></div>';
+		$field .= '</div>';
 
 		return $field;
 	}
