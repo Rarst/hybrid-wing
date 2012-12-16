@@ -605,9 +605,6 @@ class Hybrid_Wing extends Hybrid {
 		$defaults['logged_in_as']         = $this->make_comment_notes_help_block( $defaults['logged_in_as'] );
 		$defaults['comment_notes_before'] = $this->make_comment_notes_help_block( $defaults['comment_notes_before'] );
 		$defaults['comment_notes_after']  = $this->make_comment_notes_help_block( $defaults['comment_notes_after'] );
-		$allowed_tags                     = allowed_tags();
-		$tags                             = str_replace( '&gt; &lt;', '&gt;</code> <code>&lt;', $allowed_tags );
-		$defaults['comment_notes_after']  = str_replace( $allowed_tags, $tags, $defaults['comment_notes_after'] );
 
 		return $defaults;
 	}
