@@ -67,6 +67,7 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'style_loader_tag', array( $this, 'style_loader_tag' ), 10, 2 );
 		add_action( 'hw_header', array( $this, 'navbar_menu' ) );
 		add_action( 'hw_before_navbar_menu', array( $this, 'navbar_brand' ) );
+		add_action( 'hw_after_navbar_menu', array( $this, 'sidebar_navbar' ) );
 		add_action( 'hw_after_navbar_menu', array( $this, 'navbar_search' ) );
 		add_action( 'hw_before_content', array( $this, 'breadcrumb_trail' ) );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
@@ -104,6 +105,16 @@ class Hybrid_Wing extends Hybrid {
 	}
 
 	function widgets_init() {
+
+		register_sidebar( array(
+			'name'          => 'Navbar',
+			'id'            => 'navbar',
+			'before_widget' => '<li id="%1$s" class="dropdown widget %2$s">',
+			'before_title'  => '<a href="#" class="dropdown-toggle" data-toggle="dropdown">',
+			'after_title'   => '<b class="caret"></b></a><div class="dropdown-menu">',
+			'after_widget'  => '</div></li>',
+		) );
+
 		register_widget( 'Nav_List_Menu_Widget' );
 	}
 
@@ -223,6 +234,9 @@ class Hybrid_Wing extends Hybrid {
 
 		if ( wp_style_is( 'style', 'queue' ) )
 			wp_enqueue_script( 'less' );
+
+		if ( is_active_sidebar( 'navbar' ) )
+			wp_enqueue_script( 'bootstrap-dropdown' );
 	}
 
 	/**
@@ -258,6 +272,11 @@ class Hybrid_Wing extends Hybrid {
 			$brand = '<a href="' . get_home_url() . '" class="brand">' . $name . '</a>';
 
 		echo apply_atomic( 'navbar_brand', $brand );
+	}
+
+	function sidebar_navbar() {
+
+		get_sidebar( 'navbar' );
 	}
 
 	function navbar_search() {
