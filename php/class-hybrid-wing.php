@@ -296,6 +296,7 @@ class Hybrid_Wing extends Hybrid {
 			'front_page'             => false,
 			'show_home'              => __( 'Home', 'hybrid-wing' ),
 			'singular_post_taxonomy' => false,
+			'network'                => false,
 		);
 
 		$args  = apply_filters( 'hw_breadcrumb_trail_args', $args );
