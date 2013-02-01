@@ -4,6 +4,8 @@
 
 				<?php do_atomic( 'before_entry' ); ?>
 
+				<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
+
 				<div class="entry-content">
 					<?php the_content( sprintf( __( 'Continue reading %1$s', 'hybrid-wing' ), the_title( ' "', '"', false ) ) ); ?>
 					<?php hw_link_pages(); ?>

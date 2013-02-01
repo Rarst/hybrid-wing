@@ -71,9 +71,7 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'hw_after_navbar_menu', array( $this, 'navbar_search' ) );
 		add_action( 'hw_before_content', array( $this, 'breadcrumb_trail' ) );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
-		add_action( 'hw_archive_before_entry', array( $this, 'entry_title' ) );
-		add_action( 'hw_blog_before_entry', array( $this, 'entry_title' ) );
-		add_action( 'hw_singular_before_entry', array( $this, 'singular_entry_title' ) );
+		add_action( 'hw_singular_entry_title', array( $this, 'singular_entry_title' ) );
 		add_filter( 'img_caption_shortcode', array( $this, 'img_caption_shortcode' ), 10, 3 );
 		add_action( 'hw_home_after_content', 'loop_pagination' );
 		add_action( 'hw_archive_after_content', 'loop_pagination' );
@@ -324,14 +322,16 @@ class Hybrid_Wing extends Hybrid {
 		get_sidebar( 'primary' );
 	}
 
-	function entry_title() {
+	/**
+	 * Wrap singular titles in page header markup.
+	 *
+	 * @param string $title
+	 *
+	 * @return string
+	 */
+	function singular_entry_title( $title ) {
 
-		echo hybrid_entry_title_shortcode( array() );
-	}
-
-	function singular_entry_title() {
-
-		echo '<div class="page-header">' . hybrid_entry_title_shortcode( array() ) . '</div><!-- .page-header -->';
+		return '<div class="page-header">' . $title . '</div><!-- .page-header -->';
 	}
 
 	/**
