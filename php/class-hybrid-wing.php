@@ -65,10 +65,6 @@ class Hybrid_Wing extends Hybrid {
 		add_action( 'template_include', array( $this, 'template_include' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 		add_action( 'style_loader_tag', array( $this, 'style_loader_tag' ), 10, 2 );
-		add_action( 'hw_header', array( $this, 'navbar_menu' ) );
-		add_action( 'hw_before_navbar_menu', array( $this, 'navbar_brand' ) );
-		add_action( 'hw_after_navbar_menu', array( $this, 'sidebar_navbar' ) );
-		add_action( 'hw_after_navbar_menu', array( $this, 'navbar_search' ) );
 		add_action( 'hw_before_content', array( $this, 'breadcrumb_trail' ) );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
 		add_action( 'hw_singular_entry_title', array( $this, 'singular_entry_title' ) );
@@ -93,7 +89,7 @@ class Hybrid_Wing extends Hybrid {
 		add_theme_support( 'hybrid-core-sidebars', array( 'primary' ) );
 		add_theme_support( 'breadcrumb-trail' );
 		add_theme_support( 'loop-pagination' );
-		register_nav_menu( 'navbar', 'Navbar' );
+		add_theme_support( 'navbar' );
 	}
 
 	function functions() {
@@ -102,16 +98,15 @@ class Hybrid_Wing extends Hybrid {
 		remove_filter( 'comment_form_defaults', 'hybrid_comment_form_args' );
 	}
 
-	function widgets_init() {
+	function extensions() {
 
-		register_sidebar( array(
-			'name'          => 'Navbar',
-			'id'            => 'navbar',
-			'before_widget' => '<li id="%1$s" class="dropdown widget %2$s">',
-			'before_title'  => '<a href="#" class="dropdown-toggle" data-toggle="dropdown">',
-			'after_title'   => '<b class="caret"></b></a><div class="dropdown-menu">',
-			'after_widget'  => '</div></li>',
-		) );
+		parent::extensions();
+
+		if ( current_theme_supports( 'navbar' ) )
+			new Hybrid_Wing_Navbar();
+	}
+
+	function widgets_init() {
 
 		register_widget( 'Nav_List_Menu_Widget' );
 	}
@@ -232,9 +227,6 @@ class Hybrid_Wing extends Hybrid {
 
 		if ( wp_style_is( 'style', 'queue' ) )
 			wp_enqueue_script( 'less' );
-
-		if ( is_active_sidebar( 'navbar' ) )
-			wp_enqueue_script( 'bootstrap-dropdown' );
 	}
 
 	/**
@@ -253,36 +245,6 @@ class Hybrid_Wing extends Hybrid {
 			return $data->$field;
 
 		return $data;
-	}
-
-	function navbar_menu() {
-
-		get_template_part( 'menu', 'navbar' );
-	}
-
-	function navbar_brand() {
-
-		$name = esc_html( get_bloginfo( 'name' ) );
-
-		if ( is_home() )
-			$brand = '<span class="brand">' . $name . '</span>';
-		else
-			$brand = '<a href="' . get_home_url() . '" class="brand">' . $name . '</a>';
-
-		echo apply_atomic( 'navbar_brand', $brand );
-	}
-
-	function sidebar_navbar() {
-
-		get_sidebar( 'navbar' );
-	}
-
-	function navbar_search() {
-		?>
-	<form role="search" method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="navbar-search pull-right">
-		<input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="<?php esc_attr_e( 'Search' ); ?>" class="search-query" />
-	</form>
-	<?php
 	}
 
 	function breadcrumb_trail() {
