@@ -202,8 +202,13 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function wp_enqueue_scripts() {
 
-		wp_register_style( 'style', trailingslashit( CHILD_THEME_URI ) . 'style.less' );
-		wp_enqueue_style( 'style' );
+		wp_register_style( 'style-less', trailingslashit( CHILD_THEME_URI ) . 'style.less' );
+		wp_register_style( 'style', trailingslashit( CHILD_THEME_URI ) . 'style.css' );
+
+		if ( SCRIPT_DEBUG )
+			wp_enqueue_style( 'style-less' );
+		else
+			wp_enqueue_style( 'style' );
 
 		$less_version = $this->get_package_info( LESSJS_DIR, 'version' );
 
@@ -225,7 +230,7 @@ class Hybrid_Wing extends Hybrid {
 		wp_register_script( 'prettify', BOOTSTRAP_URI . '/docs/assets/js/google-code-prettify/prettify.js', array(), null, true );
 		wp_register_style( 'prettify', BOOTSTRAP_URI . '/docs/assets/js/google-code-prettify/prettify.css', array(), null );
 
-		if ( wp_style_is( 'style', 'queue' ) )
+		if ( wp_style_is( 'style-less', 'queue' ) )
 			wp_enqueue_script( 'less' );
 	}
 
