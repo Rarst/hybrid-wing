@@ -218,7 +218,7 @@ class Hybrid_Wing extends Hybrid {
 		wp_register_script( 'less', LESSJS_URI . "/dist/less-{$less_version}.js", array(), $less_version, true );
 
 		if( SCRIPT_DEBUG )
-			wp_localize_script( 'less', 'less', array( 'env' => 'development' ) );
+			wp_localize_script( 'less', 'less', array( 'env' => 'development', 'dumpLineNumbers' => 'all' ) );
 
 		$bootstrap_version = $this->get_package_info( BOOTSTRAP_DIR, 'version' );
 		$scripts = glob( BOOTSTRAP_DIR . '/js/*.js' );
