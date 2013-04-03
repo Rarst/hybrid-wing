@@ -1,0 +1,22 @@
+{
+	"name"       : "rarst/hybrid-wing",
+	"description": "Toolkit theme for WordPress, based on Hybrid Core and Twitter Bootstrap.",
+	"keywords"   : ["wordpress", "bootstrap", "hybrid"],
+	"type"       : "wordpress-theme",
+	"homepage"   : "https://bitbucket.org/Rarst/hybrid-wing/",
+	"license"    : "GPL-3.0",
+	"authors"    : [
+		{
+			"name"    : "Andrey Savchenko",
+			"email"   : "contact@rarst.net",
+			"homepage": "http://www.Rarst.net/"
+		}
+	],
+	"support"    : {
+		"issues": "https://bitbucket.org/Rarst/hybrid-wing/issues",
+		"source": "https://bitbucket.org/Rarst/hybrid-wing/src"
+	},
+	"require"    : {
+		"composer/installers": "~1.0"
+	}
+}
