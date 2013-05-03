@@ -39,7 +39,7 @@ class Walker_Navbar_Menu extends Walker_Nav_Menu {
 	/**
 	 * Enqueue script and set class for list.
 	 */
-	function start_lvl( &$output, $depth ) {
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
 
 		if ( ! $this->dropdown_enqueued ) {
 			wp_enqueue_script( 'bootstrap-dropdown' );
@@ -54,7 +54,7 @@ class Walker_Navbar_Menu extends Walker_Nav_Menu {
 	/**
 	 * Adjust markup for top level dropdown menu item.
 	 */
-	function start_el( &$output, $item, $depth, $args ) {
+	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 
 		$item_html = '';
 		parent::start_el( $item_html, $item, $depth, $args );
