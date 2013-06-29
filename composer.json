@@ -16,11 +16,23 @@
 		"issues": "https://bitbucket.org/Rarst/hybrid-wing/issues",
 		"source": "https://bitbucket.org/Rarst/hybrid-wing/src"
 	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url" : "http://rarst.net"
+		}
+	],
 	"require"    : {
-		"composer/installers": "~1.0"
+		"composer/installers": "~1.0",
+		"rarst/hybrid-core"  : "~1.5"
 	},
 	"autoload"   : {
 		"classmap": ["php/"],
 		"files"   : ["php/template-tags.php"]
+	},
+	"extra": {
+		"installer-paths": {
+			"./hybrid-core/": ["rarst/hybrid-core"]
+		}
 	}
 }

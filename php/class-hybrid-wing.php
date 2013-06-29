@@ -25,7 +25,33 @@ class Hybrid_Wing extends Hybrid {
 
 	function constants() {
 
-		parent::constants();
+		if ( file_exists( dirname(  __DIR__ ) . '/hybrid-core'  ) ) {
+			parent::constants();
+		}
+		else {
+			define( 'HYBRID_VERSION', '1.5.5' );
+			define( 'THEME_DIR', get_template_directory() );
+			define( 'THEME_URI', get_template_directory_uri() );
+			define( 'CHILD_THEME_DIR', get_stylesheet_directory() );
+			define( 'CHILD_THEME_URI', get_stylesheet_directory_uri() );
+			$reflector = new ReflectionClass( 'Hybrid' );
+			define( 'HYBRID_DIR', str_replace( '\\', '/', dirname( $reflector->getFileName() ) ) );
+			$content_dir = str_replace( '\\', '/', WP_CONTENT_DIR );
+
+			if ( false !== stripos( HYBRID_DIR, $content_dir ) )
+				define( 'HYBRID_URI', str_ireplace( $content_dir, WP_CONTENT_URL, HYBRID_DIR ) );
+			else
+				trigger_error( 'Could not calculate HYBRID_URI path constant, please define manually', E_USER_WARNING );
+
+			define( 'HYBRID_ADMIN', trailingslashit( HYBRID_DIR ) . 'admin' );
+			define( 'HYBRID_CLASSES', trailingslashit( HYBRID_DIR ) . 'classes' );
+			define( 'HYBRID_EXTENSIONS', trailingslashit( HYBRID_DIR ) . 'extensions' );
+			define( 'HYBRID_FUNCTIONS', trailingslashit( HYBRID_DIR ) . 'functions' );
+			define( 'HYBRID_LANGUAGES', trailingslashit( HYBRID_DIR ) . 'languages' );
+			define( 'HYBRID_IMAGES', trailingslashit( HYBRID_URI ) . 'images' );
+			define( 'HYBRID_CSS', trailingslashit( HYBRID_URI ) . 'css' );
+			define( 'HYBRID_JS', trailingslashit( HYBRID_URI ) . 'js' );
+		}
 
 		define( 'LESSJS_DIR', trailingslashit( THEME_DIR ) . 'less.js' );
 		define( 'LESSJS_URI', trailingslashit( THEME_URI ) . 'less.js' );
