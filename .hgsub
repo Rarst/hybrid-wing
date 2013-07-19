@@ -1,2 +1,1 @@
 bootstrap = [git]https://github.com/twitter/bootstrap.git
-less.js = [git]https://github.com/cloudhead/less.js.git

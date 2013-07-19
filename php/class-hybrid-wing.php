@@ -1,5 +1,7 @@
 <?php
 
+use Rarst\Composer\Locate_Vendor;
+
 /**
  * Main theme class, extends Hybrid Core.
  */
@@ -27,6 +29,8 @@ class Hybrid_Wing extends Hybrid {
 
 	function constants() {
 
+		$content_dir = str_replace( '\\', '/', WP_CONTENT_DIR );
+
 		if ( file_exists( dirname( __DIR__ ) . '/hybrid-core' ) ) {
 			parent::constants();
 		}
@@ -38,7 +42,6 @@ class Hybrid_Wing extends Hybrid {
 			define( 'CHILD_THEME_URI', get_stylesheet_directory_uri() );
 			$reflector = new ReflectionClass( 'Hybrid' );
 			define( 'HYBRID_DIR', str_replace( '\\', '/', dirname( $reflector->getFileName() ) ) );
-			$content_dir = str_replace( '\\', '/', WP_CONTENT_DIR );
 
 			if ( false !== stripos( HYBRID_DIR, $content_dir ) )
 				define( 'HYBRID_URI', str_ireplace( $content_dir, WP_CONTENT_URL, HYBRID_DIR ) );
@@ -55,8 +58,13 @@ class Hybrid_Wing extends Hybrid {
 			define( 'HYBRID_JS', trailingslashit( HYBRID_URI ) . 'js' );
 		}
 
-		define( 'LESSJS_DIR', trailingslashit( THEME_DIR ) . 'less.js' );
-		define( 'LESSJS_URI', trailingslashit( THEME_URI ) . 'less.js' );
+		define( 'LESSJS_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'rarst/lessjs' ) ) );
+
+		if ( false !== stripos( LESSJS_DIR, $content_dir ) )
+			define( 'LESSJS_URI', str_ireplace( $content_dir, WP_CONTENT_URL, LESSJS_DIR ) );
+		else
+			trigger_error( 'Could not calculate LESSJS_URI path constant, please define manually', E_USER_WARNING );
+
 		define( 'BOOTSTRAP_DIR', trailingslashit( THEME_DIR ) . 'bootstrap' );
 		define( 'BOOTSTRAP_URI', trailingslashit( THEME_URI ) . 'bootstrap' );
 
@@ -224,12 +232,7 @@ class Hybrid_Wing extends Hybrid {
 		else
 			wp_enqueue_style( 'style' );
 
-		$less_version = $this->get_package_info( LESSJS_DIR, 'version' );
-
-		if ( ! SCRIPT_DEBUG )
-			$less_version .= '.min';
-
-		wp_register_script( 'less', LESSJS_URI . "/dist/less-{$less_version}.js", array(), $less_version, true );
+		wp_register_script( 'less', LESSJS_URI . '/less-1.4.0.min.js', array(), null, true );
 
 		if ( SCRIPT_DEBUG )
 			wp_localize_script( 'less', 'less', array( 'env' => 'development', 'dumpLineNumbers' => 'all' ) );
