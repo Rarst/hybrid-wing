@@ -29,8 +29,6 @@ class Hybrid_Wing extends Hybrid {
 
 	function constants() {
 
-		$content_dir = str_replace( '\\', '/', WP_CONTENT_DIR );
-
 		if ( file_exists( dirname( __DIR__ ) . '/hybrid-core' ) ) {
 			parent::constants();
 		}
@@ -42,12 +40,7 @@ class Hybrid_Wing extends Hybrid {
 			define( 'CHILD_THEME_URI', get_stylesheet_directory_uri() );
 			$reflector = new ReflectionClass( 'Hybrid' );
 			define( 'HYBRID_DIR', str_replace( '\\', '/', dirname( $reflector->getFileName() ) ) );
-
-			if ( false !== stripos( HYBRID_DIR, $content_dir ) )
-				define( 'HYBRID_URI', str_ireplace( $content_dir, WP_CONTENT_URL, HYBRID_DIR ) );
-			else
-				trigger_error( 'Could not calculate HYBRID_URI path constant, please define manually', E_USER_WARNING );
-
+			define( 'HYBRID_URI', $this->content_url_from_path( HYBRID_DIR ) );
 			define( 'HYBRID_ADMIN', trailingslashit( HYBRID_DIR ) . 'admin' );
 			define( 'HYBRID_CLASSES', trailingslashit( HYBRID_DIR ) . 'classes' );
 			define( 'HYBRID_EXTENSIONS', trailingslashit( HYBRID_DIR ) . 'extensions' );
@@ -59,18 +52,9 @@ class Hybrid_Wing extends Hybrid {
 		}
 
 		define( 'LESSJS_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'rarst/lessjs' ) ) );
-
-		if ( false !== stripos( LESSJS_DIR, $content_dir ) )
-			define( 'LESSJS_URI', str_ireplace( $content_dir, WP_CONTENT_URL, LESSJS_DIR ) );
-		else
-			trigger_error( 'Could not calculate LESSJS_URI path constant, please define manually', E_USER_WARNING );
-
+		define( 'LESSJS_URI', $this->content_url_from_path( LESSJS_DIR ) );
 		define( 'BOOTSTRAP_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'twitter/bootstrap' ) ) );
-
-		if ( false !== stripos( BOOTSTRAP_DIR, $content_dir ) )
-			define( 'BOOTSTRAP_URI', str_ireplace( $content_dir, WP_CONTENT_URL, BOOTSTRAP_DIR ) );
-		else
-			trigger_error( 'Could not calculate BOOTSTRAP_URI path constant, please define manually', E_USER_WARNING );
+		define( 'BOOTSTRAP_URI', $this->content_url_from_path( BOOTSTRAP_DIR ) );
 
 		if ( ! defined( 'SCRIPT_DEBUG' ) )
 			define( 'SCRIPT_DEBUG', false );
@@ -81,6 +65,28 @@ class Hybrid_Wing extends Hybrid {
 //			list( $width, $height ) = $this->get_bootstrap_image_size( $columns, 'golden' );
 //			add_image_size( "bootstrap-{$columns}-columns", $width, $height, true );
 //		}
+	}
+
+	/**
+	 * Calculate URL for arbitrary path in content directory.
+	 *
+	 * @param string $path
+	 *
+	 * @return string
+	 */
+	function content_url_from_path( $path ) {
+
+		static $content_dir;
+
+		if ( empty( $content_dir ) )
+			$content_dir = str_replace( '\\', '/', WP_CONTENT_DIR );
+
+		if ( false !== stripos( $path, $content_dir ) )
+			return content_url( str_ireplace( $content_dir, '', $path ) );
+
+		trigger_error( 'Could not calculate URL constant for ' . esc_html( $path ), E_USER_WARNING );
+
+		return '';
 	}
 
 	function default_filters() {
