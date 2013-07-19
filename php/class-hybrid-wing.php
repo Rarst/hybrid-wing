@@ -21,11 +21,13 @@ class Hybrid_Wing extends Hybrid {
 	/**
 	 * @return string 'hw'
 	 */
-	function hybrid_prefix() { return 'hw'; }
+	function hybrid_prefix() {
+		return 'hw';
+	}
 
 	function constants() {
 
-		if ( file_exists( dirname(  __DIR__ ) . '/hybrid-core'  ) ) {
+		if ( file_exists( dirname( __DIR__ ) . '/hybrid-core' ) ) {
 			parent::constants();
 		}
 		else {
@@ -138,11 +140,11 @@ class Hybrid_Wing extends Hybrid {
 		$prefix = hybrid_get_prefix() . '_';
 
 		$default_grid = array(
-			$prefix . 'body_container_class'      => 'container',
-			$prefix . 'container_class'           => 'row',
-			$prefix . 'content_class'             => 'span9',
+			$prefix . 'body_container_class' => 'container',
+			$prefix . 'container_class'      => 'row',
+			$prefix . 'content_class'        => 'span9',
 //			$prefix . 'entry_class' => 'span10',
-			$prefix . 'sidebar_class'             => 'span3',
+			$prefix . 'sidebar_class'        => 'span3',
 		);
 
 		$this->grid = apply_atomic( 'grid', $default_grid );
@@ -161,8 +163,8 @@ class Hybrid_Wing extends Hybrid {
 
 		$current_filter = current_filter();
 
-		if( ! empty( $this->grid[$current_filter] ) )
-			$classes .= ' ' .  $this->grid[$current_filter];
+		if ( ! empty( $this->grid[$current_filter] ) )
+			$classes .= ' ' . $this->grid[$current_filter];
 
 		return $classes;
 	}
@@ -224,16 +226,16 @@ class Hybrid_Wing extends Hybrid {
 
 		$less_version = $this->get_package_info( LESSJS_DIR, 'version' );
 
-		if( ! SCRIPT_DEBUG )
+		if ( ! SCRIPT_DEBUG )
 			$less_version .= '.min';
 
 		wp_register_script( 'less', LESSJS_URI . "/dist/less-{$less_version}.js", array(), $less_version, true );
 
-		if( SCRIPT_DEBUG )
+		if ( SCRIPT_DEBUG )
 			wp_localize_script( 'less', 'less', array( 'env' => 'development', 'dumpLineNumbers' => 'all' ) );
 
 		$bootstrap_version = $this->get_package_info( BOOTSTRAP_DIR, 'version' );
-		$scripts = glob( BOOTSTRAP_DIR . '/js/*.js' );
+		$scripts           = glob( BOOTSTRAP_DIR . '/js/*.js' );
 
 		foreach ( $scripts as $script ) {
 			wp_register_script( basename( $script, '.js' ), BOOTSTRAP_URI . '/js/' . basename( $script ), array( 'jquery' ), $bootstrap_version, true );
@@ -256,9 +258,9 @@ class Hybrid_Wing extends Hybrid {
 	 */
 	function get_package_info( $path, $field = false ) {
 
-		$data = json_decode( file_get_contents( trailingslashit( $path ) .'package.json' ) );
+		$data = json_decode( file_get_contents( trailingslashit( $path ) . 'package.json' ) );
 
-		if( $field )
+		if ( $field )
 			return $data->$field;
 
 		return $data;
@@ -338,7 +340,7 @@ class Hybrid_Wing extends Hybrid {
 			$attr['id'] = 'id="' . esc_attr( $attr['id'] ) . '" ';
 
 		return '<div ' . $attr['id'] . 'class="wp-caption thumbnail ' . esc_attr( $attr['align'] ) . '" style="max-width: ' . (int) $attr['width'] . 'px">'
-				. do_shortcode( $content ) . '<p class="wp-caption-text caption">' . $attr['caption'] . '</p></div>';
+		. do_shortcode( $content ) . '<p class="wp-caption-text caption">' . $attr['caption'] . '</p></div>';
 	}
 
 	/**
@@ -360,11 +362,11 @@ class Hybrid_Wing extends Hybrid {
 		$args['type']   = 'list';
 
 
-		if (  $wp_rewrite->using_permalinks() ) {
+		if ( $wp_rewrite->using_permalinks() ) {
 			$link  = get_pagenum_link();
 			$parse = parse_url( $link );
 
-			if( ! empty( $parse['query'] )  )
+			if ( ! empty( $parse['query'] ) )
 				$args['base'] = str_replace( '?' . $parse['query'], $wp_rewrite->pagination_base . '/%#%/?' . $parse['query'], $link );
 		}
 
@@ -405,7 +407,7 @@ class Hybrid_Wing extends Hybrid {
 		global $post;
 
 		static $instance = 0;
-		$instance++;
+		$instance ++;
 
 		if ( isset( $attr['orderby'] ) ) {
 
@@ -482,7 +484,7 @@ class Hybrid_Wing extends Hybrid {
 		if ( $columns_wide > $content_columns )
 			$columns_wide = $content_columns;
 
-		if( $columns > $content_columns )
+		if ( $columns > $content_columns )
 			$clear_every = $content_columns;
 		else
 			$clear_every = $columns;
@@ -505,7 +507,7 @@ class Hybrid_Wing extends Hybrid {
 			$link       = wp_get_attachment_link( $id, $size, $link_to_file );
 			$item_class = 'span' . $columns_wide;
 
-			if ( (++$i - 1) % $clear_every == 0 )
+			if ( ( ++$i - 1 ) % $clear_every == 0 )
 				$item_class .= ' thumbnail-clear';
 
 			$output .= "<li class='{$item_class}'><div class='thumbnail'>\n\t{$link}\n";
@@ -548,7 +550,7 @@ class Hybrid_Wing extends Hybrid {
 
 			case 'golden':
 				$height = round( $width / 1.6 );
-			break;
+				break;
 
 			default:
 				$height = $width;
@@ -564,7 +566,7 @@ class Hybrid_Wing extends Hybrid {
 	 *
 	 * @return array
 	 */
-	function list_comments_args( $args  ) {
+	function list_comments_args( $args ) {
 
 		$args['style']        = 'div';
 		$args['avatar_size']  = 60;
@@ -608,10 +610,6 @@ class Hybrid_Wing extends Hybrid {
 		return $defaults;
 	}
 
-	function comment_form_top() { echo '<div class="form-horizontal">';	}
-
-	function comment_form() { echo '</div>'; }
-
 	/**
 	 * Rewrite markup to strip paragraph and wrap in horizontal form block markup.
 	 *
@@ -647,5 +645,13 @@ class Hybrid_Wing extends Hybrid {
 		$note = '<div class="control-group"><div class="controls span5">' . str_replace( '<p class="', '<p class="help-block ', $note ) . '</div></div>';
 
 		return $note;
+	}
+
+	function comment_form_top() {
+		echo '<div class="form-horizontal">';
+	}
+
+	function comment_form() {
+		echo '</div>';
 	}
 }
