@@ -26,7 +26,8 @@
 		"composer/installers": "~1.0",
 		"rarst/hybrid-core"  : "~1.5",
 		"rarst/lessjs"       : "1.4",
-		"rarst/locate-vendor": "~1.0"
+		"rarst/locate-vendor": "~1.0",
+		"twitter/bootstrap"  : "~2.3"
 	},
 	"autoload"   : {
 		"classmap": ["php/"],

@@ -65,8 +65,12 @@ class Hybrid_Wing extends Hybrid {
 		else
 			trigger_error( 'Could not calculate LESSJS_URI path constant, please define manually', E_USER_WARNING );
 
-		define( 'BOOTSTRAP_DIR', trailingslashit( THEME_DIR ) . 'bootstrap' );
-		define( 'BOOTSTRAP_URI', trailingslashit( THEME_URI ) . 'bootstrap' );
+		define( 'BOOTSTRAP_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'twitter/bootstrap' ) ) );
+
+		if ( false !== stripos( BOOTSTRAP_DIR, $content_dir ) )
+			define( 'BOOTSTRAP_URI', str_ireplace( $content_dir, WP_CONTENT_URL, BOOTSTRAP_DIR ) );
+		else
+			trigger_error( 'Could not calculate BOOTSTRAP_URI path constant, please define manually', E_USER_WARNING );
 
 		if ( ! defined( 'SCRIPT_DEBUG' ) )
 			define( 'SCRIPT_DEBUG', false );
