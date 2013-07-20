@@ -242,7 +242,7 @@ class Hybrid_Wing extends Hybrid {
 		else
 			wp_enqueue_style( 'style' );
 
-		wp_register_script( 'less', LESSJS_URI . '/less-1.4.1.min.js', array(), null, true );
+		wp_register_script( 'less', LESSJS_URI . '/less-1.4.2.min.js', array(), null, true );
 
 		if ( SCRIPT_DEBUG )
 			wp_localize_script( 'less', 'less', array( 'env' => 'development', 'dumpLineNumbers' => 'all' ) );
