@@ -303,7 +303,6 @@ class Core extends \Hybrid {
 		$last   = array_pop( $items );
 
 		foreach ( $items as $item ) {
-
 			$output .= "<li>{$item} <span class='divider'>/</span></li>";
 		}
 
@@ -341,12 +340,15 @@ class Core extends \Hybrid {
 	 */
 	function img_caption_shortcode( $empty, $attr, $content ) {
 
-		$attr = shortcode_atts( array(
-			'id'      => '',
-			'align'   => 'alignnone',
-			'width'   => '',
-			'caption' => '',
-		), $attr );
+		$attr = shortcode_atts(
+			array(
+				'id'      => '',
+				'align'   => 'alignnone',
+				'width'   => '',
+				'caption' => '',
+			),
+			$attr
+		);
 
 		if ( 1 > (int) $attr['width'] || empty( $attr['caption'] ) )
 			return $content;
@@ -425,25 +427,27 @@ class Core extends \Hybrid {
 		$instance ++;
 
 		if ( isset( $attr['orderby'] ) ) {
-
 			$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
 
 			if ( ! $attr['orderby'] )
 				unset( $attr['orderby'] );
 		}
 
-		$r = shortcode_atts( array(
-			'order'           => 'ASC',
-			'orderby'         => 'menu_order ID',
-			'id'              => $post->ID,
-			'captiontag'      => 'div',
-			'content_columns' => 9,
-			'columns'         => 3,
-			'size'            => false,
-			'include'         => '',
-			'exclude'         => '',
-			'link'            => false,
-		), $attr );
+		$r = shortcode_atts(
+			array(
+				'order'           => 'ASC',
+				'orderby'         => 'menu_order ID',
+				'id'              => $post->ID,
+				'captiontag'      => 'div',
+				'content_columns' => 9,
+				'columns'         => 3,
+				'size'            => false,
+				'include'         => '',
+				'exclude'         => '',
+				'link'            => false,
+			),
+			$attr
+		);
 
 		$id = intval( $r['id'] );
 
@@ -459,23 +463,19 @@ class Core extends \Hybrid {
 		);
 
 		if ( ! empty( $r['include'] ) ) {
-
 			$include      = preg_replace( '/[^0-9,]+/', '', $r['include'] );
 			$_attachments = get_posts( array_merge( $get_args, array( 'include' => $include ) ) );
 			$attachments  = array();
 
 			foreach ( $_attachments as $key => $val ) {
-
 				$attachments[$val->ID] = $_attachments[$key];
 			}
 		}
 		elseif ( ! empty( $r['exclude'] ) ) {
-
 			$exclude     = preg_replace( '/[^0-9,]+/', '', $r['exclude'] );
 			$attachments = get_children( array_merge( $get_args, array( 'post_parent' => $id, 'exclude' => $exclude ) ) );
 		}
 		else {
-
 			$attachments = get_children( array_merge( $get_args, array( 'post_parent' => $id ) ) );
 		}
 
@@ -491,7 +491,6 @@ class Core extends \Hybrid {
 		$i               = 0;
 
 		if ( 2 > $columns_wide ) {
-
 			$columns_wide = 1;
 			$captiontag   = false;
 		}
@@ -505,12 +504,10 @@ class Core extends \Hybrid {
 			$clear_every = $columns;
 
 		if ( ! empty( $r['size'] ) ) {
-
 			$size       = $r['size'];
 			$size_class = 'gallery-size-' . sanitize_html_class( $r['size'] );
 		}
 		else {
-
 			$size       = $this->get_bootstrap_image_size( $columns_wide );
 			$size_class = '';
 		}
@@ -518,7 +515,6 @@ class Core extends \Hybrid {
 		$output = "<ul id='{$selector}' class='thumbnails gallery galleryid-{$id} gallery-columns-{$columns} {$size_class}'>\n";
 
 		foreach ( $attachments as $id => $attachment ) {
-
 			$link       = wp_get_attachment_link( $id, $size, $link_to_file );
 			$item_class = 'span' . $columns_wide;
 
@@ -553,7 +549,6 @@ class Core extends \Hybrid {
 	function get_bootstrap_image_size( $columns, $ratio = 'square', $media = 'default' ) {
 
 		switch ( $media ) {
-
 			default:
 				$column_width  = 60;
 				$column_gutter = 20;
@@ -562,7 +557,6 @@ class Core extends \Hybrid {
 		$width = $columns * $column_width + ( $columns - 1 ) * $column_gutter - 10;
 
 		switch ( $ratio ) {
-
 			case 'golden':
 				$height = round( $width / 1.6 );
 				break;
@@ -613,7 +607,6 @@ class Core extends \Hybrid {
 	function comment_form_defaults( $defaults ) {
 
 		foreach ( $defaults['fields'] as $key => $field ) {
-
 			$defaults['fields'][$key] = $this->make_comment_field_horizontal( $field );
 		}
 
@@ -636,12 +629,15 @@ class Core extends \Hybrid {
 
 		$field = preg_replace( '|<p class="(.*?)">|', '<div class="$1 control-group">', $field );
 
-		$field = strtr( $field, array(
-			'<label'    => '<label class="control-label"',
-			'<input'    => '<div class="controls"><input class="span5"',
-			'<textarea' => '<div class="controls"><textarea class="span5"',
-			'</p>'      => '</div>',
-		) );
+		$field = strtr(
+			$field,
+			array(
+				'<label'    => '<label class="control-label"',
+				'<input'    => '<div class="controls"><input class="span5"',
+				'<textarea' => '<div class="controls"><textarea class="span5"',
+				'</p>'      => '</div>',
+			)
+		);
 
 		$field .= '</div>';
 
