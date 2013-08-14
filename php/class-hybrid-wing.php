@@ -33,7 +33,7 @@ class Hybrid_Wing extends Hybrid {
 			parent::constants();
 		}
 		else {
-			define( 'HYBRID_VERSION', '1.5.5' );
+			define( 'HYBRID_VERSION', '1.6.0' );
 			define( 'THEME_DIR', get_template_directory() );
 			define( 'THEME_URI', get_template_directory_uri() );
 			define( 'CHILD_THEME_DIR', get_stylesheet_directory() );
