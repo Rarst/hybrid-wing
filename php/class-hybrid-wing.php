@@ -1,11 +1,13 @@
 <?php
 
+namespace Rarst\Hybrid_Wing;
+
 use Rarst\Composer\Locate_Vendor;
 
 /**
  * Main theme class, extends Hybrid Core.
  */
-class Hybrid_Wing extends Hybrid {
+class Core extends \Hybrid {
 
 	public $main_template;
 	public $base;
@@ -38,7 +40,7 @@ class Hybrid_Wing extends Hybrid {
 			define( 'THEME_URI', get_template_directory_uri() );
 			define( 'CHILD_THEME_DIR', get_stylesheet_directory() );
 			define( 'CHILD_THEME_URI', get_stylesheet_directory_uri() );
-			$reflector = new ReflectionClass( 'Hybrid' );
+			$reflector = new \ReflectionClass( 'Hybrid' );
 			define( 'HYBRID_DIR', str_replace( '\\', '/', dirname( $reflector->getFileName() ) ) );
 			define( 'HYBRID_URI', $this->content_url_from_path( HYBRID_DIR ) );
 			define( 'HYBRID_ADMIN', trailingslashit( HYBRID_DIR ) . 'admin' );
@@ -135,7 +137,7 @@ class Hybrid_Wing extends Hybrid {
 		parent::extensions();
 
 		if ( current_theme_supports( 'navbar' ) )
-			new Hybrid_Wing_Navbar();
+			new \Hybrid_Wing_Navbar();
 	}
 
 	function widgets_init() {
@@ -366,7 +368,7 @@ class Hybrid_Wing extends Hybrid {
 	function loop_pagination_args( $args ) {
 
 		/**
-		 * @var WP_Rewrite $wp_rewrite
+		 * @var \WP_Rewrite $wp_rewrite
 		 */
 		global $wp_rewrite;
 

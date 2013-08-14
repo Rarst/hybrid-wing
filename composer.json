@@ -23,6 +23,7 @@
 		}
 	],
 	"require"    : {
+		"php"                : ">=5.3",
 		"composer/installers": "~1.0",
 		"rarst/hybrid-core"  : "~1.6",
 		"rarst/lessjs"       : "1.4.2",
