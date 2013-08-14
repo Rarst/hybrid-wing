@@ -119,7 +119,7 @@ class Hybrid_Wing extends Hybrid {
 		parent::theme_support();
 		add_theme_support( 'hybrid-core-shortcodes' );
 		add_theme_support( 'hybrid-core-sidebars', array( 'primary' ) );
-		add_theme_support( 'breadcrumb-trail' );
+//		add_theme_support( 'breadcrumb-trail' );
 		add_theme_support( 'loop-pagination' );
 		add_theme_support( 'navbar' );
 	}
