@@ -8,7 +8,7 @@
 
 				<div class="entry-content">
 					<?php the_content( sprintf( __( 'Continue reading %1$s', 'hybrid-wing' ), the_title( ' "', '"', false ) ) ); ?>
-					<?php hw_link_pages(); ?>
+					<?php wp_link_pages(); ?>
 				</div><!-- .entry-content -->
 
 				<?php do_atomic( 'after_entry' ); ?>

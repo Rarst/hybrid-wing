@@ -138,6 +138,8 @@ class Core extends \Hybrid {
 
 		if ( current_theme_supports( 'navbar' ) )
 			new \Hybrid_Wing_Navbar();
+
+		new Post_Pagination();
 	}
 
 	function widgets_init() {
