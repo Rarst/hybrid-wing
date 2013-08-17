@@ -5,7 +5,7 @@ namespace Rarst\Hybrid_Wing;
 use Rarst\Composer\Locate_Vendor;
 
 /**
- * Main theme class, extends Hybrid Core.
+ * Wraps Hybrid Core to adjust runtime configuration
  */
 class Core extends \Hybrid {
 
