@@ -137,7 +137,7 @@ class Core extends \Hybrid {
 		parent::extensions();
 
 		if ( current_theme_supports( 'navbar' ) )
-			new \Hybrid_Wing_Navbar();
+			new Navbar();
 
 		new Post_Pagination();
 	}

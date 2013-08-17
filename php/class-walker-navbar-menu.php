@@ -1,9 +1,11 @@
 <?php
 
+namespace Rarst\Hybrid_Wing;
+
 /**
  * Walker for integration of WordPress custom menu with Bootstrap navbar.
  */
-class Walker_Navbar_Menu extends Walker_Nav_Menu {
+class Walker_Navbar_Menu extends \Walker_Nav_Menu {
 
 	public $dropdown_enqueued;
 

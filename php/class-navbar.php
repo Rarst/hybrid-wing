@@ -1,8 +1,11 @@
 <?php
+
+namespace Rarst\Hybrid_Wing;
+
 /**
  * Reusable navbar component.
  */
-class Hybrid_Wing_Navbar {
+class Navbar {
 
 	/**
 	 * @param array $args
