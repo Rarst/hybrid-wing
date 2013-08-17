@@ -99,7 +99,7 @@ class Core extends \Hybrid {
 		add_action( 'template_include', array( $this, 'template_include' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 		add_action( 'style_loader_tag', array( $this, 'style_loader_tag' ), 10, 2 );
-		add_action( 'hw_before_content', array( $this, 'breadcrumb_trail' ) );
+		add_action( 'hw_before_content', 'breadcrumb_trail' );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
 		add_action( 'hw_singular_entry_title', array( $this, 'singular_entry_title' ) );
 		add_filter( 'img_caption_shortcode', array( $this, 'img_caption_shortcode' ), 10, 3 );
@@ -121,7 +121,7 @@ class Core extends \Hybrid {
 		parent::theme_support();
 		add_theme_support( 'hybrid-core-shortcodes' );
 		add_theme_support( 'hybrid-core-sidebars', array( 'primary' ) );
-//		add_theme_support( 'breadcrumb-trail' );
+		add_theme_support( 'breadcrumb-trail' );
 		add_theme_support( 'loop-pagination' );
 	}
 
@@ -270,37 +270,6 @@ class Core extends \Hybrid {
 			return $data->$field;
 
 		return $data;
-	}
-
-	function breadcrumb_trail() {
-
-		if ( ! current_theme_supports( 'breadcrumb-trail' ) )
-			return;
-
-		$args = array(
-			'front_page'             => false,
-			'show_home'              => __( 'Home', 'hybrid-wing' ),
-			'singular_post_taxonomy' => false,
-			'network'                => false,
-		);
-
-		$args  = apply_filters( 'hw_breadcrumb_trail_args', $args );
-		$items = breadcrumb_trail_get_items( $args );
-
-		if ( empty( $items ) )
-			return;
-
-		$output = '<ul class="breadcrumb">';
-		$last   = array_pop( $items );
-
-		foreach ( $items as $item ) {
-			$output .= "<li>{$item} <span class='divider'>/</span></li>";
-		}
-
-		$output .= "<li class='active'>{$last}</li>";
-		$output .= '</ul>';
-
-		echo $output;
 	}
 
 	function sidebar_primary() {

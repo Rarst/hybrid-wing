@@ -29,6 +29,12 @@ class Theme extends \Pimple {
 			}
 		);
 
+		$this['breadcrumb'] = $this->share(
+			function () {
+				return new Breadcrumb();
+			}
+		);
+
 		foreach ( $options as $key => $value ) {
 			$this[$key] = $value;
 		}
@@ -58,5 +64,8 @@ class Theme extends \Pimple {
 
 		if ( isset( $this['post-pagination'] ) )
 			$this['post-pagination'];
+
+		if ( isset( $this['post-pagination'] ) )
+			$this['breadcrumb']->enable();
 	}
 }
