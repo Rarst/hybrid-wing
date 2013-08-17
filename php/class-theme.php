@@ -36,12 +36,12 @@ class Theme extends \Pimple {
 
 	public function load() {
 
-		add_filter( 'after_setup_theme', array( $this, 'after_setup_theme' ), 0 );
+		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 0 );
 	}
 
 	public function unload() {
 
-		remove_filter( 'after_setup_theme', array( $this, 'after_setup_theme' ), 0 );
+		remove_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 0 );
 	}
 
 	public function after_setup_theme(  ) {
