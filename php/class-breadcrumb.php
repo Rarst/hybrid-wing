@@ -32,6 +32,9 @@ class Breadcrumb {
 
 	public function breadcrumb_trail_items( $items ) {
 
+		if ( empty( $items ) )
+			return $items;
+
 		$last = array_pop( $items );
 
 		foreach ( $items as $key => $item ) {
