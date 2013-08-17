@@ -123,23 +123,12 @@ class Core extends \Hybrid {
 		add_theme_support( 'hybrid-core-sidebars', array( 'primary' ) );
 //		add_theme_support( 'breadcrumb-trail' );
 		add_theme_support( 'loop-pagination' );
-		add_theme_support( 'navbar' );
 	}
 
 	function functions() {
 
 		parent::functions();
 		remove_filter( 'comment_form_defaults', 'hybrid_comment_form_args' );
-	}
-
-	function extensions() {
-
-		parent::extensions();
-
-		if ( current_theme_supports( 'navbar' ) )
-			new Navbar();
-
-		new Post_Pagination();
 	}
 
 	function widgets_init() {

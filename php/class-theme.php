@@ -17,6 +17,18 @@ class Theme extends \Pimple {
 			}
 		);
 
+		$this['navbar'] = $this->share(
+			function () {
+				return new Navbar();
+			}
+		);
+
+		$this['post-pagination'] = $this->share(
+			function () {
+				return new Post_Pagination();
+			}
+		);
+
 		foreach ( $options as $key => $value ) {
 			$this[$key] = $value;
 		}
@@ -35,5 +47,16 @@ class Theme extends \Pimple {
 	public function after_setup_theme(  ) {
 
 		$this['core']; // instance Core
+
+		add_action( 'after_setup_theme', array( $this, 'extensions' ), 14 );
+	}
+
+	public function extensions(  ) {
+
+		if ( isset( $this['navbar'] ) )
+			$this['navbar'];
+
+		if ( isset( $this['post-pagination'] ) )
+			$this['post-pagination'];
 	}
 }
