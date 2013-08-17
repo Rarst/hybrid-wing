@@ -11,21 +11,23 @@ class Hybrid_Wing_Navbar {
 
 		$prefix = hybrid_get_prefix();
 
-		$this->args = (object) wp_parse_args( $args, array(
-			'name'     => 'navbar',
-			'location' => $prefix . '_header',
-			'classes'  => array(),
-			'brand'    => true,
-			'menu'     => true,
-			'sidebar'  => true,
-			'search'   => true,
-		) );
+		$this->args = (object) wp_parse_args(
+			$args,
+			array(
+				'name'     => 'navbar',
+				'location' => $prefix . '_header',
+				'classes'  => array(),
+				'brand'    => true,
+				'menu'     => true,
+				'sidebar'  => true,
+				'search'   => true,
+			)
+		);
 
 		if ( $this->args->menu )
 			add_action( 'init', array( $this, 'init' ) );
 
 		if ( $this->args->sidebar ) {
-
 			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 		}
@@ -44,14 +46,16 @@ class Hybrid_Wing_Navbar {
 		global $wp_registered_sidebars;
 
 		if ( empty( $wp_registered_sidebars[$this->args->name] ) )
-			register_sidebar( array(
-				'name'          => 'Navbar',
-				'id'            => $this->args->name,
-				'before_widget' => '<li id="%1$s" class="dropdown widget %2$s">',
-				'before_title'  => '<a href="#" class="dropdown-toggle" data-toggle="dropdown">',
-				'after_title'   => '<b class="caret"></b></a><div class="dropdown-menu">',
-				'after_widget'  => '</div></li>',
-			) );
+			register_sidebar(
+				array(
+					'name'          => 'Navbar',
+					'id'            => $this->args->name,
+					'before_widget' => '<li id="%1$s" class="dropdown widget %2$s">',
+					'before_title'  => '<a href="#" class="dropdown-toggle" data-toggle="dropdown">',
+					'after_title'   => '<b class="caret"></b></a><div class="dropdown-menu">',
+					'after_widget'  => '</div></li>',
+				)
+			);
 	}
 	
 	function wp_enqueue_scripts() {
@@ -89,7 +93,7 @@ class Hybrid_Wing_Navbar {
 
 		$classes = $this->args->classes;
 
-		if( ! is_array( $classes ) )
+		if ( ! is_array( $classes ) )
 			$classes = explode( ' ', $classes );
 
 		$classes = array_map( 'sanitize_html_class', $classes );
@@ -113,24 +117,24 @@ class Hybrid_Wing_Navbar {
 	function menu() {
 
 		if ( has_nav_menu( $this->args->name ) )
-			wp_nav_menu( array(
-				'theme_location' => $this->args->name,
-				'container'      => false,
-				'menu_class'     => 'nav',
-				'walker'         => new Walker_Navbar_Menu(),
-			) );
+			wp_nav_menu(
+				array(
+					'theme_location' => $this->args->name,
+					'container'      => false,
+					'menu_class'     => 'nav',
+					'walker'         => new Walker_Navbar_Menu(),
+				)
+			);
 	}
 
 	function sidebar() {
 
 		if ( is_active_sidebar( 'navbar' ) ) {
-
 			echo '<ul class="nav">';
 
 			dynamic_sidebar( 'navbar' );
 
 			echo '</ul>';
-
 		}
 	}
 
