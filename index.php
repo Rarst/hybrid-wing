@@ -1,6 +1,6 @@
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<div id="post-<?php the_ID(); ?>" class="<?php hybrid_entry_class(); ?>">
+			<div id="post-<?php the_ID(); ?>" class="<?php hybrid_post_class(); ?>">
 
 				<?php do_atomic( 'before_entry' ); ?>
 
