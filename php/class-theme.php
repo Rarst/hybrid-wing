@@ -65,7 +65,7 @@ class Theme extends \Pimple {
 		if ( isset( $this['post-pagination'] ) )
 			$this['post-pagination'];
 
-		if ( isset( $this['post-pagination'] ) )
+		if ( isset( $this['breadcrumb'] ) )
 			$this['breadcrumb']->enable();
 	}
 }
