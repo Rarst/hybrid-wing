@@ -35,6 +35,12 @@ class Theme extends \Pimple {
 			}
 		);
 
+		$this['comments'] = $this->share(
+			function () {
+				return new Comments();
+			}
+		);
+
 		foreach ( $options as $key => $value ) {
 			$this[$key] = $value;
 		}
@@ -67,5 +73,8 @@ class Theme extends \Pimple {
 
 		if ( isset( $this['breadcrumb'] ) )
 			$this['breadcrumb']->enable();
+
+		if ( isset( $this['comments'] ) )
+			$this['comments']->enable();
 	}
 }
