@@ -29,6 +29,12 @@ class Theme extends \Pimple {
 			}
 		);
 
+		$this['loop-pagination'] = $this->share(
+			function () {
+				return new Loop_Pagination();
+			}
+		);
+
 		$this['breadcrumb'] = $this->share(
 			function () {
 				return new Breadcrumb();
@@ -70,6 +76,9 @@ class Theme extends \Pimple {
 
 		if ( isset( $this['post-pagination'] ) )
 			$this['post-pagination'];
+
+		if ( isset( $this['loop-pagination'] ) )
+			$this['loop-pagination']->enable();
 
 		if ( isset( $this['breadcrumb'] ) )
 			$this['breadcrumb']->enable();

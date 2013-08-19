@@ -106,9 +106,6 @@ class Core extends \Hybrid {
 		add_action( 'hw_home_after_content', 'loop_pagination' );
 		add_action( 'hw_archive_after_content', 'loop_pagination' );
 		add_action( 'hw_search_after_content', 'loop_pagination' );
-		add_action( 'loop_pagination_args', array( $this, 'loop_pagination_args' ) );
-		add_action( 'loop_pagination', array( $this, 'loop_pagination' ) );
-		add_action( 'hw_paginate_comments_links', array( $this, 'loop_pagination' ) );
 		add_filter( 'post_gallery', array( $this, 'post_gallery' ), 10, 2 );
 	}
 
@@ -314,52 +311,6 @@ class Core extends \Hybrid {
 
 		return '<div ' . $attr['id'] . 'class="wp-caption thumbnail ' . esc_attr( $attr['align'] ) . '" style="max-width: ' . (int) $attr['width'] . 'px">'
 		. do_shortcode( $content ) . '<p class="wp-caption-text caption">' . $attr['caption'] . '</p></div>';
-	}
-
-	/**
-	 * Adjust arguments of loop pagination function.
-	 *
-	 * @param array $args
-	 *
-	 * @return array
-	 */
-	function loop_pagination_args( $args ) {
-
-		/**
-		 * @var \WP_Rewrite $wp_rewrite
-		 */
-		global $wp_rewrite;
-
-		$args['before'] = '<div class="pagination pagination-centered pagination-large">';
-		$args['after']  = '</div>';
-		$args['type']   = 'list';
-
-
-		if ( $wp_rewrite->using_permalinks() ) {
-			$link  = get_pagenum_link();
-			$parse = parse_url( $link );
-
-			if ( ! empty( $parse['query'] ) )
-				$args['base'] = str_replace( '?' . $parse['query'], $wp_rewrite->pagination_base . '/%#%/?' . $parse['query'], $link );
-		}
-
-		return $args;
-	}
-
-	/**
-	 * Rewrite pagination output.
-	 *
-	 * @param string $html
-	 *
-	 * @return string
-	 */
-	function loop_pagination( $html ) {
-
-		$html = str_replace( "<a class='page-numbers'", "<a class='page-numbers hidden-phone'", $html );
-		$html = str_replace( '<span class="page-numbers dots"', '<span class="page-numbers dots hidden-phone"', $html );
-		$html = str_replace( "<li><span class='page-numbers current'>", "<li class='active'><span class='page-numbers current'>", $html );
-
-		return $html;
 	}
 
 	/**
