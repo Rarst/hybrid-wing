@@ -19,7 +19,7 @@ class Navbar {
 			array(
 				'name'     => 'navbar',
 				'location' => $prefix . '_header',
-				'classes'  => array(),
+				'classes'  => array( 'navbar-default' ),
 				'brand'    => true,
 				'menu'     => true,
 				'sidebar'  => true,
@@ -69,23 +69,20 @@ class Navbar {
 
 	function output() {
 		?>
-	<div class="navbar <?php $this->classes(); ?>">
+	<nav class="navbar <?php $this->classes(); ?>" role="navigation">
 
-		<div class="navbar-inner">
+		<div class="navbar-header">
+			<?php	if ( $this->args->brand ) $this->brand(); ?>
+		</div>
 
-			<?php
-			if ( $this->args->brand ) $this->brand();
-
+		<?php
 			if ( $this->args->menu ) $this->menu();
 
 			if ( $this->args->sidebar ) $this->sidebar();
 
 			if ( $this->args->search ) $this->search();
 			?>
-
-		</div><!-- .navbar-inner -->
-
-	</div><!-- .navbar -->
+	</nav><!-- .navbar -->
 	<?php
 	}
 
@@ -110,9 +107,9 @@ class Navbar {
 		$name = esc_html( get_bloginfo( 'name' ) );
 
 		if ( is_home() )
-			$brand = '<span class="brand">' . $name . '</span>';
+			$brand = '<span class="navbar-brand">' . $name . '</span>';
 		else
-			$brand = '<a href="' . get_home_url() . '" class="brand">' . $name . '</a>';
+			$brand = '<a href="' . get_home_url() . '" class="navbar-brand">' . $name . '</a>';
 
 		echo apply_atomic( 'navbar_brand', $brand, $this->args );
 	}
@@ -124,7 +121,7 @@ class Navbar {
 				array(
 					'theme_location' => $this->args->name,
 					'container'      => false,
-					'menu_class'     => 'nav',
+					'menu_class'     => 'nav navbar-nav',
 					'walker'         => new Walker_Navbar_Menu(),
 				)
 			);
@@ -133,7 +130,7 @@ class Navbar {
 	function sidebar() {
 
 		if ( is_active_sidebar( 'navbar' ) ) {
-			echo '<ul class="nav">';
+			echo '<ul class="nav navbar-nav">';
 
 			dynamic_sidebar( 'navbar' );
 
@@ -143,8 +140,10 @@ class Navbar {
 
 	function search() {
 		?>
-	<form role="search" method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="navbar-search pull-right">
-		<input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="<?php esc_attr_e( 'Search' ); ?>" class="search-query" />
+	<form role="search" method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="navbar-form navbar-right">
+		<div class="form-group">
+			<input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="<?php esc_attr_e( 'Search' ); ?>" class="form-control" />
+		</div>
 	</form>
 	<?php
 	}
