@@ -28,7 +28,7 @@
 		"rarst/hybrid-core"  : "~1.6",
 		"rarst/lessjs"       : "1.4.2",
 		"rarst/locate-vendor": "~1.0",
-		"twitter/bootstrap"  : "~2.3",
+		"twbs/bootstrap"     : "~3.0",
 		"pimple/pimple"      : "~1.0"
 	},
 	"autoload"   : {
