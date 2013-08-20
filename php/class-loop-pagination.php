@@ -32,7 +32,7 @@ class Loop_Pagination {
 		/** @var \WP_Rewrite $wp_rewrite */
 		global $wp_rewrite;
 
-		$args['before'] = '<div class="pagination pagination-centered pagination-large">';
+		$args['before'] = '<div class="text-center">';
 		$args['after']  = '</div>';
 		$args['type']   = 'list';
 
@@ -56,8 +56,9 @@ class Loop_Pagination {
 	 */
 	function loop_pagination_markup( $html ) {
 
-		$html = str_replace( "<a class='page-numbers'", "<a class='page-numbers hidden-phone'", $html );
-		$html = str_replace( '<span class="page-numbers dots"', '<span class="page-numbers dots hidden-phone"', $html );
+		$html = str_replace( "<ul class='page-numbers'", "<ul class='page-numbers pagination pagination-lg'", $html );
+		$html = str_replace( "<a class='page-numbers'", "<a class='page-numbers hidden-sm'", $html );
+		$html = str_replace( '<span class="page-numbers dots"', '<span class="page-numbers dots hidden-sm"', $html );
 		$html = str_replace( "<li><span class='page-numbers current'>", "<li class='active'><span class='page-numbers current'>", $html );
 
 		return $html;

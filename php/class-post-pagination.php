@@ -36,7 +36,7 @@ class Post_Pagination {
 
 		if ( 'number' == $args['next_or_number'] ) {
 			$this->is_pager = false;
-			$args['before'] = '<div class="pagination pagination-centered"><ul>';
+			$args['before'] = '<div class="text-center"><ul class="pagination">';
 			$args['after']  = '</ul></div>';
 		}
 		else {
