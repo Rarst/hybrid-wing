@@ -56,10 +56,15 @@ class Loop_Pagination {
 	 */
 	function loop_pagination_markup( $html ) {
 
-		$html = str_replace( "<ul class='page-numbers'", "<ul class='page-numbers pagination pagination-lg'", $html );
-		$html = str_replace( "<a class='page-numbers'", "<a class='page-numbers hidden-sm'", $html );
-		$html = str_replace( '<span class="page-numbers dots"', '<span class="page-numbers dots hidden-sm"', $html );
-		$html = str_replace( "<li><span class='page-numbers current'>", "<li class='active'><span class='page-numbers current'>", $html );
+		$html = strtr(
+			$html,
+			array(
+				"<ul class='page-numbers'"                => "<ul class='page-numbers pagination pagination-lg'",
+				"<a class='page-numbers'"                 => "<a class='page-numbers hidden-sm'",
+				'<span class="page-numbers dots"'         => '<span class="page-numbers dots hidden-sm"',
+				"<li><span class='page-numbers current'>" => "<li class='active'><span class='page-numbers current'>",
+			)
+		);
 
 		return $html;
 	}
