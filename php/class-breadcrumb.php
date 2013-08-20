@@ -38,7 +38,7 @@ class Breadcrumb {
 		$last = array_pop( $items );
 
 		foreach ( $items as $key => $item ) {
-			$items[$key] = '<li>' . $item . ' <span class="divider">/</span></li>'; // TODO remove divider for BS3 markup
+			$items[$key] = '<li>' . $item . '</li>';
 		}
 
 		$items[] = '<li class="active">' . $last . '</li>';
