@@ -237,7 +237,7 @@ class Core extends \Hybrid {
 		$scripts           = glob( BOOTSTRAP_DIR . '/js/*.js' );
 
 		foreach ( $scripts as $script ) {
-			wp_register_script( basename( $script, '.js' ), BOOTSTRAP_URI . '/js/' . basename( $script ), array( 'jquery' ), $bootstrap_version, true );
+			wp_register_script( 'bootstrap-' . basename( $script, '.js' ), BOOTSTRAP_URI . '/js/' . basename( $script ), array( 'jquery' ), $bootstrap_version, true );
 		}
 
 		wp_register_script( 'prettify', BOOTSTRAP_URI . '/docs/assets/js/google-code-prettify/prettify.js', array(), null, true );
