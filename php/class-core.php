@@ -146,9 +146,9 @@ class Core extends \Hybrid {
 		$default_grid = array(
 			$prefix . 'body_container_class' => 'container',
 			$prefix . 'container_class'      => 'row',
-			$prefix . 'content_class'        => 'span9',
+			$prefix . 'content_class'        => 'col-md-9',
 //			$prefix . 'entry_class' => 'span10',
-			$prefix . 'sidebar_class'        => 'span3',
+			$prefix . 'sidebar_class'        => 'col-md-3',
 		);
 
 		$this->grid = apply_atomic( 'grid', $default_grid );
