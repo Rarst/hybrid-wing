@@ -92,26 +92,16 @@ class Gallery {
 		if ( empty( $attachments ) )
 			return '<!-- empty gallery -->';
 
-		$captiontag      = tag_escape( $r['captiontag'] );
-		$columns         = intval( $r['columns'] );
-		$content_columns = intval( $r['content_columns'] );
-		$columns_wide    = floor( intval( $content_columns ) / $columns );
-		$selector        = "gallery-{$instance}";
-		$link_to_file    = 'file' !== $r['link'];
-		$i               = 0;
+		$captiontag   = tag_escape( $r['captiontag'] );
+		$columns      = intval( $r['columns'] );
+		$columns_wide = floor( 12 / $columns );
+		$selector     = "gallery-{$instance}";
+		$link_to_file = 'file' !== $r['link'];
 
 		if ( 2 > $columns_wide ) {
 			$columns_wide = 1;
 			$captiontag   = false;
 		}
-
-		if ( $columns_wide > $content_columns )
-			$columns_wide = $content_columns;
-
-		if ( $columns > $content_columns )
-			$clear_every = $content_columns;
-		else
-			$clear_every = $columns;
 
 		if ( ! empty( $r['size'] ) ) {
 			$size       = $r['size'];
@@ -122,27 +112,30 @@ class Gallery {
 			$size_class = '';
 		}
 
-		$output = "<ul id='{$selector}' class='thumbnails gallery galleryid-{$id} gallery-columns-{$columns} {$size_class}'>\n";
+		$images = array();
 
 		foreach ( $attachments as $id => $attachment ) {
 			$link       = wp_get_attachment_link( $id, $size, $link_to_file );
-			$item_class = 'span' . $columns_wide;
-
-			if ( ( ++$i - 1 ) % $clear_every == 0 )
-				$item_class .= ' thumbnail-clear';
-
-			$output .= "<li class='{$item_class}'><div class='thumbnail'>\n\t{$link}\n";
+			$item_class = 'col-md-' . $columns_wide;
+			$image      = "<div class='{$item_class}'><div class='thumbnail'>\n\t{$link}\n";
 
 			if ( $captiontag && trim( $attachment->post_excerpt ) ) {
-				$output .= "\t<{$captiontag} class='caption gallery-caption'>"
+				$image .= "\t<{$captiontag} class='caption gallery-caption'>"
 						. wptexturize( $attachment->post_excerpt )
 						. "</{$captiontag}>\n";
 			}
 
-			$output .= "</div></li>\n";
+			$image   .= "</div></div>\n";
+			$images[] = $image;
 		}
 
-		$output .= "</ul><!-- thumbnails -->\n";
+		$output = "<div id='{$selector}' class='thumbnails gallery galleryid-{$id} gallery-columns-{$columns} {$size_class}'>\n";
+
+		foreach ( array_chunk( $images, $columns ) as $set ) {
+			$output .= '<div class="row">' . implode( '', $set )  .'</div>';
+		}
+
+		$output .= "</div><!-- thumbnails -->\n";
 
 		return $output;
 	}
