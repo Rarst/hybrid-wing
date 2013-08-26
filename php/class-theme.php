@@ -47,6 +47,12 @@ class Theme extends \Pimple {
 			}
 		);
 
+		$this['gallery'] = $this->share(
+			function () {
+				return new Gallery();
+			}
+		);
+
 		foreach ( $options as $key => $value ) {
 			$this[$key] = $value;
 		}
@@ -85,5 +91,8 @@ class Theme extends \Pimple {
 
 		if ( isset( $this['comments'] ) )
 			$this['comments']->enable();
+
+		if ( isset( $this['gallery'] ) )
+			$this['gallery']->enable();
 	}
 }
