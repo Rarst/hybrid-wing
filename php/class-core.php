@@ -35,7 +35,7 @@ class Core extends \Hybrid {
 			parent::constants();
 		}
 		else {
-			define( 'HYBRID_VERSION', '1.6.0' );
+			define( 'HYBRID_VERSION', '1.6.2' );
 			define( 'THEME_DIR', get_template_directory() );
 			define( 'THEME_URI', get_template_directory_uri() );
 			define( 'CHILD_THEME_DIR', get_stylesheet_directory() );
