@@ -106,7 +106,7 @@ class Navbar {
 
 		$name = esc_html( get_bloginfo( 'name' ) );
 
-		if ( is_home() )
+		if ( is_home() && ! is_paged() )
 			$brand = '<span class="navbar-brand">' . $name . '</span>';
 		else
 			$brand = '<a href="' . get_home_url() . '" class="navbar-brand">' . $name . '</a>';
