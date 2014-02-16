@@ -29,7 +29,7 @@
 		"rarst/lessjs"       : "1.5.1",
 		"rarst/locate-vendor": "~1.0",
 		"twbs/bootstrap"     : "~3.0",
-		"pimple/pimple"      : "~1.0"
+		"pimple/pimple"      : "~2.0"
 	},
 	"autoload"   : {
 		"classmap": ["php/"],

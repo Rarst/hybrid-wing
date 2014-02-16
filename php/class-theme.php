@@ -11,51 +11,35 @@ class Theme extends \Pimple {
 	 */
 	public function __construct( $options = array() ) {
 
-		$this['core'] = $this->share(
-			function() {
-				return new Core();
-			}
-		);
+		$this['core'] = function () {
+			return new Core();
+		};
 
-		$this['navbar'] = $this->share(
-			function () {
-				return new Navbar();
-			}
-		);
+		$this['navbar'] = function () {
+			return new Navbar();
+		};
 
-		$this['post-pagination'] = $this->share(
-			function () {
-				return new Post_Pagination();
-			}
-		);
+		$this['post-pagination'] = function () {
+			return new Post_Pagination();
+		};
 
-		$this['loop-pagination'] = $this->share(
-			function () {
-				return new Loop_Pagination();
-			}
-		);
+		$this['loop-pagination'] = function () {
+			return new Loop_Pagination();
+		};
 
-		$this['breadcrumb'] = $this->share(
-			function () {
-				return new Breadcrumb();
-			}
-		);
+		$this['breadcrumb'] = function () {
+			return new Breadcrumb();
+		};
 
-		$this['comments'] = $this->share(
-			function () {
-				return new Comments();
-			}
-		);
+		$this['comments'] = function () {
+			return new Comments();
+		};
 
-		$this['gallery'] = $this->share(
-			function () {
-				return new Gallery();
-			}
-		);
+		$this['gallery'] = function () {
+			return new Gallery();
+		};
 
-		foreach ( $options as $key => $value ) {
-			$this[$key] = $value;
-		}
+		parent::__construct( $options );
 	}
 
 	public function load() {
