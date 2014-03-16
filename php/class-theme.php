@@ -7,39 +7,30 @@ namespace Rarst\Hybrid_Wing;
 class Theme extends \Pimple {
 
 	/**
-	 * @param array $options
+	 * @param array $values
 	 */
-	public function __construct( $options = array() ) {
+	public function __construct( $values = array() ) {
 
-		$this['core'] = function () {
-			return new Core();
-		};
+		$defaults  = array();
+		$class_map = array(
+			'core'            => 'Core',
+			'navbar'          => 'Navbar',
+			'post-pagination' => 'Post_Pagination',
+			'loop-pagination' => 'Loop_Pagination',
+			'breadcrumb'      => 'Breadcrumb',
+			'comments'        => 'Comments',
+			'gallery'         => 'Gallery',
+		);
 
-		$this['navbar'] = function () {
-			return new Navbar();
-		};
+		foreach ( $class_map as $key => $name ) {
+			$defaults[$key] = function () use ( $name ) {
+				$class_name = __NAMESPACE__ . '\\' . $name;
 
-		$this['post-pagination'] = function () {
-			return new Post_Pagination();
-		};
+				return new $class_name();
+			};
+		}
 
-		$this['loop-pagination'] = function () {
-			return new Loop_Pagination();
-		};
-
-		$this['breadcrumb'] = function () {
-			return new Breadcrumb();
-		};
-
-		$this['comments'] = function () {
-			return new Comments();
-		};
-
-		$this['gallery'] = function () {
-			return new Gallery();
-		};
-
-		parent::__construct( $options );
+		parent::__construct( array_merge( $defaults, $values ) );
 	}
 
 	public function load() {
