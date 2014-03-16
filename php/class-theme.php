@@ -44,6 +44,8 @@ class Theme extends \Pimple {
 
 	public function load() {
 
+		$this['core']; // instance Core early or bad things happen, see https://core.trac.wordpress.org/ticket/27428
+
 		add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ), 0 );
 	}
 
@@ -53,8 +55,6 @@ class Theme extends \Pimple {
 	}
 
 	public function after_setup_theme(  ) {
-
-		$this['core']; // instance Core
 
 		add_action( 'after_setup_theme', array( $this, 'extensions' ), 14 );
 	}
