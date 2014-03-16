@@ -53,8 +53,6 @@ class Core extends \Hybrid {
 			define( 'HYBRID_JS', trailingslashit( HYBRID_URI ) . 'js' );
 		}
 
-		define( 'LESSJS_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'rarst/lessjs' ) ) );
-		define( 'LESSJS_URI', $this->content_url_from_path( LESSJS_DIR ) );
 		define( 'BOOTSTRAP_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'twbs/bootstrap' ) ) );
 		define( 'BOOTSTRAP_URI', $this->content_url_from_path( BOOTSTRAP_DIR ) );
 
