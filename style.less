@@ -10,11 +10,8 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 */
 
-@import "vendor/twitter/bootstrap/less/bootstrap.less";
+//@import "vendor/twbs/bootstrap/less/bootstrap.less";
 //@import "vendor/twitter/bootstrap/less/responsive.less";
-
-@iconSpritePath: "vendor/twitter/bootstrap/img/glyphicons-halflings.png";
-@iconWhiteSpritePath: "vendor/twitter/bootstrap/img/glyphicons-halflings-white.png";
 
 .navbar {
 
@@ -35,8 +32,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 }
 
 .widget .dropdown-menu {
-
-	padding: @gridGutterWidth;
+//	padding: @gridGutterWidth;
 	min-width: inherit;
 }
 
@@ -59,20 +55,20 @@ License URI: http://www.gnu.org/licenses/gpl.html
 
 .img-margins {
 
-	margin: @gridGutterWidth auto;
+//	margin: @gridGutterWidth auto;
 
 	&.alignleft {
-		margin-right: @gridGutterWidth;
+//		margin-right: @gridGutterWidth;
 	}
 
 	&.alignright {
-		margin-left: @gridGutterWidth;
+//		margin-left: @gridGutterWidth;
 	}
 }
 
 .breadcrumb {
-	.well;
-	.well-small;
+//	.well;
+//	.well-small;
 }
 
 .more-link {
@@ -82,10 +78,10 @@ License URI: http://www.gnu.org/licenses/gpl.html
 
 .singular .entry-title {
 
-	margin-top: @baseLineHeight * 2;
+//	margin-top: @baseLineHeight * 2;
 
 	a {
-		color: @headingsColor;
+//		color: @headingsColor;
 	}
 }
 
@@ -95,27 +91,31 @@ License URI: http://www.gnu.org/licenses/gpl.html
 		clear: both;
 	}
 
-	.wp-caption {
-		.img-margins;
+//	.wp-caption {
+//		.img-margins;
+//
+//		p.wp-caption-text {
+//			margin: 0;
+//		}
+//	}
 
-		p.wp-caption-text {
-			margin: 0;
-		}
-	}
+//	& > img, p img {
+//		.thumbnail;
+//		.img-margins;
+//		max-width: 95%;
+//	}
 
-	& > img, p img {
-		.thumbnail;
-		.img-margins;
-		max-width: 95%;
+	.gallery img {
+//		.img-responsive();
 	}
 
 	table {
-		.table;
+//		.table;
 	}
 }
 
 .pagination {
-	.clearfix;
+//	.clearfix;
 	clear: both;
 }
 
@@ -123,35 +123,35 @@ License URI: http://www.gnu.org/licenses/gpl.html
   padding: 8px 0;
 }
 
-.thumbnail-clear {
-  clear: both;
-}
+//.thumbnail-clear {
+//  clear: both;
+//}
+//
+//.thumbnail img {
+//  .aligncenter;
+//}
 
-.thumbnail img {
-  .aligncenter;
-}
-
-.thumbnail .caption {
-  text-align: center;
-}
+//.thumbnail .caption {
+//  text-align: center;
+//}
 
 .textwidget {
   overflow: hidden;
 }
 
 .comments-header, #reply-title {
-	.page-header;
+//	.page-header;
 }
 
 .comment {
 
 	.avatar {
-		.img-rounded;
+//		.img-rounded;
 	}
 
 	#reply-title {
-		font-size: @baseFontSize;
-		line-height: @baseLineHeight;
+//		font-size: @baseFontSize;
+//		line-height: @baseLineHeight;
 		margin-bottom: 10px;
 	}
 
@@ -190,13 +190,13 @@ License URI: http://www.gnu.org/licenses/gpl.html
 }
 
 .form-submit {
-	padding-left: @horizontalComponentOffset;
+//	padding-left: @horizontalComponentOffset;
 
 	input {
-		.btn;
+//		.btn;
 	}
 }
 
 .required {
-	color: @errorText;
+//	color: @errorText;
 }
