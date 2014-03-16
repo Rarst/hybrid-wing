@@ -26,7 +26,6 @@
 		"php"                : ">=5.3",
 		"composer/installers": "~1.0",
 		"rarst/hybrid-core"  : "~1.6",
-		"rarst/lessjs"       : "1.5.1",
 		"rarst/locate-vendor": "~1.0",
 		"twbs/bootstrap"     : "~3.0",
 		"pimple/pimple"      : "~2.0"

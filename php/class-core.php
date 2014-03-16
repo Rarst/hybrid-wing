@@ -98,7 +98,6 @@ class Core extends \Hybrid {
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 		add_action( 'template_include', array( $this, 'template_include' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
-		add_action( 'style_loader_tag', array( $this, 'style_loader_tag' ), 10, 2 );
 		add_action( 'hw_before_content', 'breadcrumb_trail' );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
 		add_action( 'hw_singular_entry_title', array( $this, 'singular_entry_title' ) );
@@ -197,50 +196,21 @@ class Core extends \Hybrid {
 	}
 
 	/**
-	 * Adjust HTML output for queued LESS stylesheets.
-	 *
-	 * @param string $html
-	 * @param string $handle
-	 *
-	 * @return string
-	 */
-	function style_loader_tag( $html, $handle ) {
-
-		global $wp_styles;
-
-		if ( '.less' == substr( $wp_styles->registered[$handle]->src, - 5 ) )
-			$html = str_replace( "'stylesheet'", "'stylesheet/less'", $html );
-
-		return $html;
-	}
-
-	/**
 	 * Register and enqueue scripts and styles.
 	 */
 	function wp_enqueue_scripts() {
 
-		wp_register_style( 'style-less', trailingslashit( CHILD_THEME_URI ) . 'style.less' );
-		wp_register_style( 'style', trailingslashit( CHILD_THEME_URI ) . 'style.css' );
-
-		if ( SCRIPT_DEBUG )
-			wp_enqueue_style( 'style-less' );
-		else
-			wp_enqueue_style( 'style' );
-
-		wp_register_script( 'less', LESSJS_URI . '/less-1.5.1.min.js', array(), null, true );
-
-		if ( SCRIPT_DEBUG )
-			wp_localize_script( 'less', 'less', array( 'env' => 'development', 'dumpLineNumbers' => 'all' ) );
-
 		$bootstrap_version = $this->get_package_info( BOOTSTRAP_DIR, 'version' );
-		$scripts           = glob( BOOTSTRAP_DIR . '/js/*.js' );
+
+		wp_register_style( 'bootstrap', BOOTSTRAP_URI . '/dist/css/bootstrap.min.css', array(), $bootstrap_version );
+		wp_register_style( 'hybrid-wing', CHILD_THEME_URI . '/style.css', array( 'bootstrap' ) );
+		wp_enqueue_style( 'hybrid-wing' );
+
+		$scripts = glob( BOOTSTRAP_DIR . '/js/*.js' );
 
 		foreach ( $scripts as $script ) {
 			wp_register_script( 'bootstrap-' . basename( $script, '.js' ), BOOTSTRAP_URI . '/js/' . basename( $script ), array( 'jquery' ), $bootstrap_version, true );
 		}
-
-		if ( wp_style_is( 'style-less', 'queue' ) )
-			wp_enqueue_script( 'less' );
 	}
 
 	/**
