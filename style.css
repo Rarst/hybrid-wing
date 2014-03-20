@@ -135,7 +135,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   margin: 30px auto;
-  max-width: 95%;
+  max-width: 100%;
   height: auto;
 }
 .entry-content > img > img,
