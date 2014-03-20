@@ -84,7 +84,6 @@ class Core extends \Hybrid {
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
-		add_action( 'hw_body_container_class', array( $this, 'hw_body_container_class' ) );
 		add_action( 'hw_before_content', 'breadcrumb_trail' );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
 		add_action( 'hw_singular_entry_title', array( $this, 'singular_entry_title' ) );
@@ -143,16 +142,6 @@ class Core extends \Hybrid {
 		foreach ( $scripts as $script ) {
 			wp_register_script( 'bootstrap-' . basename( $script, '.js' ), BOOTSTRAP_URI . '/js/' . basename( $script ), array( 'jquery' ), $bootstrap_version, true );
 		}
-	}
-
-	/**
-	 * @param string $class
-	 *
-	 * @return string
-	 */
-	public function hw_body_container_class( $class ) {
-
-		return $class . ' container';
 	}
 
 	/**
