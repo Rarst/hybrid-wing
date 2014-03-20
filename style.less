@@ -10,8 +10,20 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 */
 
-//@import "vendor/twbs/bootstrap/less/bootstrap.less";
-//@import "vendor/twitter/bootstrap/less/responsive.less";
+@import "vendor/twbs/bootstrap/less/variables.less";
+@import "vendor/twbs/bootstrap/less/mixins.less";
+
+#container {
+	.make-row();
+}
+
+#content {
+	.make-md-column(9);
+}
+
+#primary {
+	.make-md-column(3);
+}
 
 .navbar {
 
