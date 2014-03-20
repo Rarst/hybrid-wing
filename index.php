@@ -1,26 +1,47 @@
-		<?php while ( have_posts() ) : the_post(); ?>
+<?php get_header(); ?>
 
-			<div id="post-<?php the_ID(); ?>" class="<?php hybrid_post_class(); ?>">
+	<div id="content" class="<?php echo apply_atomic( 'content_class', 'hfeed content' ); ?>">
 
-				<?php do_atomic( 'before_entry' ); ?>
+		<?php do_atomic( 'before_content' ); ?>
 
-				<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
+		<?php if ( have_posts() ) : ?>
 
-				<div class="entry-content">
-					<?php the_content( sprintf( __( 'Continue reading %1$s', 'hybrid-wing' ), the_title( ' "', '"', false ) ) ); ?>
-					<?php wp_link_pages(); ?>
-				</div><!-- .entry-content -->
+			<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php do_atomic( 'after_entry' ); ?>
+				<div id="post-<?php the_ID(); ?>" class="<?php hybrid_post_class(); ?>">
 
-			</div><!-- .hentry -->
+					<?php do_atomic( 'before_entry' ); ?>
 
-			<?php if ( is_singular() ) { ?>
+					<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
 
-				<?php do_atomic( 'after_singular' ); ?>
+					<div class="entry-content">
+						<?php the_content( sprintf( __( 'Continue reading %1$s', 'hybrid-wing' ), the_title( ' "', '"', false ) ) ); ?>
+						<?php wp_link_pages(); ?>
+					</div>
+					<!-- .entry-content -->
 
-				<?php comments_template( '/comments.php', true ); ?>
+					<?php do_atomic( 'after_entry' ); ?>
 
-			<?php } ?>
+				</div><!-- .hentry -->
+
+				<?php if ( is_singular() ) { ?>
+
+					<?php do_atomic( 'after_singular' ); ?>
+
+					<?php comments_template( '/comments.php', true ); ?>
+
+				<?php } ?>
 
 			<?php endwhile; ?>
+
+		<?php else : ?>
+
+			<?php get_template_part( 'loop-error' ); // Loads the loop-error.php template. ?>
+
+		<?php endif; ?>
+
+		<?php do_atomic( 'after_content' ); ?>
+
+	</div><!-- #content -->
+
+<?php get_footer(); ?>

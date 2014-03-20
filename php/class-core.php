@@ -9,8 +9,6 @@ use Rarst\Composer\Locate_Vendor;
  */
 class Core extends \Hybrid {
 
-	public $main_template;
-	public $base;
 	public $grid;
 
 	/**
@@ -94,7 +92,6 @@ class Core extends \Hybrid {
 		parent::default_filters();
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
-		add_action( 'template_include', array( $this, 'template_include' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 		add_action( 'hw_before_content', 'breadcrumb_trail' );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
@@ -167,30 +164,6 @@ class Core extends \Hybrid {
 			$classes .= ' ' . $this->grid[$current_filter];
 
 		return $classes;
-	}
-
-	/**
-	 * Handle wrapper.
-	 * @link http://scribu.net/wordpress/theme-wrappers.html
-	 *
-	 * @param string $template
-	 *
-	 * @return string
-	 */
-	function template_include( $template ) {
-
-		$this->main_template = $template;
-		$this->base          = substr( basename( $this->main_template ), 0, - 4 );
-
-		if ( 'index' == $this->base )
-			$this->base = false;
-
-		$templates = array( 'wrapper.php' );
-
-		if ( $this->base )
-			array_unshift( $templates, sprintf( 'wrapper-%s.php', $this->base ) );
-
-		return locate_template( $templates );
 	}
 
 	/**
