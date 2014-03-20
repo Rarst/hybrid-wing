@@ -56,13 +56,6 @@ class Core extends \Hybrid {
 
 		if ( ! defined( 'SCRIPT_DEBUG' ) )
 			define( 'SCRIPT_DEBUG', false );
-
-		// TODO refactor into theme supports feature
-//		foreach ( array( 9, 4, 3, 2 ) as $columns ) {
-//
-//			list( $width, $height ) = $this->get_bootstrap_image_size( $columns, 'golden' );
-//			add_image_size( "bootstrap-{$columns}-columns", $width, $height, true );
-//		}
 	}
 
 	/**
