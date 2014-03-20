@@ -9,8 +9,6 @@ use Rarst\Composer\Locate_Vendor;
  */
 class Core extends \Hybrid {
 
-	public $grid;
-
 	/**
 	 * Initial hooks on creation.
 	 */
@@ -86,6 +84,7 @@ class Core extends \Hybrid {
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+		add_action( 'hw_body_container_class', array( $this, 'hw_body_container_class' ) );
 		add_action( 'hw_before_content', 'breadcrumb_trail' );
 		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
 		add_action( 'hw_singular_entry_title', array( $this, 'singular_entry_title' ) );
@@ -126,37 +125,6 @@ class Core extends \Hybrid {
 			hybrid_get_context();
 			$hybrid->context[] = 'singular-page-' . get_query_var( 'pagename' );
 		}
-
-		$prefix = hybrid_get_prefix() . '_';
-
-		$default_grid = array(
-			$prefix . 'body_container_class' => 'container',
-			$prefix . 'container_class'      => 'row',
-			$prefix . 'content_class'        => 'col-md-9',
-//			$prefix . 'entry_class' => 'span10',
-			$prefix . 'sidebar_class'        => 'col-md-3',
-		);
-
-		$this->grid = apply_atomic( 'grid', $default_grid );
-
-		foreach ( $this->grid as $hook => $classes ) {
-			add_filter( $hook, array( $this, 'append_grid_class' ) );
-		}
-	}
-
-	/**
-	 * @param string $classes
-	 *
-	 * @return string
-	 */
-	function append_grid_class( $classes ) {
-
-		$current_filter = current_filter();
-
-		if ( ! empty( $this->grid[$current_filter] ) )
-			$classes .= ' ' . $this->grid[$current_filter];
-
-		return $classes;
 	}
 
 	/**
@@ -175,6 +143,16 @@ class Core extends \Hybrid {
 		foreach ( $scripts as $script ) {
 			wp_register_script( 'bootstrap-' . basename( $script, '.js' ), BOOTSTRAP_URI . '/js/' . basename( $script ), array( 'jquery' ), $bootstrap_version, true );
 		}
+	}
+
+	/**
+	 * @param string $class
+	 *
+	 * @return string
+	 */
+	public function hw_body_container_class( $class ) {
+
+		return $class . ' container';
 	}
 
 	/**
