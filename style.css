@@ -84,6 +84,9 @@ License URI: http://www.gnu.org/licenses/gpl.html
   margin-left: auto;
   margin-right: auto;
 }
+.alignnone {
+  clear: both;
+}
 .img-margins {
   margin: 30px auto;
 }
