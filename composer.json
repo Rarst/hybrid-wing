@@ -3,7 +3,7 @@
 	"description": "Toolkit theme for WordPress, based on Hybrid Core and Twitter Bootstrap.",
 	"keywords"   : ["wordpress", "bootstrap", "hybrid"],
 	"type"       : "wordpress-theme",
-	"homepage"   : "https://bitbucket.org/Rarst/hybrid-wing/",
+	"homepage"   : "https://github.com/Rarst/hybrid-wing",
 	"license"    : "GPL-3.0",
 	"authors"    : [
 		{
@@ -13,8 +13,7 @@
 		}
 	],
 	"support"    : {
-		"issues": "https://bitbucket.org/Rarst/hybrid-wing/issues",
-		"source": "https://bitbucket.org/Rarst/hybrid-wing/src"
+		"issues": "https://github.com/Rarst/hybrid-wing/issues"
 	},
 	"repositories": [
 		{
