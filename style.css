@@ -84,6 +84,15 @@ License URI: http://www.gnu.org/licenses/gpl.html
   margin-left: auto;
   margin-right: auto;
 }
+.img-margins {
+  margin: 30px auto;
+}
+.img-margins.alignleft {
+  margin-right: 30px;
+}
+.img-margins.alignright {
+  margin-left: 30px;
+}
 .more-link {
   text-align: center;
   clear: both;
@@ -99,11 +108,83 @@ License URI: http://www.gnu.org/licenses/gpl.html
 .entry-content h6 {
   clear: both;
 }
+.entry-content .wp-caption {
+  margin: 30px auto;
+}
+.entry-content .wp-caption.alignleft {
+  margin-right: 30px;
+}
+.entry-content .wp-caption.alignright {
+  margin-left: 30px;
+}
+.entry-content .wp-caption p.wp-caption-text {
+  margin: 0;
+}
+.entry-content > img,
+.entry-content p img {
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin: 30px auto;
+  max-width: 95%;
+  height: auto;
+}
+.entry-content > img > img,
+.entry-content p img > img,
+.entry-content > img a > img,
+.entry-content p img a > img {
+  margin-left: auto;
+  margin-right: auto;
+}
+a.entry-content > img:hover,
+a.entry-content p img:hover,
+a.entry-content > img:focus,
+a.entry-content p img:focus,
+a.entry-content > img.active,
+a.entry-content p img.active {
+  border-color: #428bca;
+}
+.entry-content > img .caption,
+.entry-content p img .caption {
+  padding: 9px;
+  color: #333333;
+}
+.entry-content > img.alignleft,
+.entry-content p img.alignleft {
+  margin-right: 30px;
+}
+.entry-content > img.alignright,
+.entry-content p img.alignright {
+  margin-left: 30px;
+}
+.entry-content .gallery img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 .pagination {
   clear: both;
 }
 .widget_nav_list_menu .well {
   padding: 8px 0;
+}
+.thumbnail-clear {
+  clear: both;
+}
+.thumbnail img {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.thumbnail .caption {
+  text-align: center;
 }
 .textwidget {
   overflow: hidden;

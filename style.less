@@ -13,6 +13,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 @import (reference) "vendor/twbs/bootstrap/less/variables.less";
 @import (reference) "vendor/twbs/bootstrap/less/mixins.less";
 @import (reference) "vendor/twbs/bootstrap/less/grid.less";
+@import (reference) "vendor/twbs/bootstrap/less/thumbnails.less";
 
 #body-container {
 	.container;
@@ -72,14 +73,14 @@ License URI: http://www.gnu.org/licenses/gpl.html
 
 .img-margins {
 
-//	margin: @gridGutterWidth auto;
+	margin: @grid-gutter-width auto;
 
 	&.alignleft {
-//		margin-right: @gridGutterWidth;
+		margin-right: @grid-gutter-width;
 	}
 
 	&.alignright {
-//		margin-left: @gridGutterWidth;
+		margin-left: @grid-gutter-width;
 	}
 }
 
@@ -108,22 +109,23 @@ License URI: http://www.gnu.org/licenses/gpl.html
 		clear: both;
 	}
 
-//	.wp-caption {
-//		.img-margins;
-//
-//		p.wp-caption-text {
-//			margin: 0;
-//		}
-//	}
+	.wp-caption {
+		.img-margins;
 
-//	& > img, p img {
-//		.thumbnail;
-//		.img-margins;
-//		max-width: 95%;
-//	}
+		p.wp-caption-text {
+			margin: 0;
+		}
+	}
+
+	& > img, p img {
+		.thumbnail;
+		.img-margins;
+		max-width: 95%;
+		height: auto;
+	}
 
 	.gallery img {
-//		.img-responsive();
+		.img-responsive();
 	}
 
 	table {
@@ -140,17 +142,17 @@ License URI: http://www.gnu.org/licenses/gpl.html
   padding: 8px 0;
 }
 
-//.thumbnail-clear {
-//  clear: both;
-//}
-//
-//.thumbnail img {
-//  .aligncenter;
-//}
+.thumbnail-clear {
+  clear: both;
+}
 
-//.thumbnail .caption {
-//  text-align: center;
-//}
+.thumbnail img {
+  .aligncenter;
+}
+
+.thumbnail .caption {
+  text-align: center;
+}
 
 .textwidget {
   overflow: hidden;
