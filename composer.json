@@ -27,7 +27,8 @@
 		"rarst/hybrid-core"  : "~1.6",
 		"rarst/locate-vendor": "~1.0",
 		"twbs/bootstrap"     : "~3.0",
-		"pimple/pimple"      : "~2.0"
+		"pimple/pimple"      : "~2.0",
+		"rarst/meadow"       : "dev-master"
 	},
 	"autoload"   : {
 		"classmap": ["php/"],
