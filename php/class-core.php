@@ -84,13 +84,7 @@ class Core extends \Hybrid {
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
-		add_action( 'hw_before_content', 'breadcrumb_trail' );
-		add_action( 'hw_after_container', array( $this, 'sidebar_primary' ) );
-		add_action( 'hw_singular_entry_title', array( $this, 'singular_entry_title' ) );
 		add_filter( 'img_caption_shortcode', array( $this, 'img_caption_shortcode' ), 10, 3 );
-		add_action( 'hw_home_after_content', 'loop_pagination' );
-		add_action( 'hw_archive_after_content', 'loop_pagination' );
-		add_action( 'hw_search_after_content', 'loop_pagination' );
 	}
 
 	function theme_support() {
@@ -160,23 +154,6 @@ class Core extends \Hybrid {
 			return $data->$field;
 
 		return $data;
-	}
-
-	function sidebar_primary() {
-
-		get_sidebar( 'primary' );
-	}
-
-	/**
-	 * Wrap singular titles in page header markup.
-	 *
-	 * @param string $title
-	 *
-	 * @return string
-	 */
-	function singular_entry_title( $title ) {
-
-		return '<div class="page-header">' . $title . '</div><!-- .page-header -->';
 	}
 
 	/**
