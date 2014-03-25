@@ -1,5 +1,6 @@
 <?php
 namespace Rarst\Hybrid_Wing;
+use Rarst\Meadow\Core;
 
 /**
  * Theme's loader and container class
@@ -30,6 +31,10 @@ class Theme extends \Pimple {
 			};
 		}
 
+		$defaults['meadow'] = function() {
+			return new Core;
+		};
+
 		parent::__construct( array_merge( $defaults, $values ) );
 	}
 
@@ -46,6 +51,10 @@ class Theme extends \Pimple {
 	}
 
 	public function after_setup_theme(  ) {
+
+		/** @var Core $meadow */
+		$meadow = $this['meadow'];
+		$meadow->enable();
 
 		add_action( 'after_setup_theme', array( $this, 'extensions' ), 14 );
 	}
