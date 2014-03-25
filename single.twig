@@ -1,0 +1,11 @@
+{% extends 'index.twig' %}
+
+{% block entry_title %}
+	<div class="page-header">{{ parent() }}</div>
+{% endblock %}
+
+{% block loop %}
+	{{ parent() }}
+
+	{{ comments_template() }}
+{% endblock %}
