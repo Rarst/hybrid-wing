@@ -1,0 +1,25 @@
+{% macro navbar( args ) %}
+	<nav class="navbar {{ args.classes|default('navbar-default')|e('html_attr') }}" role="navigation">
+		<div class="navbar-header">
+			{% if not args.skip.brand %}
+				{% if is_home() and not is_paged() %}
+					<span class="navbar-brand">{{ bloginfo('name')|e }}</span>
+				{% else %}
+					<a class="navbar-brand" href="{{ get_home_url()|e('html_attr') }}">{{ bloginfo('name')|e }}</a>
+				{% endif %}
+			{% endif %}
+		</div>
+
+		{% if args.menu and has_nav_menu( args.menu ) %}
+			{{ wp_nav_menu( { 'theme_location' : args.menu, 'navbar' : true } ) }}
+		{% endif %}
+
+		{% if not args.skip.search %}
+			<form role="search" method="get" id="searchform" action="{{ home_url( '/' )|e('html_attr') }}" class="navbar-form navbar-right">
+				<div class="form-group">
+					<input type="text" value="{{ get_search_query()|e('html_attr') }}" name="s" id="s" placeholder="{{ __( 'Search' )|e('html_attr') }}" class="form-control" />
+				</div>
+			</form>
+		{% endif %}
+	</nav>
+{% endmacro %}
