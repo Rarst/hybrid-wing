@@ -19,7 +19,8 @@
 
 	{% block header %}
 		<header id="header">
-			{{ do_atomic( 'header' ) }}
+			{% from 'twig/navbar.twig' import navbar %}
+			{{ navbar( {'menu' : 'navbar'} ) }}
 		</header>
 	{% endblock %}
 
