@@ -1,5 +1,5 @@
 {% macro navbar( args ) %}
-	<nav class="navbar {{ args.classes|default('navbar-default')|e('html_attr') }}" role="navigation">
+	<nav class="navbar {{ args.class|default('navbar-default')|e('html_attr') }}" role="navigation">
 		<div class="navbar-header">
 			{% if not args.skip.brand %}
 				{% if is_home() and not is_paged() %}
