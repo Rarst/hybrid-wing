@@ -21,8 +21,7 @@ class Navbar {
 
 	function init() {
 
-		if ( ! in_array( $this->args->name, get_registered_nav_menus() ) )
-			register_nav_menu( 'navbar', 'Navbar' );
+		register_nav_menu( 'navbar', 'Navbar' );
 
 		add_filter( 'wp_nav_menu_args', array( $this, 'wp_nav_menu_args' ), 9 );
 	}
