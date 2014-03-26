@@ -3,45 +3,28 @@
 namespace Rarst\Hybrid_Wing;
 
 /**
- * Reusable navbar component.
+ * Backend support for navbars in templates.
  */
 class Navbar {
 
 	/**
-	 * @param array $args
+	 * Sets up hooks for navbar-related functionality.
 	 */
-	function __construct( $args = array() ) {
+	function __construct() {
 
-		$prefix = hybrid_get_prefix();
-
-		$this->args = (object) wp_parse_args(
-			$args,
-			array(
-				'name'     => 'navbar',
-				'location' => $prefix . '_header',
-				'classes'  => array( 'navbar-default' ),
-				'brand'    => true,
-				'menu'     => true,
-				'sidebar'  => true,
-				'search'   => true,
-			)
-		);
-
-		if ( $this->args->menu )
 			add_action( 'init', array( $this, 'init' ) );
 
-		if ( $this->args->sidebar ) {
-			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
-			add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
-		}
-
-		add_action( $this->args->location, array( $this, 'output' ) );
+//		if ( $this->args->sidebar ) {
+//			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
+//		}
 	}
 
 	function init() {
 
 		if ( ! in_array( $this->args->name, get_registered_nav_menus() ) )
 			register_nav_menu( 'navbar', 'Navbar' );
+
+		add_filter( 'wp_nav_menu_args', array( $this, 'wp_nav_menu_args' ), 9 );
 	}
 
 	function widgets_init() {
@@ -60,91 +43,22 @@ class Navbar {
 				)
 			);
 	}
-	
-	function wp_enqueue_scripts() {
 
-		if ( is_active_sidebar( $this->args->name ) )
+	/**
+	 * @param array $args
+	 *
+	 * @return array
+	 */
+	public function wp_nav_menu_args( $args ) {
+
+		if ( ! empty( $args['navbar'] ) ) {
+			$args['container']  = false;
+			$args['menu_class'] = 'nav navbar-nav';
+			$args['walker']     = new Walker_Navbar_Menu();
+
 			wp_enqueue_script( 'bootstrap-dropdown' );
-	}
-
-	function output() {
-		?>
-	<nav class="navbar <?php $this->classes(); ?>" role="navigation">
-
-		<div class="navbar-header">
-			<?php	if ( $this->args->brand ) $this->brand(); ?>
-		</div>
-
-		<?php
-			if ( $this->args->menu ) $this->menu();
-
-			if ( $this->args->sidebar ) $this->sidebar();
-
-			if ( $this->args->search ) $this->search();
-			?>
-	</nav><!-- .navbar -->
-	<?php
-	}
-
-	function classes() {
-
-		if ( empty( $this->args->classes ) )
-			return;
-
-		$classes = $this->args->classes;
-
-		if ( ! is_array( $classes ) )
-			$classes = explode( ' ', $classes );
-
-		$classes = array_map( 'sanitize_html_class', $classes );
-		$classes = implode( ' ', $classes );
-
-		echo apply_atomic( 'navbar_classes', $classes, $this->args );
-	}
-
-	function brand() {
-
-		$name = esc_html( get_bloginfo( 'name' ) );
-
-		if ( is_home() && ! is_paged() )
-			$brand = '<span class="navbar-brand">' . $name . '</span>';
-		else
-			$brand = '<a href="' . get_home_url() . '" class="navbar-brand">' . $name . '</a>';
-
-		echo apply_atomic( 'navbar_brand', $brand, $this->args );
-	}
-
-	function menu() {
-
-		if ( has_nav_menu( $this->args->name ) )
-			wp_nav_menu(
-				array(
-					'theme_location' => $this->args->name,
-					'container'      => false,
-					'menu_class'     => 'nav navbar-nav',
-					'walker'         => new Walker_Navbar_Menu(),
-				)
-			);
-	}
-
-	function sidebar() {
-
-		if ( is_active_sidebar( 'navbar' ) ) {
-			echo '<ul class="nav navbar-nav">';
-
-			dynamic_sidebar( 'navbar' );
-
-			echo '</ul>';
 		}
-	}
 
-	function search() {
-		?>
-	<form role="search" method="get" id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="navbar-form navbar-right">
-		<div class="form-group">
-			<input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" placeholder="<?php esc_attr_e( 'Search' ); ?>" class="form-control" />
-		</div>
-	</form>
-	<?php
+		return $args;
 	}
 }
