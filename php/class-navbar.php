@@ -12,7 +12,7 @@ class Navbar {
 	 */
 	function __construct() {
 
-			add_action( 'init', array( $this, 'init' ) );
+		add_action( 'init', array( $this, 'init' ) );
 
 //		if ( $this->args->sidebar ) {
 //			add_action( 'widgets_init', array( $this, 'widgets_init' ) );
@@ -30,7 +30,7 @@ class Navbar {
 
 		global $wp_registered_sidebars;
 
-		if ( empty( $wp_registered_sidebars[$this->args->name] ) )
+		if ( empty( $wp_registered_sidebars[$this->args->name] ) ) {
 			register_sidebar(
 				array(
 					'name'          => 'Navbar',
@@ -41,6 +41,7 @@ class Navbar {
 					'after_widget'  => '</div></li>',
 				)
 			);
+		}
 	}
 
 	/**
