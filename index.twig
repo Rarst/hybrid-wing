@@ -59,7 +59,7 @@
 
 	{% block footer %}
 		<footer id="footer">
-			{{ do_atomic( 'footer' ) }}
+			<p class="credit">{{ apply_atomic_shortcode( 'footer-content', __( '&copy; [the-year] [site-link]. Powered by [theme-link].' ) ) }}</p>
 		</footer>
 	{% endblock %}
 </div>
