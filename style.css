@@ -58,6 +58,22 @@ License URI: http://www.gnu.org/licenses/gpl.html
     width: 25%;
   }
 }
+#footer {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+#footer .credit {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  #footer .credit {
+    float: left;
+    width: 100%;
+  }
+}
 .navbar {
   margin-top: 5px;
 }
