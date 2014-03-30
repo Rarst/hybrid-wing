@@ -187,6 +187,39 @@ a.entry-content p img.active {
   max-width: 100%;
   height: auto;
 }
+.entry-content table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.entry-content table > thead > tr > th,
+.entry-content table > tbody > tr > th,
+.entry-content table > tfoot > tr > th,
+.entry-content table > thead > tr > td,
+.entry-content table > tbody > tr > td,
+.entry-content table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+.entry-content table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dddddd;
+}
+.entry-content table > caption + thead > tr:first-child > th,
+.entry-content table > colgroup + thead > tr:first-child > th,
+.entry-content table > thead:first-child > tr:first-child > th,
+.entry-content table > caption + thead > tr:first-child > td,
+.entry-content table > colgroup + thead > tr:first-child > td,
+.entry-content table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+.entry-content table > tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+.entry-content table .table {
+  background-color: #ffffff;
+}
 .pagination {
   clear: both;
 }
