@@ -2,7 +2,9 @@
 
 {% block loop_nav %}
 	<div class="loop-nav">
-		{{ previous_post_link() }}
-		{{ next_post_link() }}
+		<ul class="pager">
+			<li class="previous">{{ previous_post_link( '%link', '&laquo; %title' ) }}</li>
+			<li class="next">{{ next_post_link( '%link', '%title &raquo;' ) }}</li>
+		</ul>
 	</div>
 {% endblock %}
