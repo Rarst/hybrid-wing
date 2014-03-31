@@ -1,7 +1,9 @@
 {% extends 'index.twig' %}
 
-{% block entry_title %}
-	<div class="page-header">{{ parent() }}</div>
+{% block entry_header %}
+	<header class="entry-header">
+		<div class="page-header">{{ do_shortcode( '[entry-title]' ) }}</div>
+	</header>
 {% endblock %}
 
 {% block loop %}

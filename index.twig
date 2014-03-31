@@ -36,12 +36,18 @@
 			{% loop %}
 			<article {{ hybrid_post_attributes() }}>
 
-				{% block entry_title do_shortcode( '[entry-title]' ) %}
+				{% block entry_header %}
+				<header class="entry-header">
+					{{ do_shortcode( '[entry-title]' ) }}
+				</header>
+				{% endblock %}
 
+				{% block entry_content %}
 				<div class="entry-content">
 					{{ the_content( sprintf( __( 'Continue reading %1$s', 'hybrid-wing' ), the_title( ' "', '"', false ) ) ) }}
 					{{ wp_link_pages() }}
 				</div>
+				{% endblock %}
 
 			</article>
 
