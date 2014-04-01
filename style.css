@@ -9,6 +9,29 @@ Tags: Hybrid Core, Twitter Bootstrap
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 */
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+.row:before,
+.row:after,
+#container:before,
+#container:after,
+#main:before,
+#main:after,
+#footer:before,
+#footer:after {
+  content: " ";
+  display: table;
+}
+.container:after,
+.container-fluid:after,
+.row:after,
+#container:after,
+#main:after,
+#footer:after {
+  clear: both;
+}
 #container {
   margin-right: auto;
   margin-left: auto;
