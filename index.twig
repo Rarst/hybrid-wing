@@ -59,7 +59,13 @@
 		</div>
 		{% endblock content %}
 
-		{{ get_sidebar( 'primary' ) }}
+		{% block sidebar %}
+			{% if ( is_active_sidebar( 'primary' ) ) %}
+				<div id="primary" class="sidebar aside">
+					{{ dynamic_sidebar( 'primary' ) }}
+				</div>
+			{% endif %}
+		{% endblock %}
 
 	</div>
 	{% endblock main %}
