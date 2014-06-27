@@ -18,8 +18,23 @@ License URI: http://www.gnu.org/licenses/gpl.html
 .entry-content > img a > img,
 .entry-content p img a > img {
   display: block;
+  width: 100% \9;
   max-width: 100%;
   height: auto;
+}
+.form-horizontal .form-group-sm .form-control {
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.form-horizontal .form-group-lg .form-control {
+  height: 46px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
 }
 .btn-group-lg > .btn {
   padding: 10px 16px;
@@ -39,6 +54,8 @@ License URI: http://www.gnu.org/licenses/gpl.html
   line-height: 1.5;
   border-radius: 3px;
 }
+.dl-horizontal dd:before,
+.dl-horizontal dd:after,
 .container:before,
 .container:after,
 .container-fluid:before,
@@ -74,6 +91,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
   content: " ";
   display: table;
 }
+.dl-horizontal dd:after,
 .container:after,
 .container-fluid:after,
 .row:after,
@@ -244,6 +262,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
   border: 1px solid #dddddd;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   margin: 0 auto 0.7em;
   max-width: 100%;
@@ -279,11 +298,13 @@ a.entry-content p img.active {
 }
 .entry-content .gallery img {
   display: block;
+  width: 100% \9;
   max-width: 100%;
   height: auto;
 }
 .entry-content table {
   width: 100%;
+  max-width: 100%;
   margin-bottom: 20px;
 }
 .entry-content table > thead > tr > th,
