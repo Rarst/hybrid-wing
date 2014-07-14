@@ -27,27 +27,9 @@ class Core extends \Hybrid {
 
 	function constants() {
 
-		if ( file_exists( dirname( __DIR__ ) . '/hybrid-core' ) ) {
-			parent::constants();
-		}
-		else {
-			define( 'HYBRID_VERSION', '1.6.2' );
-			define( 'THEME_DIR', get_template_directory() );
-			define( 'THEME_URI', get_template_directory_uri() );
-			define( 'CHILD_THEME_DIR', get_stylesheet_directory() );
-			define( 'CHILD_THEME_URI', get_stylesheet_directory_uri() );
-			$reflector = new \ReflectionClass( 'Hybrid' );
-			define( 'HYBRID_DIR', str_replace( '\\', '/', dirname( $reflector->getFileName() ) ) );
-			define( 'HYBRID_URI', $this->content_url_from_path( HYBRID_DIR ) );
-			define( 'HYBRID_ADMIN', trailingslashit( HYBRID_DIR ) . 'admin' );
-			define( 'HYBRID_CLASSES', trailingslashit( HYBRID_DIR ) . 'classes' );
-			define( 'HYBRID_EXTENSIONS', trailingslashit( HYBRID_DIR ) . 'extensions' );
-			define( 'HYBRID_FUNCTIONS', trailingslashit( HYBRID_DIR ) . 'functions' );
-			define( 'HYBRID_LANGUAGES', trailingslashit( HYBRID_DIR ) . 'languages' );
-			define( 'HYBRID_IMAGES', trailingslashit( HYBRID_URI ) . 'images' );
-			define( 'HYBRID_CSS', trailingslashit( HYBRID_URI ) . 'css' );
-			define( 'HYBRID_JS', trailingslashit( HYBRID_URI ) . 'js' );
-		}
+		define( 'HYBRID_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'justintadlock/hybrid-core' ) ) );
+		define( 'HYBRID_URI', $this->content_url_from_path( HYBRID_DIR ) );
+		parent::constants();
 
 		define( 'BOOTSTRAP_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'twbs/bootstrap' ) ) );
 		define( 'BOOTSTRAP_URI', $this->content_url_from_path( BOOTSTRAP_DIR ) );
