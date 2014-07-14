@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d8bd7c959269166ae52a46b32b87209d",
+    "hash": "062331a1b579407a6ad592f84a67a715",
     "packages": [
         {
             "name": "composer/installers",
@@ -96,6 +96,44 @@
             "time": "2014-06-23 16:25:28"
         },
         {
+            "name": "justintadlock/hybrid-core",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/justintadlock/hybrid-core.git",
+                "reference": "a6bdf3ad16fafd1d2c10a3dcea3917ecc627374f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/justintadlock/hybrid-core/zipball/a6bdf3ad16fafd1d2c10a3dcea3917ecc627374f",
+                "reference": "a6bdf3ad16fafd1d2c10a3dcea3917ecc627374f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "hybrid.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Tadlock",
+                    "email": "justin@justintadlock.com",
+                    "homepage": "http://justintadlock.com"
+                }
+            ],
+            "description": "Hybrid Core WordPress theme framework",
+            "homepage": "http://themehybrid.com/hybrid-core",
+            "keywords": [
+                "wordpress"
+            ],
+            "time": "2014-07-14 02:33:50"
+        },
+        {
             "name": "pimple/pimple",
             "version": "v2.1.0",
             "source": {
@@ -142,30 +180,6 @@
                 "dependency injection"
             ],
             "time": "2014-05-01 10:34:00"
-        },
-        {
-            "name": "rarst/hybrid-core",
-            "version": "1.6.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/justintadlock/hybrid-core",
-                "reference": "1.6.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/justintadlock/hybrid-core/archive/1.6.2.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "autoload": {
-                "classmap": [
-                    "hybrid.php"
-                ]
-            }
         },
         {
             "name": "rarst/locate-vendor",
@@ -307,16 +321,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.15.1",
+            "version": "v1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed"
+                "reference": "8ce37115802e257a984a82d38254884085060024"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/1fb5784662f438d7d96a541e305e28b812e2eeed",
-                "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8ce37115802e257a984a82d38254884085060024",
+                "reference": "8ce37115802e257a984a82d38254884085060024",
                 "shasum": ""
             },
             "require": {
@@ -325,7 +339,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.15-dev"
+                    "dev-master": "1.16-dev"
                 }
             },
             "autoload": {
@@ -345,7 +359,7 @@
                     "role": "Lead Developer"
                 },
                 {
-                    "name": "Armin Ronacher",
+                    "name": "Armin Ronacher2",
                     "email": "armin.ronacher@active-4.com",
                     "role": "Project Founder"
                 },
@@ -360,7 +374,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-02-13 10:19:29"
+            "time": "2014-07-05 12:19:05"
         }
     ],
     "packages-dev": [],

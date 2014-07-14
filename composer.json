@@ -15,28 +15,17 @@
 	"support"    : {
 		"issues": "https://github.com/Rarst/hybrid-wing/issues"
 	},
-	"repositories": [
-		{
-			"type": "composer",
-			"url" : "http://rarst.net"
-		}
-	],
 	"require"    : {
-		"php"                : ">=5.3",
-		"composer/installers": "~1.0",
-		"rarst/hybrid-core"  : "~1.6",
-		"rarst/locate-vendor": "~1.0",
-		"twbs/bootstrap"     : "~3.0",
-		"pimple/pimple"      : "~2.0",
-		"rarst/meadow"       : "dev-master"
+		"php"                      : ">=5.3",
+		"composer/installers"      : "~1.0",
+		"justintadlock/hybrid-core": "~2.0",
+		"rarst/locate-vendor"      : "~1.0",
+		"twbs/bootstrap"           : "~3.0",
+		"pimple/pimple"            : "~2.0",
+		"rarst/meadow"             : "dev-master"
 	},
 	"autoload"   : {
 		"classmap": ["php/"],
 		"files"   : ["php/template-tags.php"]
-	},
-	"extra": {
-		"installer-paths": {
-			"./hybrid-core/": ["rarst/hybrid-core"]
-		}
 	}
 }
