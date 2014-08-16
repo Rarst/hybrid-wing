@@ -19,13 +19,9 @@ if ( post_password_required() || ( ! have_comments() && ! comments_open() && ! p
 
 			<h3 id="comments-number" class="comments-header"><?php comments_number( __( 'No Responses', 'hybrid-wing' ), __( 'One Response', 'hybrid-wing' ), __( '% Responses', 'hybrid-wing' ) ); ?></h3>
 
-			<?php do_atomic( 'before_comment_list' ); ?>
-
 			<ul class="comment-list media-list">
 				<?php wp_list_comments( hybrid_list_comments_args() ); ?>
 			</ul>
-
-			<?php do_atomic( 'after_comment_list' ); ?>
 
 			<?php if ( get_option( 'page_comments' ) ) : ?>
 				<div class="comment-navigation comment-pagination">
