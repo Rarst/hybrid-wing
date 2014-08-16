@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.0.15",
+            "version": "v1.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "8e6a72a78f6cfd537fde3350720dfdc9ae3c5621"
+                "reference": "033679ad3cfc5ab759f9ed2a58881aeef13c342b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/8e6a72a78f6cfd537fde3350720dfdc9ae3c5621",
-                "reference": "8e6a72a78f6cfd537fde3350720dfdc9ae3c5621",
+                "url": "https://api.github.com/repos/composer/installers/zipball/033679ad3cfc5ab759f9ed2a58881aeef13c342b",
+                "reference": "033679ad3cfc5ab759f9ed2a58881aeef13c342b",
                 "shasum": ""
             },
             "replace": {
@@ -48,8 +48,7 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama",
-                    "role": "Developer"
+                    "homepage": "https://github.com/shama"
                 }
             ],
             "description": "A multi-framework Composer library installer",
@@ -84,6 +83,7 @@
                 "phpbb",
                 "piwik",
                 "ppi",
+                "puppet",
                 "roundcube",
                 "shopware",
                 "silverstripe",
@@ -93,20 +93,20 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2014-06-23 16:25:28"
+            "time": "2014-07-21 15:54:34"
         },
         {
             "name": "justintadlock/hybrid-core",
-            "version": "2.0.0",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justintadlock/hybrid-core.git",
-                "reference": "a6bdf3ad16fafd1d2c10a3dcea3917ecc627374f"
+                "reference": "c136a0742d34ca0c0ff01958ec37855e8d2c8e8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justintadlock/hybrid-core/zipball/a6bdf3ad16fafd1d2c10a3dcea3917ecc627374f",
-                "reference": "a6bdf3ad16fafd1d2c10a3dcea3917ecc627374f",
+                "url": "https://api.github.com/repos/justintadlock/hybrid-core/zipball/c136a0742d34ca0c0ff01958ec37855e8d2c8e8c",
+                "reference": "c136a0742d34ca0c0ff01958ec37855e8d2c8e8c",
                 "shasum": ""
             },
             "type": "library",
@@ -131,20 +131,20 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2014-07-14 02:33:50"
+            "time": "2014-08-12 14:41:22"
         },
         {
             "name": "pimple/pimple",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Pimple.git",
-                "reference": "90b4710f115766d12e1a579b816c0974887b87a7"
+                "reference": "ea22fb2880faf7b7b0e17c9809c6fe25b071fd76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/90b4710f115766d12e1a579b816c0974887b87a7",
-                "reference": "90b4710f115766d12e1a579b816c0974887b87a7",
+                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
+                "reference": "ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
                 "shasum": ""
             },
             "require": {
@@ -168,9 +168,7 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
+                    "email": "fabien@symfony.com"
                 }
             ],
             "description": "Pimple is a simple Dependency Injection Container for PHP 5.3",
@@ -179,7 +177,7 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2014-05-01 10:34:00"
+            "time": "2014-07-24 07:10:08"
         },
         {
             "name": "rarst/locate-vendor",
@@ -383,6 +381,7 @@
     "stability-flags": {
         "rarst/meadow": 20
     },
+    "prefer-stable": false,
     "platform": {
         "php": ">=5.3"
     },
