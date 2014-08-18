@@ -1,0 +1,24 @@
+<section id="comments-template">
+	{% if have_comments() %}
+		<h3 id="comments-number">{{ comments_number() }}</h3>
+
+		<ul class="comment-list media-list">
+			{% for comment in wp_query.comments %}
+				<li class="media">
+					<div class="pull-left media-object">
+						{{ get_avatar( comment.comment_author_email ) }}
+					</div>
+					<div class="media-body">
+						{{ comment.comment_content|raw }}
+					</div>
+				</li>
+			{% endfor %}
+		</ul><!-- .comment-list -->
+
+		<div class="comment-navigation comment-pagination">
+			{{ hw_paginate_comments_links() }}
+		</div><!-- .comment-navigation -->
+	{% endif %}
+
+	{{ comment_form() }}
+</section><!-- #comments-template -->
