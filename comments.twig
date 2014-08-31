@@ -18,6 +18,14 @@
 				{% endblock %}
 			{% endif %}
 
+			{% block comments_closed %}
+				{% if not comments_open() %}
+					<p class="comments-closed">
+						{{ _e( 'Comments are closed.', 'hybrid-wing' ) }}
+					</p><!-- .comments-closed -->
+				{% endif %}
+			{% endblock %}
+
 			{% block comment_form %}
 				{{ comment_form() }}
 			{% endblock %}
