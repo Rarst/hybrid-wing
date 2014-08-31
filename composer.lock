@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.0.16",
+            "version": "v1.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "033679ad3cfc5ab759f9ed2a58881aeef13c342b"
+                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/033679ad3cfc5ab759f9ed2a58881aeef13c342b",
-                "reference": "033679ad3cfc5ab759f9ed2a58881aeef13c342b",
+                "url": "https://api.github.com/repos/composer/installers/zipball/74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
+                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
                 "shasum": ""
             },
             "replace": {
@@ -64,6 +64,7 @@
                 "annotatecms",
                 "bitrix",
                 "cakephp",
+                "chef",
                 "codeigniter",
                 "concrete5",
                 "croogo",
@@ -93,7 +94,7 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2014-07-21 15:54:34"
+            "time": "2014-08-18 20:00:12"
         },
         {
             "name": "justintadlock/hybrid-core",
@@ -229,12 +230,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Rarst/meadow.git",
-                "reference": "c34f7219e8eeda3c97c7a53105ddd5041f6efbb3"
+                "reference": "b1bd207ad90fdba9639c7eca1c4cf93562c6e4a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Rarst/meadow/zipball/c34f7219e8eeda3c97c7a53105ddd5041f6efbb3",
-                "reference": "c34f7219e8eeda3c97c7a53105ddd5041f6efbb3",
+                "url": "https://api.github.com/repos/Rarst/meadow/zipball/b1bd207ad90fdba9639c7eca1c4cf93562c6e4a9",
+                "reference": "b1bd207ad90fdba9639c7eca1c4cf93562c6e4a9",
                 "shasum": ""
             },
             "require": {
@@ -264,7 +265,7 @@
                 "twig",
                 "wordpress"
             ],
-            "time": "2014-06-08 21:48:01"
+            "time": "2014-08-18 18:31:26"
         },
         {
             "name": "twbs/bootstrap",
