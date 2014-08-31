@@ -1,15 +1,24 @@
-<section id="comments-template">
-	{% if have_comments() %}
-		<h3 id="comments-number">{{ comments_number() }}</h3>
+{% block comments_template %}
+	<section id="comments-template">
+		{% if have_comments() %}
+			<h3 id="comments-number">{{ comments_number() }}</h3>
 
+			{% block comment_list %}
 				<ul class="comment-list media-list">
 					{{ wp_list_comments() }}
 				</ul><!-- .comment-list -->
+			{% endblock %}
 
-		<div class="comment-navigation comment-pagination">
-			{{ hw_paginate_comments_links() }}
-		</div><!-- .comment-navigation -->
-	{% endif %}
+			{% block comment_navigation %}
+				<div class="comment-navigation comment-pagination">
+					{{ hw_paginate_comments_links() }}
+				</div><!-- .comment-navigation -->
+			{% endblock %}
+		{% endif %}
 
-	{{ comment_form() }}
-</section><!-- #comments-template -->
+		{% block comment_form %}
+			{{ comment_form() }}
+		{% endblock %}
+
+	</section><!-- #comments-template -->
+{% endblock %}
