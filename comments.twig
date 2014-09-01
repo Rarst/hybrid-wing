@@ -7,7 +7,28 @@
 
 				{% block comment_list %}
 					<ul class="comment-list media-list">
-						{{ wp_list_comments() }}
+						{% comments %}
+						<li {{ hybrid_attr( 'comment' ) }}>
+
+							<div class="pull-left">
+								{{ get_avatar( get_comment_author_email()) }}
+							</div>
+
+							<div class="media-body">
+								<h4 class="media-heading comment-meta">
+									<cite {{ hybrid_attr( 'comment-author' ) }}>{{ comment_author_link() }}</cite>
+									<time {{ hybrid_attr( 'comment-published' ) }}>{{ printf( __( '%s ago', 'hybrid-wing' ), human_time_diff( get_comment_time( 'U' ), current_time( 'timestamp' ) ) ) }}</time>
+									<a {{ hybrid_attr( 'comment-permalink' ) }}>{{ _e( 'Permalink', 'hybrid-wing' ) }}</a>
+									{{ edit_comment_link() }}
+								</h4><!-- .comment-meta -->
+
+								<div {{ hybrid_attr( 'comment-content' ) }}>
+									{{ comment_text() }}
+								</div><!-- .media-heading .comment-content -->
+
+								{{ hybrid_comment_reply_link() }}
+							</div><!-- .media-body -->
+							{% endcomments %}
 					</ul><!-- .comment-list -->
 				{% endblock %}
 

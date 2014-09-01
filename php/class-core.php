@@ -67,6 +67,7 @@ class Core extends \Hybrid {
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 		add_filter( 'img_caption_shortcode', array( $this, 'img_caption_shortcode' ), 10, 3 );
+		add_filter( 'hybrid_attr_comment', array( $this, 'hybrid_attr_comment' ) );
 	}
 
 	function theme_support() {
@@ -167,5 +168,19 @@ class Core extends \Hybrid {
 
 		return '<div ' . $attr['id'] . 'class="wp-caption thumbnail ' . esc_attr( $attr['align'] ) . '" style="max-width: ' . (int) $attr['width'] . 'px">'
 		. do_shortcode( $content ) . '<p class="wp-caption-text caption">' . $attr['caption'] . '</p></div>';
+	}
+
+	/**
+	 * Add media class to comment list items.
+	 *
+	 * @param array $attr
+	 *
+	 * @return array
+	 */
+	function hybrid_attr_comment( $attr ) {
+
+		$attr['class'] .= ' media';
+
+		return $attr;
 	}
 }
