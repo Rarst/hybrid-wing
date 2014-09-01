@@ -230,12 +230,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Rarst/meadow.git",
-                "reference": "b1bd207ad90fdba9639c7eca1c4cf93562c6e4a9"
+                "reference": "c95c81d9cd96865d6728600bad2a2463264cae04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Rarst/meadow/zipball/b1bd207ad90fdba9639c7eca1c4cf93562c6e4a9",
-                "reference": "b1bd207ad90fdba9639c7eca1c4cf93562c6e4a9",
+                "url": "https://api.github.com/repos/Rarst/meadow/zipball/c95c81d9cd96865d6728600bad2a2463264cae04",
+                "reference": "c95c81d9cd96865d6728600bad2a2463264cae04",
                 "shasum": ""
             },
             "require": {
@@ -265,7 +265,7 @@
                 "twig",
                 "wordpress"
             ],
-            "time": "2014-08-18 18:31:26"
+            "time": "2014-09-01 17:46:23"
         },
         {
             "name": "twbs/bootstrap",
