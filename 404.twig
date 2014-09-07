@@ -1,0 +1,15 @@
+{% extends 'index.twig' %}
+
+{% block loop %}
+	<article {{ hybrid_attr( 'post' )}}>
+	
+		<header class="entry-header">
+			<h1 class="entry-title">{{ _e( 'Nothing found', 'hybrid-wing' )}}</h1>
+		</header><!-- .entry-header -->
+	
+		<div {{ hybrid_attr( 'entry-content' )}}>
+			{{ wpautop( __( 'Apologies, but no entries were found.', 'hybrid-wing' ) )}}
+		</div><!-- .entry-content -->
+	
+	</article><!-- .entry -->
+{% endblock %}
