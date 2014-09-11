@@ -24,12 +24,16 @@
 	{% endblock %}
 
 	{% block main %}
-	<div id="main">
+	<div id="main" class="main">
+
+		{% block breadcrumb %}
+			<div class="col-md-9">
+				{{ breadcrumb_trail() }}
+			</div>
+		{% endblock %}
 
 		{% block content %}
-		<div id="content" class="hfeed">
-
-			{% block breadcrumb breadcrumb_trail() %}
+		<main {{ hybrid_attr( 'content' ) }}>
 
 			{% block loop %}
 			{% loop %}
@@ -55,7 +59,7 @@
 			{% endblock loop %}
 
 			{% block loop_nav loop_pagination() %}
-		</div>
+		</main>
 		{% endblock content %}
 
 		{% block sidebar %}
