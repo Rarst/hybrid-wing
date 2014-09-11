@@ -50,7 +50,7 @@
 				{% endblock %}
 
 				{% block entry_content %}
-				<div class="entry-content">
+				<div {{ hybrid_attr( 'entry-content' ) }}>
 					{{ the_content( sprintf( __( 'Continue reading %1$s', 'hybrid-wing' ), the_title( ' "', '"', false ) ) ) }}
 					{{ wp_link_pages() }}
 				</div>
