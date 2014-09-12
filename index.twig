@@ -62,6 +62,10 @@
 			{% endloop %}
 			{% endblock loop %}
 
+			{% if is_singular() %}
+				{{ comments_template() }}
+			{% endif %}
+
 			{% block loop_nav loop_pagination() %}
 		</main>
 		{% endblock content %}
