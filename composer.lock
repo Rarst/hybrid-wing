@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "062331a1b579407a6ad592f84a67a715",
+    "hash": "854a90fb379e70ae450f232bfb7864f8",
     "packages": [
         {
             "name": "composer/installers",
@@ -136,16 +136,16 @@
         },
         {
             "name": "pimple/pimple",
-            "version": "v2.1.1",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Pimple.git",
-                "reference": "ea22fb2880faf7b7b0e17c9809c6fe25b071fd76"
+                "reference": "876bf0899d01feacd2a2e83f04641e51350099ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
-                "reference": "ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
+                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/876bf0899d01feacd2a2e83f04641e51350099ef",
+                "reference": "876bf0899d01feacd2a2e83f04641e51350099ef",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +154,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1.x-dev"
+                    "dev-master": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -178,7 +178,7 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2014-07-24 07:10:08"
+            "time": "2014-07-24 09:48:15"
         },
         {
             "name": "rarst/locate-vendor",
@@ -230,16 +230,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Rarst/meadow.git",
-                "reference": "c95c81d9cd96865d6728600bad2a2463264cae04"
+                "reference": "f055931199242bcaf90c111c76856a22d7d20793"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Rarst/meadow/zipball/c95c81d9cd96865d6728600bad2a2463264cae04",
-                "reference": "c95c81d9cd96865d6728600bad2a2463264cae04",
+                "url": "https://api.github.com/repos/Rarst/meadow/zipball/f055931199242bcaf90c111c76856a22d7d20793",
+                "reference": "f055931199242bcaf90c111c76856a22d7d20793",
                 "shasum": ""
             },
             "require": {
-                "pimple/pimple": "~2.0",
+                "php": ">=5.4",
+                "pimple/pimple": "~3.0",
                 "twig/twig": "~1.15"
             },
             "type": "library",
@@ -265,7 +266,7 @@
                 "twig",
                 "wordpress"
             ],
-            "time": "2014-09-01 17:46:23"
+            "time": "2014-10-20 18:05:22"
         },
         {
             "name": "twbs/bootstrap",
@@ -320,16 +321,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.0",
+            "version": "v1.16.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "8ce37115802e257a984a82d38254884085060024"
+                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8ce37115802e257a984a82d38254884085060024",
-                "reference": "8ce37115802e257a984a82d38254884085060024",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/42f758d9fe2146d1f0470604fc05ee43580873fc",
+                "reference": "42f758d9fe2146d1f0470604fc05ee43580873fc",
                 "shasum": ""
             },
             "require": {
@@ -358,7 +359,7 @@
                     "role": "Lead Developer"
                 },
                 {
-                    "name": "Armin Ronacher2",
+                    "name": "Armin Ronacher",
                     "email": "armin.ronacher@active-4.com",
                     "role": "Project Founder"
                 },
@@ -373,7 +374,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-07-05 12:19:05"
+            "time": "2014-10-17 12:53:44"
         }
     ],
     "packages-dev": [],
