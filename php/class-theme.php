@@ -1,11 +1,12 @@
 <?php
 namespace Rarst\Hybrid_Wing;
+use Pimple\Container;
 use Rarst\Meadow\Core;
 
 /**
  * Theme's loader and container class
  */
-class Theme extends \Pimple {
+class Theme extends Container {
 
 	/**
 	 * @param array $values

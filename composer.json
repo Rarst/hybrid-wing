@@ -21,7 +21,7 @@
 		"justintadlock/hybrid-core": "~2.0",
 		"rarst/locate-vendor"      : "~1.0",
 		"twbs/bootstrap"           : "~3.0",
-		"pimple/pimple"            : "~2.0",
+		"pimple/pimple"            : "~3.0",
 		"rarst/meadow"             : "dev-master"
 	},
 	"autoload"   : {
