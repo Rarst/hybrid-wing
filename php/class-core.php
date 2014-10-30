@@ -67,6 +67,7 @@ class Core extends \Hybrid {
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 		add_filter( 'img_caption_shortcode', array( $this, 'img_caption_shortcode' ), 10, 3 );
+		add_filter( 'hybrid_attr_content', array( $this, 'hybrid_attr_content' ) );
 		add_filter( 'hybrid_attr_comment', array( $this, 'hybrid_attr_comment' ) );
 	}
 
@@ -162,6 +163,20 @@ class Core extends \Hybrid {
 
 		return '<div ' . $attr['id'] . 'class="wp-caption thumbnail ' . esc_attr( $attr['align'] ) . '" style="max-width: ' . (int) $attr['width'] . 'px">'
 		. do_shortcode( $content ) . '<p class="wp-caption-text caption">' . $attr['caption'] . '</p></div>';
+	}
+
+	/**
+	 * Add grid class to content block.
+	 *
+	 * @param array $attr
+	 *
+	 * @return array
+	 */
+	public function hybrid_attr_content( $attr ) {
+
+		$attr['class'] .= ' col-md-9';
+
+		return $attr;
 	}
 
 	/**
