@@ -67,8 +67,6 @@ License URI: http://www.gnu.org/licenses/gpl.html
 .panel-body:after,
 .modal-footer:before,
 .modal-footer:after,
-#container:before,
-#container:after,
 #main:before,
 #main:after,
 #footer:before,
@@ -90,43 +88,9 @@ License URI: http://www.gnu.org/licenses/gpl.html
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
-#container:after,
 #main:after,
 #footer:after {
   clear: both;
-}
-#container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  #container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  #container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  #container {
-    width: 1170px;
-  }
-}
-#container > .navbar-header,
-#container > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  #container > .navbar-header,
-  #container > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
 }
 #main {
   margin-left: -15px;
