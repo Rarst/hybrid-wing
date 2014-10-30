@@ -79,12 +79,6 @@ class Core extends \Hybrid {
 		add_theme_support( 'loop-pagination' );
 	}
 
-	function functions() {
-
-		parent::functions();
-		remove_filter( 'comment_form_defaults', 'hybrid_comment_form_args' );
-	}
-
 	function widgets_init() {
 
 		register_widget( 'Nav_List_Menu_Widget' );
