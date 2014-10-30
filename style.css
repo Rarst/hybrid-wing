@@ -67,8 +67,6 @@ License URI: http://www.gnu.org/licenses/gpl.html
 .panel-body:after,
 .modal-footer:before,
 .modal-footer:after,
-#main:before,
-#main:after,
 #footer:before,
 #footer:after {
   content: " ";
@@ -88,13 +86,8 @@ License URI: http://www.gnu.org/licenses/gpl.html
 .pager:after,
 .panel-body:after,
 .modal-footer:after,
-#main:after,
 #footer:after {
   clear: both;
-}
-#main {
-  margin-left: -15px;
-  margin-right: -15px;
 }
 #content {
   position: relative;
