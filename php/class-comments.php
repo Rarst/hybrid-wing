@@ -87,8 +87,8 @@ class Comments {
 			$field,
 			array(
 				'<label'    => '<label class="control-label"',
-				'<input'    => '<div class="controls"><input class="span5"',
-				'<textarea' => '<div class="controls"><textarea class="span5"',
+				'<input'    => '<div class="controls"><input',
+				'<textarea' => '<div class="controls"><textarea',
 				'</p>'      => '</div>',
 			)
 		);
@@ -107,7 +107,7 @@ class Comments {
 	 */
 	function make_comment_notes_help_block( $note ) {
 
-		$note = '<div class="control-group"><div class="controls span5">' . str_replace( '<p class="', '<p class="help-block ', $note ) . '</div></div>';
+		$note = '<div class="control-group"><div class="controls">' . str_replace( '<p class="', '<p class="help-block ', $note ) . '</div></div>';
 
 		return $note;
 	}
