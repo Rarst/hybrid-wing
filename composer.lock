@@ -230,12 +230,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Rarst/meadow.git",
-                "reference": "f055931199242bcaf90c111c76856a22d7d20793"
+                "reference": "3a33af78b728589c8876b64239ad31da64ad0e9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Rarst/meadow/zipball/f055931199242bcaf90c111c76856a22d7d20793",
-                "reference": "f055931199242bcaf90c111c76856a22d7d20793",
+                "url": "https://api.github.com/repos/Rarst/meadow/zipball/3a33af78b728589c8876b64239ad31da64ad0e9d",
+                "reference": "3a33af78b728589c8876b64239ad31da64ad0e9d",
                 "shasum": ""
             },
             "require": {
@@ -266,20 +266,20 @@
                 "twig",
                 "wordpress"
             ],
-            "time": "2014-10-20 18:05:22"
+            "time": "2014-11-04 19:56:16"
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v3.3.0",
+            "version": "v3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "16dbdbd7a2c6cfa3be4e5dcc52249e577c02c84a"
+                "reference": "9a7e365c2c4360335d25246dac11afb1f577210a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16dbdbd7a2c6cfa3be4e5dcc52249e577c02c84a",
-                "reference": "16dbdbd7a2c6cfa3be4e5dcc52249e577c02c84a",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/9a7e365c2c4360335d25246dac11afb1f577210a",
+                "reference": "9a7e365c2c4360335d25246dac11afb1f577210a",
                 "shasum": ""
             },
             "replace": {
@@ -317,7 +317,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-10-29 18:56:48"
+            "time": "2014-11-12 17:03:16"
         },
         {
             "name": "twig/twig",

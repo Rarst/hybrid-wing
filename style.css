@@ -180,7 +180,7 @@ a.entry-content > img:focus,
 a.entry-content p img:focus,
 a.entry-content > img.active,
 a.entry-content p img.active {
-  border-color: #428bca;
+  border-color: #337ab7;
 }
 .entry-content > img .caption,
 .entry-content p img .caption {
