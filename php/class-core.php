@@ -143,7 +143,7 @@ class Core extends \Hybrid {
 	 *
 	 * @return string
 	 */
-	function img_caption_shortcode( $empty, $attr, $content ) {
+	function img_caption_shortcode( $empty, $attr, $content ) { // TODO html5 caption
 
 		$attr = shortcode_atts(
 			array(
@@ -161,8 +161,16 @@ class Core extends \Hybrid {
 		if ( ! empty( $attr['id'] ) )
 			$attr['id'] = 'id="' . esc_attr( $attr['id'] ) . '" ';
 
-		return '<div ' . $attr['id'] . 'class="wp-caption thumbnail ' . esc_attr( $attr['align'] ) . '" style="max-width: ' . (int) $attr['width'] . 'px">'
-		. do_shortcode( $content ) . '<p class="wp-caption-text caption">' . $attr['caption'] . '</p></div>';
+
+		$style         = '';
+		$caption_width = $attr['width'] + 10; // 4px padding + 1px border
+		$caption_width = apply_filters( 'img_caption_shortcode_width', $caption_width, $attr, $content );
+		if ( $caption_width ) {
+			$style = 'style="max-width: ' . (int) $caption_width . 'px" ';
+		}
+
+		return '<div ' . $attr['id'] . 'class="wp-caption thumbnail ' . esc_attr( $attr['align'] ) . '" ' . $style . '>'
+			   . do_shortcode( $content ) . '<p class="wp-caption-text caption">' . $attr['caption'] . '</p></div>';
 	}
 
 	/**
