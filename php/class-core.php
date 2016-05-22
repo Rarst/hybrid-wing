@@ -25,17 +25,26 @@ class Core extends \Hybrid {
 		return 'hw';
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	function constants() {
 
-		define( 'HYBRID_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'justintadlock/hybrid-core' ) ) );
+		$hybrid_core_path = Locate_Vendor::get_package_path( 'justintadlock/hybrid-core' );
+		define( 'HYBRID_DIR', trailingslashit( str_replace( '\\', '/', $hybrid_core_path ) ) );
 		define( 'HYBRID_URI', $this->content_url_from_path( HYBRID_DIR ) );
 		parent::constants();
 
 		define( 'BOOTSTRAP_DIR', str_replace( '\\', '/', Locate_Vendor::get_package_path( 'twbs/bootstrap' ) ) );
 		define( 'BOOTSTRAP_URI', $this->content_url_from_path( BOOTSTRAP_DIR ) );
 
-		if ( ! defined( 'SCRIPT_DEBUG' ) )
+		if ( ! defined( 'SCRIPT_DEBUG' ) ) {
 			define( 'SCRIPT_DEBUG', false );
+		}
+
+		if ( ! defined( 'CHILD_THEME_URI' ) ) {
+			define( 'CHILD_THEME_URI', get_stylesheet_directory_uri() );
+		}
 	}
 
 	/**
