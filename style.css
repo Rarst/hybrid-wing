@@ -24,7 +24,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 .btn-group-lg > .btn {
   padding: 10px 16px;
   font-size: 18px;
-  line-height: 1.33;
+  line-height: 1.3333333;
   border-radius: 6px;
 }
 .btn-group-sm > .btn {
@@ -65,6 +65,8 @@ License URI: http://www.gnu.org/licenses/gpl.html
 .pager:after,
 .panel-body:before,
 .panel-body:after,
+.modal-header:before,
+.modal-header:after,
 .modal-footer:before,
 .modal-footer:after {
   content: " ";
@@ -83,6 +85,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
 .navbar-collapse:after,
 .pager:after,
 .panel-body:after,
+.modal-header:after,
 .modal-footer:after {
   clear: both;
 }
