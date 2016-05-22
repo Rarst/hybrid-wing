@@ -8,20 +8,20 @@ class Loop_Pagination {
 
 	public function enable() {
 
-		add_filter( 'loop_pagination_args', array( $this, 'loop_pagination_args' ) );
-		add_filter( 'loop_pagination', array( $this, 'loop_pagination_markup' ) );
 		add_filter( 'hw_paginate_comments_links', array( $this, 'loop_pagination_markup' ) );
+		add_filter( 'hw_posts_pagination', array( $this, 'loop_pagination_markup' ) );
 	}
 
 	public function disable() {
 
-		remove_filter( 'loop_pagination_args', array( $this, 'loop_pagination_args' ) );
-		remove_filter( 'loop_pagination', array( $this, 'loop_pagination_markup' ) );
 		remove_filter( 'hw_paginate_comments_links', array( $this, 'loop_pagination_markup' ) );
+		remove_filter( 'hw_posts_pagination', array( $this, 'loop_pagination_markup' ) );
 	}
 
 	/**
 	 * Adjust arguments of loop pagination function.
+	 *
+	 * @deprecated
 	 *
 	 * @param array $args
 	 *

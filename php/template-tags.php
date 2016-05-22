@@ -27,3 +27,19 @@ function hw_paginate_comments_links( $args = array() ) {
 
 	return $output;
 }
+
+/**
+ * Wrap posts pagination.
+ *
+ * @see get_the_posts_pagination()
+ *
+ * @param array $args Pagination arguments.
+ *
+ * @return string
+ */
+function hw_posts_pagination( $args = array() ) {
+
+	$args['type'] = 'list';
+
+	return apply_filters( 'hw_posts_pagination', get_the_posts_pagination( $args ) );
+}
