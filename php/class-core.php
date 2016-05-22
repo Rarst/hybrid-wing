@@ -16,6 +16,7 @@ class Core extends \Hybrid {
 
 		add_filter( 'hybrid_prefix', array( $this, 'hybrid_prefix' ) );
 		parent::__construct();
+		add_action( 'after_setup_theme', array( $this, 'default_filters' ), 3 );
 	}
 
 	/**
@@ -71,7 +72,6 @@ class Core extends \Hybrid {
 
 	function default_filters() {
 
-		parent::default_filters();
 		add_action( 'widgets_init', array( $this, 'widgets_init' ) );
 		add_action( 'template_redirect', array( $this, 'template_redirect' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
