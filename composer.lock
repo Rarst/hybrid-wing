@@ -4,21 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ae36f4d17b3d24aa55cd39b5b99b48f1",
-    "content-hash": "1d68cacae7ba3da1f8d46c159ae56ac9",
+    "content-hash": "f87bd1dd4a77fa9b659399168eb68c02",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.0.25",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e"
+                "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
-                "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
+                "url": "https://api.github.com/repos/composer/installers/zipball/79ad876c7498c0bbfe7eed065b8651c93bfd6045",
+                "reference": "79ad876c7498c0bbfe7eed065b8651c93bfd6045",
                 "shasum": ""
             },
             "require": {
@@ -60,32 +59,43 @@
             "keywords": [
                 "Craft",
                 "Dolibarr",
+                "Eliasis",
                 "Hurad",
                 "ImageCMS",
+                "Kanboard",
                 "MODX Evo",
                 "Mautic",
+                "Maya",
                 "OXID",
+                "Plentymarkets",
+                "Porto",
+                "RadPHP",
                 "SMF",
                 "Thelia",
                 "WolfCMS",
                 "agl",
                 "aimeos",
                 "annotatecms",
+                "attogram",
                 "bitrix",
                 "cakephp",
                 "chef",
+                "cockpit",
                 "codeigniter",
                 "concrete5",
                 "croogo",
                 "dokuwiki",
                 "drupal",
                 "elgg",
+                "expressionengine",
                 "fuelphp",
                 "grav",
                 "installer",
+                "itop",
                 "joomla",
                 "kohana",
                 "laravel",
+                "lavalite",
                 "lithium",
                 "magento",
                 "mako",
@@ -96,16 +106,19 @@
                 "piwik",
                 "ppi",
                 "puppet",
+                "reindex",
                 "roundcube",
                 "shopware",
                 "silverstripe",
+                "sydes",
                 "symfony",
                 "typo3",
                 "wordpress",
+                "yawik",
                 "zend",
                 "zikula"
             ],
-            "time": "2016-04-13 19:46:30"
+            "time": "2017-04-24T06:37:16+00:00"
         },
         {
             "name": "justintadlock/hybrid-core",
@@ -143,7 +156,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2015-08-17 21:31:12"
+            "time": "2015-08-17T21:31:12+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -189,7 +202,7 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2015-09-11 15:10:35"
+            "time": "2015-09-11T15:10:35+00:00"
         },
         {
             "name": "rarst/locate-vendor",
@@ -230,26 +243,26 @@
             "keywords": [
                 "composer"
             ],
-            "time": "2013-07-19 13:14:59"
+            "time": "2013-07-19T13:14:59+00:00"
         },
         {
             "name": "rarst/meadow",
-            "version": "dev-master",
+            "version": "0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Rarst/meadow.git",
-                "reference": "2d9dd76b6051fa98ff9823a9b78123e2b181b542"
+                "reference": "9148b5add079858901a6ccb03b0e92e8d6952844"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Rarst/meadow/zipball/2d9dd76b6051fa98ff9823a9b78123e2b181b542",
-                "reference": "2d9dd76b6051fa98ff9823a9b78123e2b181b542",
+                "url": "https://api.github.com/repos/Rarst/meadow/zipball/9148b5add079858901a6ccb03b0e92e8d6952844",
+                "reference": "9148b5add079858901a6ccb03b0e92e8d6952844",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4",
                 "pimple/pimple": "~3.0",
-                "twig/twig": "~1.15"
+                "twig/twig": "^1.28.2"
             },
             "type": "library",
             "autoload": {
@@ -274,20 +287,20 @@
                 "twig",
                 "wordpress"
             ],
-            "time": "2015-04-13 08:21:47"
+            "time": "2016-12-10T21:11:05+00:00"
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v3.3.6",
+            "version": "v3.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a"
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/81df608a40bf0629a1dc08e584849bb1e43e0b7a",
-                "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
                 "shasum": ""
             },
             "replace": {
@@ -325,33 +338,34 @@
                 "responsive",
                 "web"
             ],
-            "time": "2015-11-24 19:37:05"
+            "time": "2016-07-25T15:51:55+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v1.24.0",
+            "version": "v1.33.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8"
+                "reference": "dd6ca96227917e1e85b41c7c3cc6507b411e0927"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
-                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/dd6ca96227917e1e85b41c7c3cc6507b411e0927",
+                "reference": "dd6ca96227917e1e85b41c7c3cc6507b411e0927",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.7"
             },
             "require-dev": {
+                "psr/container": "^1.0",
                 "symfony/debug": "~2.7",
-                "symfony/phpunit-bridge": "~2.7"
+                "symfony/phpunit-bridge": "~3.3@dev"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.24-dev"
+                    "dev-master": "1.33-dev"
                 }
             },
             "autoload": {
@@ -386,15 +400,13 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-01-25 21:22:18"
+            "time": "2017-04-20T17:39:48+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "rarst/meadow": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
