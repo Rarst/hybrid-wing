@@ -62,8 +62,11 @@ class Core extends \Hybrid {
 		if ( empty( $content_dir ) )
 			$content_dir = str_replace( '\\', '/', WP_CONTENT_DIR );
 
-		if ( false !== stripos( $path, $content_dir ) )
-			return content_url( str_ireplace( $content_dir, '', $path ) );
+		$path_match = stripos( $path, $content_dir );
+
+		if ( false !== $path_match ) {
+			return content_url( substr( $path, $path_match + strlen( $content_dir ) ) );
+		}
 
 		trigger_error( 'Could not calculate URL constant for ' . esc_html( $path ), E_USER_WARNING );
 
