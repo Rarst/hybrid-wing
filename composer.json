@@ -4,12 +4,11 @@
 	"keywords"   : ["wordpress", "bootstrap", "hybrid"],
 	"type"       : "wordpress-theme",
 	"homepage"   : "https://github.com/Rarst/hybrid-wing",
-	"license"    : "GPL-3.0",
+	"license"    : "GPL-3.0-or-later",
 	"authors"    : [
 		{
 			"name"    : "Andrey Savchenko",
-			"email"   : "contact@rarst.net",
-			"homepage": "http://www.Rarst.net/"
+			"homepage": "https://www.Rarst.net/"
 		}
 	],
 	"support"    : {
